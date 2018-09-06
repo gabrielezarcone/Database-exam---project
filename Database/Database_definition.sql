@@ -44,10 +44,31 @@ CREATE TABLE campaign(
     end_date DATE NOT NULL
 );
 ------------------------------------------------
-CREATE TABLE requires();
-CREATE TABLE recives();
-CREATE TABLE has();
-CREATE TABLE join();
+CREATE TABLE requires(
+    task INTEGER,
+    keyword VARCHAR(50),
+    PRIMARY KEY(task,keyword),
+    FOREIGN key(task) REFERENCES task(id),
+    FOREIGN KEY(keyword) REFERENCES keyword(keyword)
+);
+CREATE TABLE recives(
+    
+);
+CREATE TABLE has(
+    worker VARCHAR(20),
+    keyword VARCHAR(50),
+    score INTEGER,
+    PRIMARY KEY(worker,keyword),
+    FOREIGN KEY(worker) REFERENCES worker(user_name),
+    FOREIGN KEY(keyword) REFERENCES keyword(keyword)
+);
+CREATE TABLE join(
+    worker VARCHAR(20),
+    campaign INTEGER,
+    PRIMARY KEY(worker,campaign),
+    FOREIGN KEY(worker) REFERENCES worker(user_name),
+    FOREIGN KEY(campaign) REFERENCES campaign(id),
+);
 
 
 
