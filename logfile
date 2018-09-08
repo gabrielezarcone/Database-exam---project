@@ -1,0 +1,25 @@
+2018-09-08 12:13:51.660 CEST [1673] LOG:  listening on IPv6 address "::1", port 5432
+2018-09-08 12:13:51.660 CEST [1673] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-09-08 12:13:51.661 CEST [1673] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-09-08 12:13:51.698 CEST [1674] LOG:  database system was shut down at 2018-09-04 00:38:23 CEST
+2018-09-08 12:13:51.713 CEST [1673] LOG:  database system is ready to accept connections
+2018-09-08 12:15:24.566 CEST [1728] FATAL:  database "temp1" does not exist
+2018-09-08 12:15:30.712 CEST [1738] FATAL:  database "gabriele" does not exist
+2018-09-08 12:15:42.027 CEST [1748] FATAL:  database "psql" does not exist
+2018-09-08 12:16:23.844 CEST [1766] FATAL:  database "template0" is not currently accepting connections
+2018-09-08 12:17:04.767 CEST [1776] ERROR:  syntax error at or near "quit" at character 1
+2018-09-08 12:17:04.767 CEST [1776] STATEMENT:  quit
+	;
+2018-09-08 12:18:45.823 CEST [1795] ERROR:  role "administrator" already exists
+2018-09-08 12:18:45.823 CEST [1795] STATEMENT:  CREATE USER administrator;
+2018-09-08 12:18:45.825 CEST [1795] ERROR:  schema "crowdsourcing" already exists
+2018-09-08 12:18:45.825 CEST [1795] STATEMENT:  CREATE SCHEMA crowdsourcing;
+2018-09-08 12:20:01.269 CEST [1814] FATAL:  database "gabriele" does not exist
+2018-09-08 12:27:10.786 CEST [1818] ERROR:  syntax error at or near "where" at character 36
+2018-09-08 12:27:10.786 CEST [1818] STATEMENT:  select worker
+	from joins_campaign,
+	where campaign = 1;
+2018-09-08 12:27:16.855 CEST [1818] ERROR:  relation "joins_campaign" does not exist at character 20
+2018-09-08 12:27:16.855 CEST [1818] STATEMENT:  select worker
+	from joins_campaign
+	where campaign = 1;
