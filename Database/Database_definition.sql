@@ -5,6 +5,10 @@ CREATE DATABASE crowdsourcing;
 
 CREATE SCHEMA crowdsourcing;
 
+-- SET SEARCH PATH --
+
+SET search_path TO crowdsourcing, public;
+
 -- DOMAINS --
 
 CREATE DOMAIN keyword_type AS VARCHAR(50)
@@ -75,7 +79,7 @@ CREATE TABLE choose(
     answer VARCHAR(100) NOT NULL,
     PRIMARY KEY(worker),
     FOREIGN KEY(worker) REFERENCES worker(user_name) ON UPDATE CASCADE ON DELETE SET NULL,
-    FOREIGN KEY(task,answer) REFERENCES answer(task,value) ON UPDATE NO ACTION?SETNULL ON DELETE NO ACTION?SETNULL
+    FOREIGN KEY(task,answer) REFERENCES answer(task,value) ON UPDATE NO ACTION ON DELETE NO ACTION ---?SETNULL--?SETNULL
 );
 CREATE TABLE requires_keyword(
     task INTEGER,
