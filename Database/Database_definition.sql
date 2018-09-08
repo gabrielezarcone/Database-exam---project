@@ -1,7 +1,7 @@
 
-CREATE USER administration;
-
 CREATE DATABASE crowdsourcing;
+
+CREATE USER administrator;
 
 CREATE SCHEMA crowdsourcing;
 
@@ -113,3 +113,21 @@ CREATE TABLE joins_campaign(
     FOREIGN KEY(campaign) REFERENCES campaign(id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
+-- Query
+
+insert into worker values ('user1','pass1');
+insert into worker values ('user2','pass2');
+insert into worker values ('user3','pass3');
+insert into worker values ('user4','pass4');
+insert into worker values ('user5','pass5');
+insert into worker values ('user6','pass6');
+insert into worker values ('user7','pass7');
+insert into worker values ('user8','pass8');
+insert into worker values ('user9','pass9');
+insert into worker values ('user10','pass10');
+insert into worker values ('user11','pass11');
+insert into worker values ('use2r1','pass12');
+
+select worker
+from joins_campaign
+where campaign = 1;
