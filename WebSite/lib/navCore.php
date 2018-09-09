@@ -1,6 +1,6 @@
 <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
-            <li class="uk-active"><a href="#">Active</a></li>
+            <li class="uk-active"><a href="index.php">Home</a></li>
             <li><a href="#">Item</a></li>
             <li>
                 <a href="#">Parent</a>
