@@ -9,6 +9,19 @@ font-family: 'Rochester', cursive;
 font-family: 'Fredericka the Great', cursive;
 */
 
+:root {
+    --main-color: #D0DA59; 
+}
+
 .title{
     font-family: 'Rochester', cursive;
+}
+
+.sign{
+    padding: 0px;
+    background-color: var(--main-color) !important;
+    border-radius: 50px !important;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+    height: 2px !important;
 }

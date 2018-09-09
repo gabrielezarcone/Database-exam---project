@@ -9,16 +9,16 @@
                 </li>
             </ul>
         </div>
-        <div class="uk-navbar-right">
+        <div class="uk-navbar-right" style="margin-right: 1%;">
             <ul class="uk-navbar-nav">
-                <li class="uk-active">
+                <li>
                     <a href="#">
                         <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
                         Sign in
                     </a>
                 </li>
                 <li class="uk-active">
-                    <a href="#">
+                    <a href="#" class="uk-button-primary uk-button-small sign">
                         <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
                         Sign up
                     </a>
