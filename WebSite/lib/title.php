@@ -12,13 +12,13 @@
         <div class="uk-navbar-right" style="margin-right: 1%;">
             <ul class="uk-navbar-nav">
                 <li>
-                    <a href="#">
+                    <a href="sign_in.php">
                         <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
                         Sign in
                     </a>
                 </li>
                 <li class="uk-active">
-                    <a href="#" class="uk-button-primary uk-button-small sign">
+                    <a href="sign_up.php" class="uk-button-primary uk-button-small sign">
                         <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
                         Sign up
                     </a>

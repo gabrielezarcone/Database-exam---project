@@ -11,6 +11,8 @@ font-family: 'Fredericka the Great', cursive;
 
 :root {
     --main-color: #D0DA59; 
+    --worker-color:#E7C943;
+    --requester-color:#DC5B39;
 }
 
 .title{
@@ -24,4 +26,18 @@ font-family: 'Fredericka the Great', cursive;
     padding-top: 2% !important;
     padding-bottom: 2% !important;
     height: 2px !important;
+}
+
+.sign_form{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.uk-subnav>.uk-active>.requester{
+    background-color: var(--requester-color) !important;
+    color: antiquewhite;
+}
+
+.uk-subnav-pill>.uk-active>.worker{
+    background-color: var(--worker-color) !important;
 }
