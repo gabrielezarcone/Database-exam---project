@@ -1,4 +1,6 @@
-<?php include_once("lib/title.php"); ?>
+<div  class="uk-animation-fade">
+    <?php include_once("lib/title.php"); ?>
+</div>
 
 <div class="uk-position-relative">
 <div class="uk-background-cover uk-background-fixed uk-height-large uk-background-bottom-center" style="background-image: url(src/back.jpg);"></div>
