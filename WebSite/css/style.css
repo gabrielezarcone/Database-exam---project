@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers|Carter+One|Fredericka+the+Great|Grand+Hotel|Rochester|Sacramento');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 /*
 font-family: 'Sacramento', cursive;
@@ -22,7 +23,7 @@ font-family: 'Fredericka the Great', cursive;
 .sign{
     padding: 0px;
     background-color: var(--main-color) !important;
-    border-radius: 50px !important;
+    border-radius: 20px !important;
     padding-top: 2% !important;
     padding-bottom: 2% !important;
     height: 2px !important;
@@ -49,4 +50,21 @@ font-family: 'Fredericka the Great', cursive;
 .uk-button-default.requester{
     background-color: var(--requester-color) !important;
     color: antiquewhite;
+}
+
+.card-container{
+    padding: 3%;
+}
+.uk-card.card{
+    padding: 5%;
+    background-color: var(--worker-color);
+    border-radius: 25px;
+}
+h1.card{
+    color: #5a5a5a;
+    font-family: 'Carter One', cursive;
+    font-size: 300%;
+}
+h2.card{
+    font-family: 'Raleway', sans-serif;
 }

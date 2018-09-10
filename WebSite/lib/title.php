@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li class="uk-active">
-                    <a href="sign_up.php" class="uk-button-primary uk-button-small sign">
+                    <a href="sign_up.php" class="uk-button uk-button-primary uk-button-small sign">
                         <span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
                         Sign up
                     </a>
