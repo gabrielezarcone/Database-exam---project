@@ -22,37 +22,63 @@
                     <div class="uk-margin">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: user"></span>
-                            <input class="uk-input" type="text">
+                            <input class="uk-input" type="text" placeholder="Name">
+                        </div>
+                        <div class="uk-inline">
+                            <input class="uk-input" type="text" placeholder="Surname">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: bolt"></span>
+                            <input class="uk-input" type="text" placeholder="Username">
                         </div>
                     </div>
 
                     <div class="uk-margin">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                            <input class="uk-input" type="password">
+                            <input class="uk-input" type="password" placeholder="Password">
+                        </div>
+                        <div class="uk-inline">
+                            <input class="uk-input" type="password" placeholder="Repeat your password">
                         </div>
                     </div>
                     <div class="uk-margin">
-                        <button class="uk-button uk-button-default worker">Send</button>
+                        <button class="uk-button uk-button-default worker">Submit</button>
                     </div>
                 </li>
+
                 <li id="requester">
                     <div class="uk-margin">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: user"></span>
-                            <input class="uk-input" type="text">
+                            <input class="uk-input" type="text" placeholder="Name">
+                        </div>
+                        <div class="uk-inline">
+                            <input class="uk-input" type="text" placeholder="Surname">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: bolt"></span>
+                            <input class="uk-input" type="text" placeholder="Username">
                         </div>
                     </div>
 
                     <div class="uk-margin">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                            <input class="uk-input" type="password">
+                            <input class="uk-input" type="password" placeholder="Password">
+                        </div>
+                        <div class="uk-inline">
+                            <input class="uk-input" type="password" placeholder="Repeat your password">
                         </div>
                     </div>
                     <div class="uk-margin">
-                        <button class="uk-button uk-button-default requester">Send</button>
-                        <input class="uk-button uk-button-default requester" type="submit">
+                        <button class="uk-button uk-button-default requester">Submit</button>
                     </div>
                 </li>
                 

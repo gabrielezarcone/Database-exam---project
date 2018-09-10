@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="uk-margin">
-                        <button class="uk-button uk-button-default worker">Send</button>
+                        <button class="uk-button uk-button-default worker">LogIn</button>
                     </div>
                 </li>
                 <li id="requester">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="uk-margin">
-                        <button class="uk-button uk-button-default requester">Send</button>
+                        <button class="uk-button uk-button-default requester">LogIn</button>
                         <input class="uk-button uk-button-default requester" type="submit">
                     </div>
                 </li>

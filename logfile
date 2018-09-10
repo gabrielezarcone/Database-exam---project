@@ -23,3 +23,8 @@
 2018-09-08 12:27:16.855 CEST [1818] STATEMENT:  select worker
 	from joins_campaign
 	where campaign = 1;
+2018-09-10 15:27:26.884 CEST [10668] LOG:  listening on IPv6 address "::1", port 5432
+2018-09-10 15:27:26.884 CEST [10668] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-09-10 15:27:26.886 CEST [10668] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-09-10 15:27:26.917 CEST [10669] LOG:  database system was shut down at 2018-09-09 01:33:03 CEST
+2018-09-10 15:27:26.928 CEST [10668] LOG:  database system is ready to accept connections
