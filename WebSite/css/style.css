@@ -41,3 +41,12 @@ font-family: 'Fredericka the Great', cursive;
 .uk-subnav-pill>.uk-active>.worker{
     background-color: var(--worker-color) !important;
 }
+
+.uk-button-default.worker{
+    background-color: var(--worker-color) !important;
+    color: white;
+}
+.uk-button-default.requester{
+    background-color: var(--requester-color) !important;
+    color: antiquewhite;
+}

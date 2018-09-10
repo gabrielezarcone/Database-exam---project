@@ -11,7 +11,7 @@
     <div uk-grid style="margin-top:2%;">
         <div class="uk-width-1-3"></div>
         <div class="uk-width-1-3">
-            <h1 class="uk-heading-primary">Sign in</h1>
+            <h1 class="uk-heading-primary">Sign up</h1>
             <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade" uk-grid>
                 <li class="uk-width-1-2"><a class="worker" href="#">Worker</a></li>
                 <li class="uk-width-1-2"><a class="requester" href="#">Requester</a></li>
