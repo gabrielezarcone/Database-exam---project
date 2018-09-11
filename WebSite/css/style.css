@@ -68,3 +68,9 @@ h1.card{
 h2.card{
     font-family: 'Raleway', sans-serif;
 }
+
+.scrollable-side{
+    height: 100%;
+    position: absolute;
+    overflow: scroll;
+}

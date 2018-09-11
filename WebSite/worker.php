@@ -10,7 +10,23 @@
 </head>
 <body>
     <div uk-grid style="margin-top:2%;">
-        <div class="uk-width-1-4">ciao</div>
+        <div class="uk-width-1-4 scrollable-side">
+            <div class="uk-flex uk-flex-column">
+                <div class="uk-card uk-card-default uk-card-body uk-flex-wrap-stretch">Item 1</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 2</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
+                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 5</div>
+            </div>
+        </div>
+
+        <div class="uk-width-1-4"></div>
+
         <div class="uk-width-1-2 card-container">
             <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card">
                 <h1 class="card">Title</h1>
@@ -29,7 +45,7 @@
         </div>
     </div>
     <div uk-grid style="margin-top:2%;">
-        <div class="uk-width-1-4">ciao</div>
+        <div class="uk-width-1-4"></div>
         <div class="uk-width-1-2 card-container">
             <div uk-grid>
                 <div class="uk-width-1-3"></div>
@@ -45,6 +61,7 @@
                 <div class="uk-width-1-3"></div>
             </div>
         </div>
+
         <div class="uk-width-1-4 card-container">
             <div class="uk-card uk-card-default uk-card-body ">
                 <h2 style="color: var(--worker-color)">Skills</h3>
