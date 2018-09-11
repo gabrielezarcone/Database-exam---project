@@ -10,18 +10,19 @@
 </head>
 <body>
     <div uk-grid style="margin-top:2%;">
-        <div class="uk-width-1-4 scrollable-side">
+        <div class="uk-width-1-4 scrollable-side ">
+            <h2 style="color: var(--worker-color); text-align: center;">Campaigns</h2>
             <div class="uk-flex uk-flex-column">
-                <div class="uk-card uk-card-default uk-card-body uk-flex-wrap-stretch">Item 1</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 2</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div>
-                <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 5</div>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-flex-wrap-stretch">Item 1</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 2</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
+                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 5</div></a>
             </div>
         </div>
 
@@ -35,7 +36,7 @@
         </div>
         <div class="uk-width-1-4 card-container">
             <div class="uk-card uk-card-default uk-card-body ">
-                <h2 style="color: var(--worker-color)">Worker info</h3>
+                <h2 style="color: var(--worker-color)">Worker info</h2>
                 <ul class="uk-list">
                     <li><h4>User_Name: </h4>nome@@@@</li>
                     <li><h4>Number of joined campaings: </h4>@@@@</li>
@@ -57,14 +58,15 @@
                         <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer D</h2></li>
                     </ul>
                     <button class="uk-button uk-button-default">Submit Aswer</button>
+                    <button class="uk-button uk-button-default">Skip</button>
                 </form>
                 <div class="uk-width-1-3"></div>
             </div>
         </div>
 
-        <div class="uk-width-1-4 card-container">
+        <div class="uk-width-1-4" style="padding-right:3%;padding-left:3%;">
             <div class="uk-card uk-card-default uk-card-body ">
-                <h2 style="color: var(--worker-color)">Skills</h3>
+                <h2 style="color: var(--worker-color)">Skills</h2>
                 <ul class="uk-list">
                     <li><h4>skill-1: </h4>nome@@@@</li>
                     <li><h4>skill-2: </h4>@@@@</li>
