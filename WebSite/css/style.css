@@ -8,11 +8,12 @@ font-family: 'Grand Hotel', cursive;
 font-family: 'Carter One', cursive;
 font-family: 'Rochester', cursive;
 font-family: 'Fredericka the Great', cursive;
+#E7C943
 */
 
 :root {
     --main-color: #D0DA59; 
-    --worker-color:#E7C943;
+    --worker-color:#f1d13e;
     --requester-color:#DC5B39;
 }
 

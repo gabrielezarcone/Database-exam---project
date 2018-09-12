@@ -39,6 +39,7 @@
                     <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer B</h2></li>
                     <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer C</h2></li>
                     <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer D</h2></li>
+                    
                 </ul>
                 <button class="uk-button uk-button-default worker">Submit Aswer</button>
                 <button class="uk-button uk-button-default ">Skip</button>
