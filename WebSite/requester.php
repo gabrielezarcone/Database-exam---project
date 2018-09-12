@@ -6,7 +6,7 @@
     <?php include_once("lib/header.php")?>
     <?php include_once("lib/title_worker.php"); ?>
     <?php include_once("lib/navbar.php")?>
-    <title>username@@#@#@#@#@#@]@[@#@#</title>
+    <title>usernameRRRR@@#@#@#@#@#@]@[@#@#</title>
 </head>
 <body>
     <div uk-grid style="margin-top:2%;">
