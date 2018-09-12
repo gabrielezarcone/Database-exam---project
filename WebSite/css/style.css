@@ -55,13 +55,22 @@ font-family: 'Fredericka the Great', cursive;
 .card-container{
     padding: 3%;
 }
-.uk-card.card{
+.cards-container{
+    padding: 3%;
+    height: 80vh;
+    overflow: scroll;
+}
+.uk-card.card-worker{
     padding: 5%;
     background-color: var(--worker-color);
     border-radius: 25px;
 }
+.uk-card.card-requester{
+    padding: 5%;
+    background-color: var(--requester-color);
+    border-radius: 25px;
+}
 h1.card{
-    color: #5a5a5a;
     font-family: 'Carter One', cursive;
     font-size: 300%;
 }
@@ -71,6 +80,6 @@ h2.card{
 
 .scrollable-side{
     height: 80vh;
-    position: absolute;
+    position: fixed;
     overflow: scroll;
 }
