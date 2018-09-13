@@ -29,7 +29,7 @@
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 card-container">
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
                 <h1 class="card" style="color: #ffffff;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
             </div>

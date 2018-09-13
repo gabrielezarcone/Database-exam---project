@@ -29,7 +29,7 @@
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 cards-container">
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 <div class="uk-card-footer">
@@ -46,7 +46,7 @@
                 </div>
             </div>
             
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 <div class="uk-card-footer">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 <div class="uk-card-footer">
@@ -80,7 +80,7 @@
                 </div>
             </div>
             
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 <div class="uk-card-footer">
@@ -97,7 +97,7 @@
                 </div>
             </div>
             
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 <div class="uk-card-footer">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester">
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">Title</h1>
                 <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 <div class="uk-card-footer">

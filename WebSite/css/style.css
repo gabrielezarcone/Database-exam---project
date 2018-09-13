@@ -35,6 +35,12 @@ font-family: 'Fredericka the Great', cursive;
     margin-right: 25%;
 }
 
+
+.uk-section.section{
+    height: 100vh;
+}
+
+
 .uk-subnav>.uk-active>.requester{
     background-color: var(--requester-color) !important;
     color: antiquewhite;
@@ -53,6 +59,15 @@ font-family: 'Fredericka the Great', cursive;
     color: antiquewhite;
 }
 
+.uk-section.worker{
+    background-color: var(--worker-color) !important;
+    color: white;
+}
+.uk-section.requester{
+    background-color: var(--requester-color) !important;
+    color: antiquewhite;
+}
+
 .card-container{
     padding: 3%;
 }
@@ -61,15 +76,16 @@ font-family: 'Fredericka the Great', cursive;
     height: 80vh;
     overflow: scroll;
 }
-.uk-card.card-worker{
-    padding: 5%;
-    background-color: var(--worker-color);
+
+
+.uk-card.myCard{
     border-radius: 25px;
 }
+.uk-card.card-worker{
+    background-color: var(--worker-color);
+}
 .uk-card.card-requester{
-    padding: 5%;
     background-color: var(--requester-color);
-    border-radius: 25px;
 }
 h1.card{
     font-family: 'Carter One', cursive;
@@ -78,6 +94,8 @@ h1.card{
 h2.card{
     font-family: 'Raleway', sans-serif;
 }
+
+
 
 .scrollable-side{
     height: 80vh;
