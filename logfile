@@ -32,3 +32,11 @@
 2018-09-11 02:19:28.573 CEST [10668] LOG:  worker process: logical replication launcher (PID 10675) exited with exit code 1
 2018-09-11 02:19:28.573 CEST [10670] LOG:  shutting down
 2018-09-11 02:19:28.591 CEST [10668] LOG:  database system is shut down
+2018-09-13 20:45:00.038 CEST [20519] LOG:  listening on IPv6 address "::1", port 5432
+2018-09-13 20:45:00.039 CEST [20519] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-09-13 20:45:00.041 CEST [20519] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-09-13 20:45:00.081 CEST [20520] LOG:  database system was shut down at 2018-09-11 02:19:28 CEST
+2018-09-13 20:45:00.091 CEST [20519] LOG:  database system is ready to accept connections
+2018-09-13 20:56:04.794 CEST [20544] ERROR:  syntax error at or near "/?" at character 1
+2018-09-13 20:56:04.794 CEST [20544] STATEMENT:  /?
+	;

@@ -22,10 +22,14 @@ CREATE DOMAIN pay_type AS VARCHAR(50)
 
 CREATE TABLE worker(
     user_name VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(20),
+    surname VARCHAR(20),
     password VARCHAR(20) NOT NULL
 );
 CREATE TABLE requester(
     user_name VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(20),
+    surname VARCHAR(20),
     password VARCHAR(20) NOT NULL 
 );
 CREATE TABLE campaign(
@@ -113,6 +117,10 @@ CREATE TABLE joins_campaign(
     FOREIGN KEY(campaign) REFERENCES campaign(id) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
+--GRANT
+
+GRANT ALL ON ALL TABLES IN SCHEMA crowdsourcing TO admin;
+
 -- Query
 
 insert into worker values ('user1','pass1');
@@ -131,3 +139,4 @@ insert into worker values ('use2r1','pass12');
 select worker
 from joins_campaign
 where campaign = 1;
+
