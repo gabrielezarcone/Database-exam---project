@@ -10,14 +10,6 @@
 <body>
     
 
-    <div class="uk-section uk-section-muted uk-preserve-color section">
-        <div class="uk-container">
-            <div uk-parallax="y: 100%">
-                <img src="src/home.png" alt="">
-            </div>
-        </div>
-    </div>
-
 
     <div class="uk-section uk-section-primary uk-preserve-color section worker">
         <div class="uk-container" >

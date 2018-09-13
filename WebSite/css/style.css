@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bangers|Carter+One|Fredericka+the+Great|Grand+Hotel|Rochester|Sacramento');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Boogaloo|Passion+One|Poiret+One');
 
 /*
 font-family: 'Sacramento', cursive;
@@ -9,12 +10,17 @@ font-family: 'Carter One', cursive;
 font-family: 'Rochester', cursive;
 font-family: 'Fredericka the Great', cursive;
 #E7C943
+#edffdad3
+font-family: 'Poiret One', cursive;
+font-family: 'Passion One', cursive;
+font-family: 'Boogaloo', cursive;
 */
 
 :root {
     --main-color: #D0DA59; 
     --worker-color:#f1d13e;
     --requester-color:#DC5B39;
+    --title-color:#effce1d3;
 }
 
 .title{
@@ -40,8 +46,14 @@ font-family: 'Fredericka the Great', cursive;
     height: 100vh;
     margin:0 auto;
 }
-.emoji{
-    font-size: 60vh;
+.displayFont{
+    font-family: 'Boogaloo', cursive;
+    font-size: 10vh;
+    color: var(--title-color);
+}
+.displayFont-small{
+    font-size: 3vh;
+    color: var(--title-color);
 }
 
 
