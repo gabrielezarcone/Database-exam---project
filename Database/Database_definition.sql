@@ -120,6 +120,7 @@ CREATE TABLE joins_campaign(
 --GRANT
 
 GRANT ALL ON ALL TABLES IN SCHEMA crowdsourcing TO admin;
+GRANT ALL ON ALL SCHEMA crowdsourcing TO admin;
 ALTER USER admin WITH PASSWORD 'password0011';
 
 -- Query
@@ -143,4 +144,6 @@ where campaign = 1;
 
 ------
 INSERT INTO worker(user_name, password, name, surname) VALUES();
+
+SELECT user from crowdsourcing.worker as w WHERE user_name like "value";
 

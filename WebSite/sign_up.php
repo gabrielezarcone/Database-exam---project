@@ -10,7 +10,6 @@
                     'pass2' => $_POST[password2_R],
                     'name' => $_POST[name_R],
                     'surname' => $_POST[surname_R]);
-    print_r($requester);
     include_once("lib/function.php")
 ?>
 
@@ -50,6 +49,7 @@
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>Hi '.$worker[name].', welcome to Oak_sourcing</p>
                                         </div>');
+                                close_pg_connection();
                             }
                             else if(isset($_POST[password_W])){
                                 print('<div class="uk-alert-danger" uk-alert>
@@ -110,6 +110,7 @@
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>The second password doesn\'t match with the first one</p>
                                         </div>');
+                                close_pg_connection();
                             }
                         ?>
                         <div class="uk-margin">

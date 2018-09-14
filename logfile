@@ -276,3 +276,13 @@
 2018-09-14 00:06:19.503 CEST [24597] DETAIL:  Failing row contains (null, password, Gabriele, Zarcone).
 2018-09-14 00:06:19.503 CEST [24597] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
 	                                            VALUES($1,$2,$3,$4)
+2018-09-14 00:43:28.214 CEST [25117] ERROR:  column w.user does not exist at character 50
+2018-09-14 00:43:28.214 CEST [25117] STATEMENT:  SELECT user from crowdsourcing.worker as w WHERE w.user like "$1";
+2018-09-14 00:43:28.215 CEST [25117] ERROR:  prepared statement "worker" does not exist
+2018-09-14 00:44:00.344 CEST [25170] ERROR:  column "$1" does not exist at character 67
+2018-09-14 00:44:00.344 CEST [25170] STATEMENT:  SELECT user from crowdsourcing.worker as w WHERE w.user_name like "$1";
+2018-09-14 00:44:00.345 CEST [25170] ERROR:  prepared statement "worker" does not exist
+2018-09-14 01:00:07.500 CEST [20519] LOG:  received smart shutdown request
+2018-09-14 01:00:07.501 CEST [20519] LOG:  worker process: logical replication launcher (PID 20526) exited with exit code 1
+2018-09-14 01:00:07.502 CEST [20521] LOG:  shutting down
+2018-09-14 01:00:07.509 CEST [20519] LOG:  database system is shut down
