@@ -18,7 +18,6 @@
         <div class="uk-width-1-4 scrollable-side ">
             <h2 style="color: var(--worker-color); text-align: center;">Campaigns</h2>
             <div class="uk-flex uk-flex-column">
-
                 <?php $num_camp = show_campaigns_W($_SESSION[user]); ?>
             </div>
         </div>

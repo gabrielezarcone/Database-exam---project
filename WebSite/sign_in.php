@@ -10,6 +10,11 @@
         $_SESSION['user'] = $worker[user];
         header("location: worker.php");
     }
+    if(isset($requester[user])){
+        session_start();
+        $_SESSION['user'] = $requester[user];
+        header("location: requester.php");
+    }
 
     include_once("lib/function.php");
 ?>

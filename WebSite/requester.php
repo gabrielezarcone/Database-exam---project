@@ -1,3 +1,8 @@
+<?php
+    include_once("lib/function.php");
+    session_start();
+?>
+
 <!DOCTYPE html5>
 <html lang="it">
 <head>
@@ -6,23 +11,14 @@
     <?php include_once("lib/header.php")?>
     <?php include_once("lib/title_requester.php"); ?>
     <?php include_once("lib/navbar.php")?>
-    <title>usernameRRRR@@#@#@#@#@#@]@[@#@#</title>
+    <title><?php print($_SESSION[user])?> :: requester </title>
 </head>
 <body>
     <div uk-grid style="margin-top:2%;" >
         <div class="uk-width-1-4 scrollable-side ">
             <h2 style="color: var(--requester-color); text-align: center;">My Campaigns</h2>
             <div class="uk-flex uk-flex-column">
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-flex-wrap-stretch">Item 1</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 2</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 3</div></a>
-                <a href="#"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">Item 5</div></a>
+                <?php $num_camp = show_campaigns_R($_SESSION[user]); ?>
             </div>
         </div>
 
@@ -136,8 +132,8 @@
             <div class="uk-card uk-card-default uk-card-body ">
                 <h2 style="color: var(--requester-color)">Worker info</h2>
                 <ul class="uk-list">
-                    <li><h4>User_Name: </h4>nome@@@@</li>
-                    <li><h4>Number of created campaings: </h4>@@@@</li>
+                    <li><h4>User_Name: </h4><?php print($_SESSION[user]) ?></li>
+                    <li><h4>Number of created campaings: </h4> <?php print($num_camp); ?> </li>
                     <li><h4>Success rate: </h4>@@@@</li>
                 </ul>
             </div>
