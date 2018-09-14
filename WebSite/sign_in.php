@@ -5,6 +5,12 @@
     $requester = array('user' =>$_POST[user_R],
                        'password' => $_POST[password_R]);
 
+    if(isset($worker[user])){
+        session_start();
+        $_SESSION['user'] = $worker[user];
+        header("location: worker.php");
+    }
+
     include_once("lib/function.php");
 ?>
 
@@ -45,7 +51,6 @@
                             $result = pg_fetch_array($res);
                             close_pg_connection($db);
                             if(isset($result[user_name]) && $worker[password]==$result[password]){
-                                //create session
                                 print('<div class="uk-alert-success" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>Hi '.$worker[user].', welcome back</p>

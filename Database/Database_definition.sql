@@ -34,6 +34,7 @@ CREATE TABLE requester(
 );
 CREATE TABLE campaign(
     id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
     registration_start_date DATE NOT NULL,
     registration_end_date DATE NOT NULL,
     start_date DATE NOT NULL,
@@ -146,4 +147,8 @@ where campaign = 1;
 INSERT INTO worker(user_name, password, name, surname) VALUES();
 
 SELECT user from crowdsourcing.worker as w WHERE user_name like "value";
+
+SELECT name
+FROM crowdsourcing.joins_campaign AS JC JOIN crowdsourcing.campaign AS C ON JC.campaign=C.id
+WHERE JC.worker = $1;
 
