@@ -1,6 +1,8 @@
 <?php
     include_once("lib/function.php");
     session_start();
+
+    $_SESSION[campaign] = $_GET[campaign];
 ?>
 
 <!DOCTYPE html5>

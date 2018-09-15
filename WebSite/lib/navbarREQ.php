@@ -6,6 +6,7 @@
                 <li class="uk-active"><a href="index.php">Home</a></li>
                 <li><a href="requester.php">My Profile</a></li>
                 <li><a href="create_camp.php">Create campaign</a></li>    
+                <li><a href="create_task.php">Create task</a></li>    
             </ul>
         </div>
     </nav>

@@ -9,7 +9,7 @@
                     'start' => $_POST[start],
                     'end' => $_POST[end]);
 
-    print_r($campaign);
+
 ?>
 
 <!DOCTYPE html5>

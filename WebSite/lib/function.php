@@ -24,7 +24,7 @@ function show_campaigns_W($user){
     }
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        print('<a href="#?campaign='.$campaign[0].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
+        print('<a href="worker.php?campaign='.$campaign[0].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
     }
     pg_free_result($res);
     close_pg_connection($db);
@@ -45,12 +45,32 @@ function show_campaigns_R($user){
     }
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        print('<a href="#?campaign='.$campaign[0].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
+        print('<a href="requester.php?campaign='.$campaign[0].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
     }
     pg_free_result($res);
     close_pg_connection($db);
 
     return $numrows;
+}
+function show_campaign_opt($user, $actual_camp){
+    $query = "SELECT name
+                FROM crowdsourcing.campaign AS C 
+                WHERE C.requester = $1;";
+    $values = array(1=>$user);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "function", $query);
+    $res = pg_execute($db, "function", $values);
+    $numrows = pg_numrows($res);
+    print('<option selected="selected">'.$actual_camp.'</option>');
+    
+    for($i=0; $i<$numrows; $i++){
+        $campaign = pg_fetch_array($res, $i);
+        if($actual_camp!=$campaign[$i]){
+            print('<option>'.$campaign[$i].'</option>');
+        }
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
 }
 
 
@@ -62,6 +82,11 @@ function create_campaign($name, $reg_start, $reg_end, $start, $end, $user){
         $res = pg_prepare($db, "campaign", $query);
         $res = pg_execute($db, "campaign", $values);
         close_pg_connection($db);
+    }
+}
+function create_task($name, $reg_start, $reg_end, $start, $end, $user){
+    if(isset($name)){
+        
     }
 }
 
