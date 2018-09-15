@@ -11,10 +11,10 @@ SET search_path TO crowdsourcing, public;
 
 -- DOMAINS --
 
-CREATE DOMAIN keyword_type AS VARCHAR(50)
-    CHECK(VALUE IN ('knoledge','attitude'));
+CREATE DOMAIN crowdsourcing.keyword_type AS VARCHAR(50)
+    CHECK(VALUE IN ('knowledge','attitude'));
 
-CREATE DOMAIN pay_type AS VARCHAR(50)
+CREATE DOMAIN crowdsourcing.pay_type AS VARCHAR(50)
     CHECK(VALUE IN ('money','coupon','promotionalCode','freeItem'));   --coupon = money to be spent in a particular website or shop
                                                                           --free item = a phisical object. es: they give you a microowave as a prize
                                                                           --promotionalCode = anything that give you a code

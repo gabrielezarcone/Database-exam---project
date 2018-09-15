@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once("lib/header.php")?>
     <?php include_once("lib/title_worker.php"); ?>
-    <?php include_once("lib/navbar.php")?>
+    <?php include_once("lib/navbarWOR.php")?>
     <title><?php print($_SESSION[user])?> :: worker </title>
 </head>
 <body>
