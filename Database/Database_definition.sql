@@ -145,6 +145,7 @@ where campaign = 1;
 
 ------
 INSERT INTO worker(user_name, password, name, surname) VALUES();
+INSERT INTO campaign(name, registration_start_date, registration_end_date, start_date, end_date, requester) VALUES();
 
 SELECT user from crowdsourcing.worker as w WHERE user_name like "value";
 

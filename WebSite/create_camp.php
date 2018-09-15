@@ -1,6 +1,15 @@
 <?php
     include_once("lib/function.php");
     session_start();
+
+    $campaign = array('user' =>$_SESSION[user],
+                    'name' => $_POST[name],
+                    'reg_start' => $_POST[reg_start],
+                    'reg_end' => $_POST[reg_end],
+                    'start' => $_POST[start],
+                    'end' => $_POST[end]);
+
+    print_r($campaign);
 ?>
 
 <!DOCTYPE html5>
@@ -20,19 +29,7 @@
             <h1 class="uk-heading-primary">Create Campaign</h1>
             <form action="#" method="POST">
                 <?php
-                    createcampaign($_SESSION[user]);
-                    if(isset($result[user_name]) && $worker[password]==$result[password]){
-                        print('<div class="uk-alert-success" uk-alert>
-                                    <a class="uk-alert-close" uk-close></a>
-                                    <p>Hi '.$worker[user].', welcome back</p>
-                                </div>');
-                    }
-                    else if(isset($worker[user])){
-                        print('<div class="uk-alert-danger" uk-alert>
-                                    <a class="uk-alert-close" uk-close></a>
-                                    <p>Sorry, wrong username or password</p>
-                                </div>');
-                    }
+                    create_campaign($campaign[name], $campaign[reg_start], $campaign[reg_end], $campaign[start], $campaign[end], $_SESSION[user]);
                 ?>
                 <div class="uk-margin">
                     <p>Campaign Name</p>
@@ -41,7 +38,7 @@
                         <input class="uk-input" type="text" name="name" placeholder="Name">
                     </div>
                 </div>
-
+                
                 <div class="uk-margin">
                     <p>Start Registration Date</p>
                     <div class="uk-inline">
@@ -72,7 +69,7 @@
                     </div>
                 </div>
                 <div class="uk-margin">
-                    <button class="uk-button uk-button-default requester">LogIn</button>
+                    <button class="uk-button uk-button-default requester">Create</button>
                 </div>
             </form>
         </div>

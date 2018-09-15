@@ -54,8 +54,15 @@ function show_campaigns_R($user){
 }
 
 
-function create_campaign($user){
-    
+function create_campaign($name, $reg_start, $reg_end, $start, $end, $user){
+    if(isset($name)){
+        $query = 'INSERT INTO crowdsourcing.campaign( name, registration_start_date, registration_end_date, start_date, end_date, requester) VALUES($1, $2, $3, $4, $5, $6);';
+        $values = array(1=>$name, $reg_start, $reg_end, $start, $end, $user);
+        $db = open_pg_connection();
+        $res = pg_prepare($db, "campaign", $query);
+        $res = pg_execute($db, "campaign", $values);
+        close_pg_connection($db);
+    }
 }
 
 ?>
