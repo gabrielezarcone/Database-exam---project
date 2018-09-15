@@ -66,8 +66,25 @@ function show_campaign_opt($user, $actual_camp){
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
         if($actual_camp!=$campaign[$i]){
-            print('<option>'.$campaign[$i].'</option>');
+            print('<option>'.$campaign[0].'</option>');
         }
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
+function show_pay_opt(){
+    $query = "SELECT type
+                FROM crowdsourcing.pay;";
+    $values = array();
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "function", $query);
+    $res = pg_execute($db, "function", $values);
+    $numrows = pg_numrows($res);
+    
+    for($i=0; $i<$numrows; $i++){
+        $pay_type = pg_fetch_array($res, $i);
+        
+        print('<option>'.$pay_type[0].'</option>');
     }
     pg_free_result($res);
     close_pg_connection($db);

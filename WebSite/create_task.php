@@ -3,11 +3,11 @@
     session_start();
 
     $task = array('user' =>$_SESSION[user],
-                    'description' => $_POST[description],
-                    'title' => $_POST[title],
-                    'n_workers' => $_POST[n_workers],
-                    'threshold' => $_POST[threshold],
-                    'campaign' => $_POST[campaign],
+                    'description' => $_POST[description],//
+                    'title' => $_POST[title],           //
+                    'n_workers' => $_POST[n_workers],   //
+                    'threshold' => $_POST[threshold],   //
+                    'campaign' => $_POST[campaign],     //
                     'pay_type' => $_POST[pay_type],
                     'pay_description' => $_POST[pay_description]);
 
@@ -34,7 +34,7 @@
                 ?>
                 <div class="uk-margin">
                     <p>Campaign</p>
-                        <select class="uk-input uk-select" name="title">
+                        <select class="uk-input uk-select" name="campaign">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
                             <?php show_campaign_opt($_SESSION[user],$_SESSION['campaign']); ?>
                         </select>
@@ -50,7 +50,7 @@
                 <div class="uk-margin">
                     <p>Description</p>
                     <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
+                        <span class="uk-form-icon" uk-icon="icon: menu"></span>
                         <input class="uk-input uk-textarea" type="textarea" name="description" placeholder="Description">
                     </div>
                 </div>
@@ -58,39 +58,33 @@
                 <div class="uk-margin">
                     <p>Number of worker</p>
                     <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                        <span class="uk-form-icon" uk-icon="icon: users"></span>
                         <input class="uk-input" type="number" name="n_worker">
                     </div>
                 </div>
                 <div class="uk-margin">
                     <p>Threshold</p>
                     <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+                        <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
                         <input class="uk-input" type="number" name="threshold">
                     </div>
                 </div>
                 <div class="uk-margin">
-                    <p>End Registration Date</p>
-                    <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
-                        <input class="uk-input" type="date" name="reg_end">
-                    </div>
-                </div>
-
-                <div class="uk-margin">
-                    <p>Start Date</p>
-                    <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
-                        <input class="uk-input" type="date" name="start">
-                    </div>
+                    <p>Pay type</p>
+                        <select class="uk-input uk-select" name="pay">
+                            <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
+                            <?php show_pay_opt(); ?>
+                        </select>
+                    
                 </div>
                 <div class="uk-margin">
-                    <p>End Date</p>
+                    <p>Pay Description</p>
                     <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: calendar"></span>
-                        <input class="uk-input" type="date" name="end">
+                        <span class="uk-form-icon" uk-icon="icon: tag"></span>
+                        <input class="uk-input uk-textarea" type="textarea" name="pay_description" placeholder="Description">
                     </div>
                 </div>
+                
                 <div class="uk-margin">
                     <button class="uk-button uk-button-default requester">Create</button>
                 </div>

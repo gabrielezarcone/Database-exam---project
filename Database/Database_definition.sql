@@ -153,3 +153,5 @@ SELECT name
 FROM crowdsourcing.joins_campaign AS JC JOIN crowdsourcing.campaign AS C ON JC.campaign=C.id
 WHERE JC.worker = $1;
 
+SELECT type
+FROM pay;
