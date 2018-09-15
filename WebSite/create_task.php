@@ -1,15 +1,16 @@
 <?php
-    include_once("lib/function.php");
     session_start();
+    include_once("lib/function.php");
 
     $task = array('user' =>$_SESSION[user],
-                    'description' => $_POST[description],//
                     'title' => $_POST[title],           //
+                    'description' => $_POST[description],//
+                    'campaign' => $_POST[campaign],     //
                     'n_workers' => $_POST[n_workers],   //
                     'threshold' => $_POST[threshold],   //
-                    'campaign' => $_POST[campaign],     //
                     'pay_type' => $_POST[pay_type],
                     'pay_description' => $_POST[pay_description]);
+
 
 ?>
 
@@ -30,13 +31,17 @@
             <h1 class="uk-heading-primary">Create Task</h1>
             <form action="#" method="POST">
                 <?php
-                    create_task($campaign[name], $campaign[reg_start], $campaign[reg_end], $campaign[start], $campaign[end], $_SESSION[user]);
+                    create_task($task[title], $task[description], $task[campaign], $task[n_workers], $task[threshold], $task[pay_type], $task[pay_description], $_SESSION[user]);
                 ?>
                 <div class="uk-margin">
+                
                     <p>Campaign</p>
                         <select class="uk-input uk-select" name="campaign">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
-                            <?php show_campaign_opt($_SESSION[user],$_SESSION['campaign']); ?>
+                            <?php 
+                                $r = campaign_name($_SESSION[campaign]);
+                                show_campaign_opt($_SESSION[user],$r); 
+                            ?>
                         </select>
                     
                 </div>
@@ -59,7 +64,7 @@
                     <p>Number of worker</p>
                     <div class="uk-inline">
                         <span class="uk-form-icon" uk-icon="icon: users"></span>
-                        <input class="uk-input" type="number" name="n_worker">
+                        <input class="uk-input" type="number" name="n_workers">
                     </div>
                 </div>
                 <div class="uk-margin">

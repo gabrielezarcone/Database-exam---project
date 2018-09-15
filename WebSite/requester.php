@@ -1,6 +1,6 @@
 <?php
-    include_once("lib/function.php");
     session_start();
+    include_once("lib/function.php");
     
     $_SESSION[campaign] = $_GET['campaign'];
     print($_GET['campaign']);

@@ -32,7 +32,7 @@ function show_campaigns_W($user){
     return $numrows;
 }
 function show_campaigns_R($user){
-    $query = "SELECT name
+    $query = "SELECT name, id
                 FROM crowdsourcing.campaign AS C 
                 WHERE C.requester = $1;";
     $values = array(1=>$user);
@@ -45,7 +45,7 @@ function show_campaigns_R($user){
     }
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        print('<a href="requester.php?campaign='.$campaign[0].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
+        print('<a href="requester.php?campaign='.$campaign[1].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
     }
     pg_free_result($res);
     close_pg_connection($db);
@@ -53,7 +53,7 @@ function show_campaigns_R($user){
     return $numrows;
 }
 function show_campaign_opt($user, $actual_camp){
-    $query = "SELECT name
+    $query = "SELECT name,id
                 FROM crowdsourcing.campaign AS C 
                 WHERE C.requester = $1;";
     $values = array(1=>$user);
@@ -101,10 +101,29 @@ function create_campaign($name, $reg_start, $reg_end, $start, $end, $user){
         close_pg_connection($db);
     }
 }
-function create_task($name, $reg_start, $reg_end, $start, $end, $user){
-    if(isset($name)){
-        
+function create_task($title, $description, $campaign, $n_workers, $threshold, $pay_type, $pay_description, $user){
+    if(isset($title)){
+        $query = 'INSERT INTO crowdsourcing.task(description, title, n_workers, threshold, valid_bit, campaign, pay_type, pay_description) VALUES($1, $2, $3, $4, $5, $6, $7, $8);';
+        $values = array(1=>$description, $title, $n_workers, $threshold, 'false', $campaign, $pay_type, $pay_description);
+        $db = open_pg_connection();
+        $res = pg_prepare($db, "task", $query);
+        $res = pg_execute($db, "task", $values);
+        close_pg_connection($db);
     }
 }
 
+
+function campaign_name($campaign_id){
+    $query = 'SELECT name
+                FROM crowdsourcing.campaign AS C
+                WHERE C.id = $1;';
+    $values = array(1=>$campaign_id);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "camp", $query);
+    $res = pg_execute($db, "camp", $values);
+    $row = pg_fetch_array($res);
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $row[0]; 
+};
 ?>
