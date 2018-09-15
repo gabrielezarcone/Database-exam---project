@@ -53,4 +53,9 @@ function show_campaigns_R($user){
     return $numrows;
 }
 
+
+function create_campaign($user){
+    
+}
+
 ?>
