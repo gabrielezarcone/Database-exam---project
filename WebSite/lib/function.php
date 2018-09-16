@@ -113,6 +113,24 @@ function create_task($title, $description, $campaign, $n_workers, $threshold, $p
 }
 
 
+function show_keyword(){
+    $query = "SELECT type
+                FROM crowdsourcing.pay;";
+    $values = array();
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "function", $query);
+    $res = pg_execute($db, "function", $values);
+    $numrows = pg_numrows($res);
+    
+    for($i=0; $i<$numrows; $i++){
+        $pay_type = pg_fetch_array($res, $i);
+        
+        print('<option>'.$pay_type[0].'</option>');
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
+
 function campaign_name($campaign_id){
     $query = 'SELECT name
                 FROM crowdsourcing.campaign AS C

@@ -2,17 +2,10 @@
     session_start();
     include_once("lib/function.php");
 
-    $task = array('user' =>$_SESSION[user],
-                    'title' => $_POST[title],           //
-                    'description' => $_POST[description],//
-                    'campaign' => $_POST[campaign],     //
-                    'n_workers' => $_POST[n_workers],   //
-                    'threshold' => $_POST[threshold],   //
-                    'pay_type' => $_POST[pay_type],
-                    'pay_description' => $_POST[pay_description]);
-
-
+    
 ?>
+
+<script>i=0;</script>
 
 <!DOCTYPE html5>
 <html lang="it">
@@ -29,9 +22,9 @@
         <div class="uk-width-1-3"></div>
         <div class="uk-width-1-3">
             <h1 class="uk-heading-primary">Create Task</h1>
-            <form action="#" method="POST">
+            <form action="add_answers.php" method="POST">
                 <?php
-                    create_task($task[title], $task[description], $task[campaign], $task[n_workers], $task[threshold], $task[pay_type], $task[pay_description]);
+                    //create_task($task[title], $task[description], $task[campaign], $task[n_workers], $task[threshold], $task[pay_type], $task[pay_description]);
                     if(isset($task[title])&&isset($task[description])&&isset($task[campaign])&&isset($task[n_workers])&&isset($task[threshold])&&isset($task[pay_type])&&isset($task[pay_description])){
                         print('<div class="uk-alert-success" uk-alert>
                                                 <a class="uk-alert-close" uk-close></a>
@@ -75,17 +68,31 @@
                 <div class="uk-margin">
                     <p>Threshold</p>
                     <div class="uk-inline">
-                        <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                        <span class="uk-form-icon" uk-icon="icon: settings"></span>
                         <input class="uk-input" type="number" name="threshold">
                     </div>
+                    %
                 </div>
+
+                <div class="uk-margin" id="skill_container">
+                    <p>Skills</p>
+                    <div class="uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                        <input class="uk-input" type="text" name="skill" list="skills_list" placeholder="Select or add your own skill">
+                    </div>
+                    <datalist id="skills_list">
+                        <option value="Boston">
+                        <option value="Cambridge">
+                    </datalist>
+                    <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container');" value="Add skill">
+                </div>
+                
                 <div class="uk-margin">
                     <p>Pay type</p>
                         <select class="uk-input uk-select" name="pay_type">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
                             <?php show_pay_opt(); ?>
                         </select>
-                    
                 </div>
                 <div class="uk-margin">
                     <p>Pay Description</p>
@@ -96,7 +103,7 @@
                 </div>
                 
                 <div class="uk-margin">
-                    <button class="uk-button uk-button-default requester">Create</button>
+                    <button class="uk-button uk-button-default requester" type="submit">Next</button>
                 </div>
             </form>
         </div>
