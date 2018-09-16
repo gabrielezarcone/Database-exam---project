@@ -11,7 +11,6 @@
                     'pay_type' => $_POST[pay_type],
                     'pay_description' => $_POST[pay_description]);
 
-
 ?>
 
 <!DOCTYPE html5>
@@ -39,8 +38,7 @@
                         <select class="uk-input uk-select" name="campaign">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
                             <?php 
-                                $r = campaign_name($_SESSION[campaign]);
-                                show_campaign_opt($_SESSION[user],$r); 
+                                show_campaign_opt($_SESSION[user],$_SESSION[campaign]); 
                             ?>
                         </select>
                     
@@ -76,7 +74,7 @@
                 </div>
                 <div class="uk-margin">
                     <p>Pay type</p>
-                        <select class="uk-input uk-select" name="pay">
+                        <select class="uk-input uk-select" name="pay_type">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
                             <?php show_pay_opt(); ?>
                         </select>

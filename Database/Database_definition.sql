@@ -160,3 +160,9 @@ FROM pay;
 SELECT name
 FROM crowdsourcing.campaign AS C
 WHERE C.id = $id
+
+
+----Grant
+
+grant all on sequence crowdsourcing.campaign_id_seq to admin;
+grant all on sequence crowdsourcing.task_id_seq to admin;

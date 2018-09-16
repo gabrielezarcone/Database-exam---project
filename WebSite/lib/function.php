@@ -52,7 +52,7 @@ function show_campaigns_R($user){
 
     return $numrows;
 }
-function show_campaign_opt($user, $actual_camp){
+function show_campaign_opt($user, $actual_camp_id){
     $query = "SELECT name,id
                 FROM crowdsourcing.campaign AS C 
                 WHERE C.requester = $1;";
@@ -61,12 +61,12 @@ function show_campaign_opt($user, $actual_camp){
     $res = pg_prepare($db, "function", $query);
     $res = pg_execute($db, "function", $values);
     $numrows = pg_numrows($res);
-    print('<option selected="selected">'.$actual_camp.'</option>');
+    print('<option selected="selected" value="'.$actual_camp_id.'">'.campaign_name($actual_camp_id).'</option>');
     
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        if($actual_camp!=$campaign[$i]){
-            print('<option>'.$campaign[0].'</option>');
+        if($actual_camp_id!=$campaign[1]){
+            print('<option value="'.$campaign[1].'">'.$campaign[0].'</option>');
         }
     }
     pg_free_result($res);
