@@ -153,7 +153,20 @@ function campaign_name($campaign_id){
     pg_free_result($res);
     close_pg_connection($db);
     return $row[0]; 
-};
+}
+function get_task($title, $campaign){
+    $query = 'SELECT id
+                FROM crowdsourcing.task as A
+                WHERE campaign=$1 and title=$2;';
+    $values = array(1=>$campaign, $title);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "get_task", $query);
+    $res = pg_execute($db, "get_task", $values);
+    $row = pg_fetch_array($res);
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $row[0];
+}
 
 
 function show_card_R($campaign){
@@ -195,6 +208,7 @@ function show_card_R($campaign){
     }
     pg_free_result($res);
     close_pg_connection($db);
-
 }
+
+
 ?>

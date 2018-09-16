@@ -67,6 +67,7 @@ CREATE TABLE task(
     pay_description VARCHAR(280) NOT NULL,
     FOREIGN KEY (pay_type) REFERENCES pay(type) ON UPDATE NO ACTION ON DELETE NO ACTION,
     FOREIGN KEY (campaign) REFERENCES campaign(id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+    UNIQUE (title, campaign),
     CHECK(n_workers > 0),
     CHECK(threshold > 0)
 );
@@ -167,6 +168,9 @@ SELECT *
 FROM crowdsourcing.task
 WHERE campaign=$campaign
 
+SELECT id
+FROM crowdsourcing.task as A
+WHERE campaign=$1 and title=$2;
 
 ----Grant
 

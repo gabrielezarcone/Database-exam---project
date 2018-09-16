@@ -7,18 +7,7 @@
         if(preg_match ('/answ./' , $k)==1){
             $_SESSION[task][answers][$k] = $value;
         }
-    }       
-    $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($_SESSION[task]));        
-    foreach ($iterator as $k => $value) {
-        if($value!=null){
-            create_task($_SESSION[task][title], $_SESSION[task][description], $_SESSION[task][campaign], $_SESSION[task][n_workers], $_SESSION[task][threshold], $_SESSION[task][pay_type], $_SESSION[task][pay_description]);
-
-            print('<div class="uk-alert-success" uk-alert>
-                                                    <a class="uk-alert-close" uk-close></a>
-                                                    <p>Task '.$_SESSION[task][name].' created</p>
-                                                </div>');
-        }
-    }   
+    }         
     
     print_r($_SESSION);
     
@@ -47,9 +36,18 @@
                     <div class="uk-margin">
                     <?php
                         
-                        if(isset($task[title])&&isset($task[description])&&isset($task[campaign])&&isset($task[n_workers])&&isset($task[threshold])&&isset($task[pay_type])&&isset($task[pay_description])){
-                            
-                        }
+                        $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($_SESSION[task]));        
+                        foreach ($iterator as $k => $value) {
+                            if($value!=null){
+                                create_task($_SESSION[task][title], $_SESSION[task][description], $_SESSION[task][campaign], $_SESSION[task][n_workers], $_SESSION[task][threshold], $_SESSION[task][pay_type], $_SESSION[task][pay_description]);
+                                insert_answers(get_task($_SESSION[task][title], $_SESSION[task][campaign]), $answers);
+
+                                print('<div class="uk-alert-success" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Task '.$_SESSION[task][name].' created</p>
+                                        </div>');
+                            }
+                        } 
                     ?>
                     </div>
                     
