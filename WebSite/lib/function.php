@@ -5,6 +5,11 @@ function open_pg_connection() {
     $connection = "host=".myhost." dbname=".mydb." user=".myuser." password=".mypsw;
     return pg_connect ($connection);  
 }
+function force_pg_connection() {
+	include_once('conf/conf.php');
+    $connection = "host=".myhost." dbname=".mydb." user=".myuser." password=".mypsw;
+    return pg_connect ($connection, PGSQL_CONNECT_FORCE_NEW );  
+}
 
 function close_pg_connection($db) {
     return pg_close ($db);  
@@ -233,7 +238,7 @@ function get_keyword_task($campaign, $task){
                 FROM crowdsourcing.requires_keyword
                 WHERE task=$1;';
     $values = array(1=>$task);
-    $db = open_pg_connection();
+    $db = force_pg_connection();
     $res = pg_prepare($db, "get_key_tasks", $query);
     $res = pg_execute($db, "get_key_tasks", $values);
     $numrows = pg_numrows($res);
@@ -251,7 +256,7 @@ function get_answers_task($campaign, $task){
                 FROM crowdsourcing.answer
                 WHERE task=$1;';
     $values = array(1=>$task);
-    $db = open_pg_connection();
+    $db = force_pg_connection();
     $res = pg_prepare($db, "get_ans_tasks", $query);
     $res = pg_execute($db, "get_ans_tasks", $values);
     $numrows = pg_numrows($res);

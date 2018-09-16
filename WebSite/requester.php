@@ -1,7 +1,7 @@
 <?php
     session_start();
     include_once("lib/function.php");
-    
+    $_SESSION[campaign] = $_GET[campaign];
 ?>
 
 <!DOCTYPE html5>
@@ -26,7 +26,7 @@
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 cards-container">
-            <?php show_card_R($_SESSION[campaign]); ?>
+            <?php show_card_R($_GET[campaign]); ?>
             
         </div>
         <div class="uk-width-1-4 card-container">
