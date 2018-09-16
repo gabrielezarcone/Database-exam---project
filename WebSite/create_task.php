@@ -2,12 +2,11 @@
     session_start();
     include_once("lib/function.php");
 
-    
+
 ?>
 
 <script>
     i=0;
-    opt = <?php show_keyword_opt(); ?>
 </script>
 
 <!DOCTYPE html5>
@@ -79,7 +78,7 @@
                     <datalist id="skills_list">
                         <?php show_keyword_opt(); ?>
                     </datalist>
-                    <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container', opt);" value="Add skill">
+                    <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container', '<?php show_keyword_opt()?>');" value="Add skill">
                 </div>
                 
                 <div class="uk-margin">

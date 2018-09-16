@@ -112,8 +112,8 @@ function show_keyword_opt(){
     
     for($i=0; $i<$numrows; $i++){
         $keyword = pg_fetch_array($res, $i);
-        
-        print('<option>'.$keyword[0].'</option>');
+        $str = trim('<option>'.$keyword[0].'</option>');
+        echo $str;
     }
     pg_free_result($res);
     close_pg_connection($db);
