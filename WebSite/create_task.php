@@ -5,7 +5,10 @@
     
 ?>
 
-<script>i=0;</script>
+<script>
+    i=0;
+    opt = <?php show_keyword_opt(); ?>
+</script>
 
 <!DOCTYPE html5>
 <html lang="it">
@@ -73,15 +76,14 @@
                         <input class="uk-input" type="text" name="skill" list="skills_list" placeholder="Select or add your own skill">
                     </div>
                     <datalist id="skills_list">
-                        <option value="Boston">
-                        <option value="Cambridge">
+                        <?php show_keyword_opt(); ?>
                     </datalist>
-                    <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container');" value="Add skill">
+                    <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container', opt);" value="Add skill">
                 </div>
                 
                 <div class="uk-margin">
                     <p>Pay type</p>
-                        <select class="uk-input uk-select" name="pay_type">
+                        <select class="uk-input" name="pay_type">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
                             <?php show_pay_opt(); ?>
                         </select>

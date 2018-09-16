@@ -178,6 +178,9 @@ SELECT *
 FROM crowdsourcing.keyword
 WHERE keyword = $1;
 
+SELECT keyword
+FROM crowdsourcing.keyword;
+
 ----Grant
 
 grant all on sequence crowdsourcing.campaign_id_seq to admin;

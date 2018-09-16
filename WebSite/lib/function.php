@@ -10,6 +10,11 @@ function close_pg_connection($db) {
     return pg_close ($db);  
 }
 
+
+
+
+
+
 function show_campaigns_W($user){
     $query = "SELECT name
                 FROM crowdsourcing.joins_campaign AS JC JOIN crowdsourcing.campaign AS C ON JC.campaign=C.id
@@ -72,6 +77,8 @@ function show_campaign_opt($user, $actual_camp_id){
     pg_free_result($res);
     close_pg_connection($db);
 }
+
+
 function show_pay_opt(){
     $query = "SELECT type
                 FROM crowdsourcing.pay;";
@@ -85,6 +92,23 @@ function show_pay_opt(){
         $pay_type = pg_fetch_array($res, $i);
         
         print('<option>'.$pay_type[0].'</option>');
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
+function show_keyword_opt(){
+    $query = "SELECT keyword
+                FROM crowdsourcing.keyword;";
+    $values = array();
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "keywords", $query);
+    $res = pg_execute($db, "keywords", $values);
+    $numrows = pg_numrows($res);
+    
+    for($i=0; $i<$numrows; $i++){
+        $keyword = pg_fetch_array($res, $i);
+        
+        print('<option>'.$keyword[0].'</option>');
     }
     pg_free_result($res);
     close_pg_connection($db);
