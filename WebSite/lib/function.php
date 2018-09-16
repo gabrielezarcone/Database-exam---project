@@ -111,15 +111,51 @@ function create_task($title, $description, $campaign, $n_workers, $threshold, $p
         close_pg_connection($db);
     }
 }
-function insert_answers($task, $answers){
+function insert_answer($task, $answer){
     $db = open_pg_connection();
-    foreach ($answers as $key => $answer) {
-        $query = 'INSERT INTO crowdsourcing.answer(task, value) VALUES($1, $2);';
-        $values = array(1=>$task, $answer);
-        $res = pg_prepare($db, "insert_answer", $query);
-        $res = pg_execute($db, "insert_answer", $values);
-    }
+    $query = 'INSERT INTO crowdsourcing.answer(task, value) VALUES($1, $2);';
+    $values = array(1=>$task, $answer);
+    $res = pg_prepare($db, "insert_answer", $query);
+    $res = pg_execute($db, "insert_answer", $values);
     close_pg_connection($db);
+}
+function check_keyword($keyword){
+    $query = "SELECT *
+                FROM crowdsourcing.keyword
+                WHERE keyword = $1;";
+    $values = array(1=> $keyword);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "check_key", $query);
+    $res = pg_execute($db, "check_key", $values);
+    $numrows = pg_numrows($res);
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $numrows;
+}
+function insert_keyword($task, $keyword, $keyword_type){
+    if(check_keyword($keyword)===0){
+        $query = "INSERT INTO crowdsourcing.keyword(keyword, type) VALUES($1,$2);";
+        $values = array(1=> $keyword, $keyword_type);
+        $db = open_pg_connection();
+        $res = pg_prepare($db, "add_key", $query);
+        $res = pg_execute($db, "add_key", $values);
+        $query = "INSERT INTO crowdsourcing.requires_keyword(task, keyword) VALUES($1,$2);";
+        $values = array(1=> $task, $keyword);
+        $res = pg_prepare($db, "requires_key", $query);
+        $res = pg_execute($db, "requires_key", $values);
+        pg_free_result($res);
+        close_pg_connection($db);
+    }
+    else{
+        $db = open_pg_connection();
+        $query = "INSERT INTO crowdsourcing.requires_keyword(task, keyword) VALUES($1,$2);";
+        $values = array(1=> $task, $keyword);
+        $res = pg_prepare($db, "requires_key", $query);
+        $res = pg_execute($db, "requires_key", $values);
+        pg_free_result($res);
+        close_pg_connection($db);
+    }
+    return $numrows;
 }
 
 

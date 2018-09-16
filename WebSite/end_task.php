@@ -9,7 +9,6 @@
         }
     }         
     
-    print_r($_SESSION);
     
 
 ?>
@@ -28,7 +27,7 @@
     <div uk-grid style="margin-top:2%;">
         <div class="uk-width-1-3"></div>
         <div class="uk-width-1-3">
-            <h1 class="uk-heading-primary">Finish <?php $task[title] ?></h1>
+            <h1 class="uk-heading-primary">Perfect!!</h1>
             <form action="end_task.php" method="POST">
                 
                 <div class="uk-margin" >
@@ -36,18 +35,19 @@
                     <div class="uk-margin">
                     <?php
                         
-                        $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($_SESSION[task]));        
-                        foreach ($iterator as $k => $value) {
-                            if($value!=null){
-                                create_task($_SESSION[task][title], $_SESSION[task][description], $_SESSION[task][campaign], $_SESSION[task][n_workers], $_SESSION[task][threshold], $_SESSION[task][pay_type], $_SESSION[task][pay_description]);
-                                insert_answers(get_task($_SESSION[task][title], $_SESSION[task][campaign]), $answers);
+                        create_task($_SESSION[task][title], $_SESSION[task][description], $_SESSION[task][campaign], $_SESSION[task][n_workers], $_SESSION[task][threshold], $_SESSION[task][pay_type], $_SESSION[task][pay_description]);
+                        foreach ($_SESSION[task][answers] as $key => $answer) {
+                            insert_answer(get_task($_SESSION[task][title], $_SESSION[task][campaign]), $answer);
+                        }
+                        foreach ($_SESSION[task][skill] as $key => $keyword) {
+                            insert_keyword(get_task($_SESSION[task][title], $_SESSION[task][campaign]), $keyword, "knowledge");
+                        }
 
-                                print('<div class="uk-alert-success" uk-alert>
-                                            <a class="uk-alert-close" uk-close></a>
-                                            <p>Task '.$_SESSION[task][name].' created</p>
-                                        </div>');
-                            }
-                        } 
+                        print('<div class="uk-alert-success" uk-alert>
+                                    <a class="uk-alert-close" uk-close></a>
+                                    <p>Task '.$_SESSION[task][name].' created</p>
+                                </div>');
+                        
                     ?>
                     </div>
                     
