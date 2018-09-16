@@ -11,6 +11,7 @@
                     'pay_type' => $_POST[pay_type],
                     'pay_description' => $_POST[pay_description]);
 
+
 ?>
 
 <!DOCTYPE html5>
@@ -31,6 +32,12 @@
             <form action="#" method="POST">
                 <?php
                     create_task($task[title], $task[description], $task[campaign], $task[n_workers], $task[threshold], $task[pay_type], $task[pay_description]);
+                    if(isset($task[title])&&isset($task[description])&&isset($task[campaign])&&isset($task[n_workers])&&isset($task[threshold])&&isset($task[pay_type])&&isset($task[pay_description])){
+                        print('<div class="uk-alert-success" uk-alert>
+                                                <a class="uk-alert-close" uk-close></a>
+                                                <p>Task '.$task[name].' created</p>
+                                            </div>');
+                    }
                 ?>
                 <div class="uk-margin">
                 
