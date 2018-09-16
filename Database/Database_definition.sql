@@ -181,6 +181,14 @@ WHERE keyword = $1;
 SELECT keyword
 FROM crowdsourcing.keyword;
 
+SELECT keyword
+FROM crowdsourcing.requires_keyword
+WHERE task=$1;
+
+SELECT value
+FROM crowdsourcing.answer
+WHERE task=$1;
+
 ----Grant
 
 grant all on sequence crowdsourcing.campaign_id_seq to admin;

@@ -228,7 +228,42 @@ function get_task($title, $campaign){
     return $row[0];
 }
 
-
+function get_keyword_task($campaign, $task){
+    $query = 'SELECT keyword
+                FROM crowdsourcing.requires_keyword
+                WHERE task=$1;';
+    $values = array(1=>$task);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "get_key_tasks", $query);
+    $res = pg_execute($db, "get_key_tasks", $values);
+    $numrows = pg_numrows($res);
+    $keywords = array();
+    for($i=0; $i<$numrows; $i++){
+        $row = pg_fetch_array($res, $i, PGSQL_NUM);
+        $keywords[$i] = $row[0]; 
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $keywords;
+}
+function get_answers_task($campaign, $task){
+    $query = 'SELECT value
+                FROM crowdsourcing.answer
+                WHERE task=$1;';
+    $values = array(1=>$task);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "get_ans_tasks", $query);
+    $res = pg_execute($db, "get_ans_tasks", $values);
+    $numrows = pg_numrows($res);
+    $keywords = array();
+    for($i=0; $i<$numrows; $i++){
+        $row = pg_fetch_array($res, $i, PGSQL_NUM);
+        $answers[$i] = $row[0]; 
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $answers;
+}
 function show_card_R($campaign){
     $query = 'SELECT *
                 FROM crowdsourcing.task
@@ -246,25 +281,26 @@ function show_card_R($campaign){
     }
     for($i=0; $i<$numrows; $i++){
         $task = pg_fetch_array($res, $i);
+        $answers = get_answers_task($campaign, $task[id]);
+        $keywords = get_keyword_task($campaign, $task[id]);
         
         print('
             <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">'.$task[title].'</h1>
                 <h2 class="card" style="color: white;">'.$task[description].'</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
+                <div class="uk-card-footer">');
+                    foreach ($keywords as $key => $keyword) {
+                        print('<span class="uk-label uk-label-warning">#'.$keyword.' </span>');
+                    }
+                    print('<ul class="uk-list uk-list-bullet">');
+                    foreach ($answers as $key => $answer) {
+                        print('<li>'.$answer.'</li>');
+                    }
+                    print('</ul>   
                 </div>
             </div>
         ');
+        
     }
     pg_free_result($res);
     close_pg_connection($db);

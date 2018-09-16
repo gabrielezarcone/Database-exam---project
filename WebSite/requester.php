@@ -2,7 +2,6 @@
     session_start();
     include_once("lib/function.php");
     
-    $_SESSION[campaign] = $_GET['campaign'];
 ?>
 
 <!DOCTYPE html5>

@@ -28,7 +28,6 @@
             <form action="add_answers.php" method="POST">
                 
                 <div class="uk-margin">
-                
                     <p>Campaign</p>
                         <select class="uk-input uk-select" name="campaign">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
@@ -36,8 +35,8 @@
                                 show_campaign_opt($_SESSION[user],$_SESSION[campaign]); 
                             ?>
                         </select>
-                    
                 </div>
+
                 <div class="uk-margin">
                     <p>Task Title</p>
                     <div class="uk-inline">
@@ -45,6 +44,7 @@
                         <input class="uk-input" type="text" name="title" placeholder="Title">
                     </div>
                 </div>
+
                 <div class="uk-margin">
                     <p>Description</p>
                     <div class="uk-inline">
@@ -60,6 +60,7 @@
                         <input class="uk-input" type="number" name="n_workers">
                     </div>
                 </div>
+
                 <div class="uk-margin">
                     <p>Threshold</p>
                     <div class="uk-inline">
@@ -83,11 +84,13 @@
                 
                 <div class="uk-margin">
                     <p>Pay type</p>
+                    
                         <select class="uk-input" name="pay_type">
                             <span class="uk-form-icon" uk-icon="icon: bookmark"></span>
                             <?php show_pay_opt(); ?>
                         </select>
                 </div>
+
                 <div class="uk-margin">
                     <p>Pay Description</p>
                     <div class="uk-inline">
