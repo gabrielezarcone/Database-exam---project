@@ -147,6 +147,8 @@ where campaign = 1;
 INSERT INTO worker(user_name, password, name, surname) VALUES();
 INSERT INTO campaign(name, registration_start_date, registration_end_date, start_date, end_date, requester) VALUES();
 INSERT INTO crowdsourcing.task(description, title, n_workers, threshold, valid_bit, campaign, pay_type, pay_description) VALUES();
+INSERT INTO crowdsourcing.answer(task, value) VALUES();
+
 
 SELECT user from crowdsourcing.worker as w WHERE user_name like "value";
 

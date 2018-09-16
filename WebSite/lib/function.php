@@ -111,6 +111,16 @@ function create_task($title, $description, $campaign, $n_workers, $threshold, $p
         close_pg_connection($db);
     }
 }
+function insert_answers($task, $answers){
+    $db = open_pg_connection();
+    foreach ($answers as $key => $answer) {
+        $query = 'INSERT INTO crowdsourcing.answer(task, value) VALUES($1, $2);';
+        $values = array(1=>$task, $answer);
+        $res = pg_prepare($db, "insert_answer", $query);
+        $res = pg_execute($db, "insert_answer", $values);
+    }
+    close_pg_connection($db);
+}
 
 
 function show_keyword(){
