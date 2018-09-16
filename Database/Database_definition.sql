@@ -161,6 +161,10 @@ SELECT name
 FROM crowdsourcing.campaign AS C
 WHERE C.id = $id
 
+SELECT *
+FROM crowdsourcing.task
+WHERE campaign=$campaign
+
 
 ----Grant
 

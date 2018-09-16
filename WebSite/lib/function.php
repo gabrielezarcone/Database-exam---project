@@ -126,4 +126,47 @@ function campaign_name($campaign_id){
     close_pg_connection($db);
     return $row[0]; 
 };
+
+
+function show_card_R($campaign){
+    $query = 'SELECT *
+                FROM crowdsourcing.task
+                WHERE campaign=$1';
+    $values = array(1=>$campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "tasks", $query);
+    $res = pg_execute($db, "tasks", $values);
+    $numrows = pg_numrows($res);
+    if($campaign==""){
+        print('<h3 class="uk-text-center uk-text-muted"> Select a campaign</h3>');
+    }
+    else if($numrows==0){
+        print('<h3 class="uk-text-center uk-text-muted"> There are no task in this Campaign</h3>');
+    }
+    for($i=0; $i<$numrows; $i++){
+        $task = pg_fetch_array($res, $i);
+        
+        print('
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
+                <h1 class="card" style="color: white;">'.$task[title].'</h1>
+                <h2 class="card" style="color: white;">'.$task[description].'</h2>
+                <div class="uk-card-footer">
+                    <span class="uk-label uk-label-warning">#skill</span>
+                    <span class="uk-label uk-label-warning">#skill</span>
+                    <span class="uk-label uk-label-warning">#skill</span>
+                    <span class="uk-label uk-label-warning">#skill</span>
+                    <ul class="uk-list uk-list-bullet">
+                        <li> Answeranswer A</li>
+                        <li> Answer B</li>
+                        <li> Answer C</li>
+                        <li> Answer D</li>
+                    </ul>   
+                </div>
+            </div>
+        ');
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+
+}
 ?>

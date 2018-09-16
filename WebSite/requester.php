@@ -3,7 +3,6 @@
     include_once("lib/function.php");
     
     $_SESSION[campaign] = $_GET['campaign'];
-    print($_GET['campaign']);
 ?>
 
 <!DOCTYPE html5>
@@ -28,107 +27,7 @@
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 cards-container">
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
-                </div>
-            </div>
-            
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
-                </div>
-            </div>
-            
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
-                </div>
-            </div>
-            
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
-                </div>
-            </div>
-            
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
-                </div>
-            </div>
-            
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <div class="uk-card-footer">
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <span class="uk-label uk-label-warning">#skill</span>
-                    <ul class="uk-list uk-list-bullet">
-                        <li> Answeranswer A</li>
-                        <li> Answer B</li>
-                        <li> Answer C</li>
-                        <li> Answer D</li>
-                    </ul>   
-                </div>
-            </div>
+            <?php show_card_R($_SESSION[campaign]); ?>
             
         </div>
         <div class="uk-width-1-4 card-container">
