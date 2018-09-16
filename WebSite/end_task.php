@@ -12,20 +12,17 @@
                     'pay_description' => $_POST[pay_description],
                     'skill' => array() );
     
-    
-    foreach ($_POST as $k => $value) {
-        if(preg_match ('/skil./' , $k)===1){
+
+    foreach ($task as $k => $value) {
+        if(preg_match ('skill.' , $k)==1){
             $task[skill][$k] = $value;
         }
     }               
     
     $_SESSION[task] = $task;
-    print_r([$_SESSION]);
 
 
 ?>
-
-<script>i=0</script>
 
 <!DOCTYPE html5>
 <html lang="it">
@@ -46,13 +43,13 @@
                 
                 <div class="uk-margin" >
                 
-                    <div class="uk-margin" id="answer_container">
+                    <div class="uk-margin">
                         <p>Answer</p>
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: menu"></span>
-                            <input class="uk-input uk-textarea" type="textarea" name="answer" placeholder="Option">
+                            <input class="uk-input uk-textarea" type="textarea" name="answer" placeholder="Description">
                         </div>
-                        <input type="button" class="uk-button uk-button-default requester" onclick="add_answers_form('answer_container');" value="Add option">
+                        <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container');" value="Add skill">
                     </div>
                     
                 
