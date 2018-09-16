@@ -2,25 +2,13 @@
     session_start();
     include_once("lib/function.php");
 
-    $task = array('user' =>$_SESSION[user],
-                    'title' => $_POST[title],           //
-                    'description' => $_POST[description],//
-                    'campaign' => $_POST[campaign],     //
-                    'n_workers' => $_POST[n_workers],   //
-                    'threshold' => $_POST[threshold],   //
-                    'pay_type' => $_POST[pay_type],
-                    'pay_description' => $_POST[pay_description],
-                    'skill' => array() );
-    
-
-    foreach ($task as $k => $value) {
-        if(preg_match ('skill.' , $k)==1){
-            $task[skill][$k] = $value;
+    $_SESSION[task][answers] = array();
+    foreach ($_POST as $k => $value) {
+        if(preg_match ('/answ./' , $k)==1){
+            $_SESSION[task][answers][$k] = $value;
         }
     }               
     
-    $_SESSION[task] = $task;
-
 
 ?>
 
@@ -44,18 +32,9 @@
                 <div class="uk-margin" >
                 
                     <div class="uk-margin">
-                        <p>Answer</p>
-                        <div class="uk-inline">
-                            <span class="uk-form-icon" uk-icon="icon: menu"></span>
-                            <input class="uk-input uk-textarea" type="textarea" name="answer" placeholder="Description">
-                        </div>
-                        <input type="button" class="uk-button uk-button-default requester" onclick="add_skills_form('skill_container');" value="Add skill">
+                        
                     </div>
                     
-                
-                <div class="uk-margin">
-                    <button class="uk-button uk-button-default requester">Create</button>
-                </div>
             </form>
         </div>
         <div class="uk-width-1-3"></div>

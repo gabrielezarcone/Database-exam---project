@@ -20,7 +20,6 @@
     }               
     
     $_SESSION[task] = $task;
-    print_r([$_SESSION]);
 
 
 ?>
