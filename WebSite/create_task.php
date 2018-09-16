@@ -30,7 +30,7 @@
             <h1 class="uk-heading-primary">Create Task</h1>
             <form action="#" method="POST">
                 <?php
-                    create_task($task[title], $task[description], $task[campaign], $task[n_workers], $task[threshold], $task[pay_type], $task[pay_description], $_SESSION[user]);
+                    create_task($task[title], $task[description], $task[campaign], $task[n_workers], $task[threshold], $task[pay_type], $task[pay_description]);
                 ?>
                 <div class="uk-margin">
                 

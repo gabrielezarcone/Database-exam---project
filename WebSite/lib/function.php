@@ -101,7 +101,7 @@ function create_campaign($name, $reg_start, $reg_end, $start, $end, $user){
         close_pg_connection($db);
     }
 }
-function create_task($title, $description, $campaign, $n_workers, $threshold, $pay_type, $pay_description, $user){
+function create_task($title, $description, $campaign, $n_workers, $threshold, $pay_type, $pay_description){
     if(isset($title)){
         $query = 'INSERT INTO crowdsourcing.task(description, title, n_workers, threshold, valid_bit, campaign, pay_type, pay_description) VALUES($1, $2, $3, $4, $5, $6, $7, $8);';
         $values = array(1=>$description, $title, $n_workers, $threshold, 'false', $campaign, $pay_type, $pay_description);
