@@ -98,10 +98,15 @@ function show_campaign_opt($user, $actual_camp_id){
     close_pg_connection($db);
 }
 function show_joinable_camp($worker){
-    $query = "SELECT C.name as worker, C.requester
-                FROM crowdsourcing.campaign AS C JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
-                WHERE JC.worker NOT LIKE $1 and C.registration_end_date>CURRENT_DATE;";
-    $values = array(1=>$worker);
+
+    $query = "SELECT DISTINCT C.name as campaign_name, C.requester, C.id
+                FROM crowdsourcing.campaign AS C LEFT JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
+                WHERE C.registration_end_date>CURRENT_DATE and C.registration_start_date<=CURRENT_DATE
+                EXCEPT 
+                select C.name as campaign, C.requester, C.id
+                FROM crowdsourcing.campaign AS C LEFT JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
+                WHERE  JC.worker=$1 and C.registration_end_date>CURRENT_DATE and C.registration_start_date<=CURRENT_DATE;";
+    $values = array(1=>$worker); 
     $db = open_pg_connection();
     $res = pg_prepare($db, "joinable", $query);
     $res = pg_execute($db, "joinable", $values);
@@ -114,7 +119,7 @@ function show_joinable_camp($worker){
                     <span class="uk-form-icon" uk-icon="icon: bookmark"></span>');
         for($i=0; $i<$numrows; $i++){
             $campaign = pg_fetch_array($res, $i);
-            print('<option>'.$campaign[worker].' ['.$campaign[requester].']</option>');
+            print('<option value="'.$campaign[id].'">'.$campaign[campaign_name].' ['.$campaign[requester].']</option>');
         }
         print('</select>');
     }
@@ -158,6 +163,18 @@ function show_keyword_opt(){
     pg_free_result($res);
     close_pg_connection($db);
 }
+
+
+function join_campaign($worker, $campaign){
+    $db = open_pg_connection();
+    $query = 'INSERT INTO crowdsourcing.joins_campaign(worker, campaign) VALUES($1, $2);';
+    $values = array(1=>$worker, $campaign);
+    $res = pg_prepare($db, "join_campaign", $query);
+    $res = pg_execute($db, "join_campaign", $values);
+    close_pg_connection($db);
+}
+
+
 
 
 function create_campaign($name, $reg_start, $reg_end, $start, $end, $user){

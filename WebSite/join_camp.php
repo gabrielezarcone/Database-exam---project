@@ -20,8 +20,8 @@
             <h1 class="uk-heading-primary">Add skill</h1>
             <form action="#" method="POST">
                 <?php
-                    if(isset($_POST[keyword])&&isset($_POST[score])){
-                        insert_keyword_work($_SESSION[user], $_POST[keyword],$_POST[score], "knowledge");
+                    if(isset($_POST[campaign])){
+                        join_campaign($_SESSION[user], $_POST[campaign]);
                         print('<div class="uk-alert-success" uk-alert>
                                                 <a class="uk-alert-close" uk-close></a>
                                                 <p>Skill '.$_POST[keyword].' created</p>

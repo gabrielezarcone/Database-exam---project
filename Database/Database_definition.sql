@@ -152,6 +152,7 @@ INSERT INTO crowdsourcing.answer(task, value) VALUES();
 INSERT INTO crowdsourcing.keyword(keyword, type) VALUES();
 INSERT INTO crowdsourcing.requires_keyword(task, keyword) VALUES();
 INSERT INTO crowdsourcing.has_keyword(worker, keyword, score) VALUES();
+INSERT INTO crowdsourcing.joins_campaign(worker, campaign) VALUES();
 
 
 SELECT user from crowdsourcing.worker as w WHERE user_name like "value";
@@ -194,9 +195,14 @@ SELECT DISTINCT RK.keyword
 FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword AS RK ON T.id = RK.task
 WHERE T.campaign = $1;
 
-SELECT C.name as worker, C.requester
-FROM crowdsourcing.campaign AS C JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
-WHERE JC.worker NOT LIKE $1 and C.registration_end_date>CURRENT_DATE;
+SELECT DISTINCT C.name as campaign, C.requester, C.id
+FROM crowdsourcing.campaign AS C LEFT JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
+WHERE C.registration_end_date>CURRENT_DATE and C.registration_start_date<=CURRENT_DATE
+
+EXCEPT 
+select C.name as campaign, C.requester, C.id, JC.worker
+FROM crowdsourcing.campaign AS C LEFT JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
+WHERE  JC.worker=$1 and C.registration_end_date>CURRENT_DATE and C.registration_start_date<=CURRENT_DATE;
 
 ----Grant
 
