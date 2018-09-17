@@ -304,6 +304,23 @@ function show_keyword_list($campaign){
     pg_free_result($res);
     close_pg_connection($db);
 }
+function show_keyword_list_W($worker){
+    $query = "SELECT DISTINCT keyword, score
+                FROM crowdsourcing.has_keyword 
+                WHERE worker = $1;";
+    $values = array($worker);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "key_list", $query);
+    $res = pg_execute($db, "key_list", $values);
+    $numrows = pg_numrows($res);
+    
+    for($i=0; $i<$numrows; $i++){
+        $keyword = pg_fetch_array($res, $i);
+        print('<li><h4>#</h4>[score:'.$keyword[score].'] '.$keyword[keyword].'</li>');
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
 
 function campaign_name($campaign_id){
     $query = 'SELECT name

@@ -48,9 +48,7 @@
             <div class="uk-card uk-card-default uk-card-body uk-margin-top">
                 <h2 style="color: var(--worker-color)">Skills</h2>
                 <ul class="uk-list">
-                    <li><h4>skill-1: </h4>nome@@@@</li>
-                    <li><h4>skill-2: </h4>@@@@</li>
-                    <li><h4>skill-3: </h4>@@@@</li>
+                    <?php show_keyword_list_W($_SESSION[user]); ?>
                 </ul>
             </div>
         </div>
