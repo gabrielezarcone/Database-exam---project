@@ -222,6 +222,14 @@ WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
                                                                     WHERE worker=$2)
 order by HK.score desc;
 
+
+select count(*)
+from choose
+where task=$1 and answer=$2;
+
+select count(*)
+from choose
+where task=$1;
 ----Grant
 
 grant all on sequence crowdsourcing.campaign_id_seq to admin;

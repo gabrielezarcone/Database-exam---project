@@ -415,7 +415,7 @@ function show_card_R($campaign){
                     }
                     print('<ul class="uk-list uk-list-bullet">');
                     foreach ($answers as $key => $answer) {
-                        print('<li>'.$answer.'</li>');
+                        print('<li>'.$answer.': '.answer_percent($task[id], $answer).'%</li>');
                     }
                     print('</ul>   
                 </div>
@@ -494,5 +494,42 @@ function choose_answer($worker, $task, $answer){
     close_pg_connection($db);
 }
 
+
+function answer_count($task, $answer){
+    $query = 'SELECT count(*)
+                from crowdsourcing.choose
+                where task=$1 and answer=$2;';
+    $values = array(1=>$task, $answer);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "count", $query);
+    $res = pg_execute($db, "count", $values);
+    $count = pg_fetch_array($res, 0);
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $count[0];
+}
+function total_answer_count($task){
+    $query = 'SELECT count(*)
+                from crowdsourcing.choose
+                where task=$1;';
+    $values = array(1=>$task);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "count", $query);
+    $res = pg_execute($db, "count", $values);
+    $count = pg_fetch_array($res, 0);
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $count[0];
+}
+function answer_percent($task, $answer){
+    $total = total_answer_count($task);
+    $ans = answer_count($task, $answer);
+    if($total>0){
+        return ($ans*100)/$total;
+    }
+    else{
+        return 0;
+    }
+}
 
 ?>
