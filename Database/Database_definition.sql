@@ -194,6 +194,10 @@ SELECT DISTINCT RK.keyword
 FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword AS RK ON T.id = RK.task
 WHERE T.campaign = $1;
 
+SELECT C.name as worker, C.requester
+FROM crowdsourcing.campaign AS C JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
+WHERE JC.worker NOT LIKE $1 and C.registration_end_date>CURRENT_DATE;
+
 ----Grant
 
 grant all on sequence crowdsourcing.campaign_id_seq to admin;

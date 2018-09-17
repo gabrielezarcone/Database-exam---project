@@ -37,7 +37,7 @@
                         <input class="uk-input" type="text" name="keyword" list="skills_list" placeholder="Select or add your own skill">
                     </div>
                     <datalist id="skills_list">
-                        <?php show_keyword_opt(); ?>
+                        <?php show_keyword_opt();?>
                     </datalist>
                 </div>
 

@@ -97,6 +97,31 @@ function show_campaign_opt($user, $actual_camp_id){
     pg_free_result($res);
     close_pg_connection($db);
 }
+function show_joinable_camp($worker){
+    $query = "SELECT C.name as worker, C.requester
+                FROM crowdsourcing.campaign AS C JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
+                WHERE JC.worker NOT LIKE $1 and C.registration_end_date>CURRENT_DATE;";
+    $values = array(1=>$worker);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "joinable", $query);
+    $res = pg_execute($db, "joinable", $values);
+    $numrows = pg_numrows($res);
+    if($numrows==0){
+        print("<p>You've joined every available campign</p>");
+    }
+    else{
+        print('<select class="uk-input" name="campaign">
+                    <span class="uk-form-icon" uk-icon="icon: bookmark"></span>');
+        for($i=0; $i<$numrows; $i++){
+            $campaign = pg_fetch_array($res, $i);
+            print('<option>'.$campaign[worker].' ['.$campaign[requester].']</option>');
+        }
+        print('</select>');
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+    return $numrows; 
+}
 
 
 function show_pay_opt(){
