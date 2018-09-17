@@ -29,8 +29,8 @@
             <h1 class="uk-heading-primary">Create Campaign</h1>
             <form action="#" method="POST">
                 <?php
-                    create_campaign($campaign[name], $campaign[reg_start], $campaign[reg_end], $campaign[start], $campaign[end], $_SESSION[user]);
                     if(isset($campaign[name])&&isset($campaign[reg_start])&&isset($campaign[reg_end])&&isset($campaign[start])&&isset($campaign[end])){
+                        create_campaign($campaign[name], $campaign[reg_start], $campaign[reg_end], $campaign[start], $campaign[end], $_SESSION[user]);
                         print('<div class="uk-alert-success" uk-alert>
                                                 <a class="uk-alert-close" uk-close></a>
                                                 <p>Campaign '.$campaign[name].' created</p>

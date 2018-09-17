@@ -151,6 +151,7 @@ INSERT INTO crowdsourcing.task(description, title, n_workers, threshold, valid_b
 INSERT INTO crowdsourcing.answer(task, value) VALUES();
 INSERT INTO crowdsourcing.keyword(keyword, type) VALUES();
 INSERT INTO crowdsourcing.requires_keyword(task, keyword) VALUES();
+INSERT INTO crowdsourcing.has_keyword(worker, keyword, score) VALUES();
 
 
 SELECT user from crowdsourcing.worker as w WHERE user_name like "value";

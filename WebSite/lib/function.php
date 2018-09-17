@@ -201,6 +201,31 @@ function insert_keyword($task, $keyword, $keyword_type){
     }
     return $numrows;
 }
+function insert_keyword_work($worker, $keyword, $score, $type){
+    if(check_keyword($keyword)===0){
+        $query = "INSERT INTO crowdsourcing.keyword(keyword, type) VALUES($1,$2);";
+        $values = array(1=> $keyword, $type);
+        $db = open_pg_connection();
+        $res = pg_prepare($db, "add_key", $query);
+        $res = pg_execute($db, "add_key", $values);
+        $query = "INSERT INTO crowdsourcing.has_keyword(worker, keyword, score) VALUES($1, $2, $3);";
+        $values = array(1=> $worker, $keyword, $score);
+        $res = pg_prepare($db, "has_key", $query);
+        $res = pg_execute($db, "has_key", $values);
+        pg_free_result($res);
+        close_pg_connection($db);
+    }
+    else{
+        $db = open_pg_connection();
+        $query = "INSERT INTO crowdsourcing.has_keyword(worker, keyword, score) VALUES($1, $2, $3);";
+        $values = array(1=> $worker, $keyword, $score);
+        $res = pg_prepare($db, "has_key", $query);
+        $res = pg_execute($db, "has_key", $values);
+        pg_free_result($res);
+        close_pg_connection($db);
+    }
+    return $numrows;
+}
 
 
 function show_keyword(){

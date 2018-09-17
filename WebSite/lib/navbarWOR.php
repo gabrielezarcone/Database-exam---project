@@ -5,7 +5,8 @@
             <ul class="uk-navbar-nav">
                 <li class="uk-active"><a href="index.php">Home</a></li>
                 <li><a href="worker.php">My Profile</a></li>
-                <li><a href="join_camp.php">Join campaigns</a></li>
+                <li><a href="join_camp.php">Join Campaigns</a></li>
+                <li><a href="add_skill.php">Add Skill</a></li>
             </ul>
         </div>
     </nav>
