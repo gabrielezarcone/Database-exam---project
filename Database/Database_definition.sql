@@ -189,6 +189,10 @@ SELECT value
 FROM crowdsourcing.answer
 WHERE task=$1;
 
+SELECT DISTINCT RK.keyword
+FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword AS RK ON T.id = RK.task
+WHERE T.campaign = $1;
+
 ----Grant
 
 grant all on sequence crowdsourcing.campaign_id_seq to admin;

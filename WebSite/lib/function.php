@@ -18,6 +18,21 @@ function close_pg_connection($db) {
 
 
 
+/*
+function next_page($url, $check_arr){
+    foreach ($check_arr as $key => $value) {
+        if(isset($check_arr[key])===FALSE){
+            print($url);
+            return;
+        }
+    }
+    print('#');
+    return '<div class="uk-alert-danger" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p>Fill every field please</p>
+            </div>';
+}
+*/
 
 
 function show_campaigns_W($user){
@@ -201,6 +216,23 @@ function show_keyword(){
         $pay_type = pg_fetch_array($res, $i);
         
         print('<option>'.$pay_type[0].'</option>');
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
+function show_keyword_list($campaign){
+    $query = "SELECT DISTINCT RK.keyword
+                FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword AS RK ON T.id = RK.task
+                WHERE T.campaign = $1;";
+    $values = array($campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "key_list", $query);
+    $res = pg_execute($db, "key_list", $values);
+    $numrows = pg_numrows($res);
+    
+    for($i=0; $i<$numrows; $i++){
+        $keyword = pg_fetch_array($res, $i);
+        print('<li><h4>#</h4>'.$keyword[0].'</li>');
     }
     pg_free_result($res);
     close_pg_connection($db);
