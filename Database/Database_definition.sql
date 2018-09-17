@@ -153,7 +153,8 @@ INSERT INTO crowdsourcing.keyword(keyword, type) VALUES();
 INSERT INTO crowdsourcing.requires_keyword(task, keyword) VALUES();
 INSERT INTO crowdsourcing.has_keyword(worker, keyword, score) VALUES();
 INSERT INTO crowdsourcing.joins_campaign(worker, campaign) VALUES();
-INSERT INTO crowdsourcing.joins_campaign(task, worker) VALUES();
+INSERT INTO crowdsourcing.recives_task(task, worker) VALUES($1, $2);
+INSERT INTO crowdsourcing.choose(worker, task, answer) VALUES($1, $2, $3);
 
 
 SELECT user from crowdsourcing.worker as w WHERE user_name like "value";

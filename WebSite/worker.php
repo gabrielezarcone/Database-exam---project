@@ -3,6 +3,12 @@
     session_start();
 
     $_SESSION[campaign] = $_GET[campaign];
+    if(isset($_POST[answer])){
+        assign_task_to_worker($_SESSION[task], $_SESSION[user]);
+        choose_answer($_SESSION[user], $_SESSION[task], $_POST[answer]);
+        unset($_SESSION[task]);
+        unset($_POST[answer]);
+    }
 ?>
 
 <!DOCTYPE html5>

@@ -394,7 +394,7 @@ function show_card_R($campaign){
                 <h2 class="card" style="color: white;">'.$task[description].'</h2>
                 <div class="uk-card-footer">');
                     foreach ($keywords as $key => $keyword) {
-                        print('<span class="uk-label uk-label-warning">#'.$keyword.' </span>');
+                        print('<span class="uk-label uk-label-warning" style="margin-left:5px">#'.$keyword.' </span>');
                     }
                     print('<ul class="uk-list uk-list-bullet">');
                     foreach ($answers as $key => $answer) {
@@ -439,14 +439,14 @@ function show_card_W($worker, $campaign){
             </div>');
         print('<div class="uk-card-footer">');
         foreach ($keywords as $key => $keyword) {
-            print('<span class="uk-label uk-label-danger">#'.$keyword.' </span>');
+            print('<span class="uk-label uk-label-danger" style="margin-left:5px">#'.$keyword.' </span>');
         }
         print('</div>');
     
-        print('<form class="uk-margin" action="assign_task.php?task='.$task[id].'">
+        print('<form class="uk-margin" action="#" method="POST">
                     <ul class="uk-list">');
         foreach ($answers as $key => $answer) {
-            print('<li><h2><input class="uk-radio" type="radio" name="radio1"> '.$answer.'</h2></li>');
+            print('<li><h2><input class="uk-radio" type="radio" name="answer" value="'.$answer.'"> '.$answer.'</h2></li>');
         }               
         print('</ul>
                 <button class="uk-button uk-button-default worker">Submit Aswer</button>
@@ -455,13 +455,23 @@ function show_card_W($worker, $campaign){
     }
     pg_free_result($res);
     close_pg_connection($db);
+    $_SESSION[task]=$task[id];
 }
 function assign_task_to_worker($task, $worker){
-    $query = 'INSERT INTO crowdsourcing.joins_campaign(task, worker) VALUES($1, $2);';
+    $query = 'INSERT INTO crowdsourcing.recives_task(task, worker) VALUES($1, $2);';
     $values = array(1=>$task, $worker);
     $db = force_pg_connection();
     $res = pg_prepare($db, "assign_task", $query);
     $res = pg_execute($db, "assign_task", $values);
+    pg_free_result($res);
+    close_pg_connection($db);
+}
+function choose_answer($worker, $task, $answer){
+    $query = 'INSERT INTO crowdsourcing.choose(worker, task, answer) VALUES($1, $2, $3);';
+    $values = array(1=>$worker, $task, $answer);
+    $db = force_pg_connection();
+    $res = pg_prepare($db, "ans", $query);
+    $res = pg_execute($db, "ans", $values);
     pg_free_result($res);
     close_pg_connection($db);
 }

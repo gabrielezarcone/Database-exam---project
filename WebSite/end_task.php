@@ -57,4 +57,5 @@
     </div>
     
 </body>
+<?php unset($_SESSION[task]); ?>
 </html>
