@@ -27,21 +27,8 @@
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 card-container">
-            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
-                <h1 class="card" style="color: #ffffff;">Title</h1>
-                <h2 class="card" style="color: white;">Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-            </div>
-             <form class="uk-margin">
-                <ul class="uk-list">
-                    <li><h2><input class="uk-radio" type="radio" name="radio1" checked> Answeranswer A</h2></li>
-                    <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer B</h2></li>
-                    <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer C</h2></li>
-                    <li><h2><input class="uk-radio" type="radio" name="radio1"> Answer D</h2></li>
-                    
-                </ul>
-                <button class="uk-button uk-button-default worker">Submit Aswer</button>
-                <button class="uk-button uk-button-default ">Skip</button>
-            </form>
+        <?php show_card_W($_SESSION[user], $_SESSION[campaign]) ?>
+        
         </div>
         <div class="uk-width-1-4 card-container">
             <div class="uk-card uk-card-default uk-card-body ">

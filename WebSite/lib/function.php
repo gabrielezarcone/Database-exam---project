@@ -36,7 +36,7 @@ function next_page($url, $check_arr){
 
 
 function show_campaigns_W($user){
-    $query = "SELECT name
+    $query = "SELECT name, id
                 FROM crowdsourcing.joins_campaign AS JC JOIN crowdsourcing.campaign AS C ON JC.campaign=C.id
                 WHERE JC.worker = $1;";
     $values = array(1=>$user);
@@ -49,7 +49,7 @@ function show_campaigns_W($user){
     }
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        print('<a href="worker.php?campaign='.$campaign[0].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
+        print('<a href="worker.php?campaign='.$campaign[id].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
     }
     pg_free_result($res);
     close_pg_connection($db);
@@ -428,20 +428,43 @@ function show_card_W($worker, $campaign){
     else if($numrows==0){
         print('<h3 class="uk-text-center uk-text-muted"> You answered to every task of this campaign</h3>');
     }
-    $task = pg_fetch_array($res, 0);
-    print('<div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
-            <h1 class="card" style="color: #ffffff;">'.$task[title].'</h1>
-            <h2 class="card" style="color: white;">'.$task[description].'</h2>
-        </div>');
+    else{
 
-    for($i=0; $i<$numrows; $i++){
+        $task = pg_fetch_array($res, 0);
         $answers = get_answers_task($campaign, $task[id]);
         $keywords = get_keyword_task($campaign, $task[id]);
+        print('<div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
+                <h1 class="card" style="color: #ffffff;">'.$task[title].'</h1>
+                <h2 class="card" style="color: white;">'.$task[description].'</h2>
+            </div>');
+        print('<div class="uk-card-footer">');
+        foreach ($keywords as $key => $keyword) {
+            print('<span class="uk-label uk-label-danger">#'.$keyword.' </span>');
+        }
+        print('</div>');
+    
+        print('<form class="uk-margin" action="assign_task.php?task='.$task[id].'">
+                    <ul class="uk-list">');
+        foreach ($answers as $key => $answer) {
+            print('<li><h2><input class="uk-radio" type="radio" name="radio1"> '.$answer.'</h2></li>');
+        }               
+        print('</ul>
+                <button class="uk-button uk-button-default worker">Submit Aswer</button>
+            </form>');
+
     }
     pg_free_result($res);
     close_pg_connection($db);
 }
-
+function assign_task_to_worker($task, $worker){
+    $query = 'INSERT INTO crowdsourcing.joins_campaign(task, worker) VALUES($1, $2);';
+    $values = array(1=>$task, $worker);
+    $db = force_pg_connection();
+    $res = pg_prepare($db, "assign_task", $query);
+    $res = pg_execute($db, "assign_task", $values);
+    pg_free_result($res);
+    close_pg_connection($db);
+}
 
 
 ?>
