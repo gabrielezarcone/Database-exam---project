@@ -409,11 +409,15 @@ function show_card_R($campaign){
     pg_free_result($res);
     close_pg_connection($db);
 }
-function show_card_W($campaign){
+function show_card_W($worker, $campaign){
     $query = 'SELECT *
-                FROM crowdsourcing.task
-                WHERE campaign=$1';
-    $values = array(1=>$campaign);
+                FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task
+                WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+                                                    FROM crowdsourcing.has_keyword
+                                                    WHERE worker=$2) AND T.id NOT IN(SELECT task
+                                                                                    FROM crowdsourcing.recives_task
+                                                                                    WHERE worker=$2)';
+    $values = array(1=>$campaign, $worker);
     $db = open_pg_connection();
     $res = pg_prepare($db, "tasks", $query);
     $res = pg_execute($db, "tasks", $values);
@@ -422,23 +426,22 @@ function show_card_W($campaign){
         print('<h3 class="uk-text-center uk-text-muted"> Select a campaign</h3>');
     }
     else if($numrows==0){
-        print('<h3 class="uk-text-center uk-text-muted"> There are no task in this Campaign</h3>');
+        print('<h3 class="uk-text-center uk-text-muted"> You answered to every task of this campaign</h3>');
     }
+    $task = pg_fetch_array($res, 0);
+    print('<div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
+            <h1 class="card" style="color: #ffffff;">'.$task[title].'</h1>
+            <h2 class="card" style="color: white;">'.$task[description].'</h2>
+        </div>');
+
     for($i=0; $i<$numrows; $i++){
-        $task = pg_fetch_array($res, $i);
         $answers = get_answers_task($campaign, $task[id]);
         $keywords = get_keyword_task($campaign, $task[id]);
-
-        
-        print('<div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
-                <h1 class="card" style="color: #ffffff;">'.$task[title].'</h1>
-                <h2 class="card" style="color: white;">'.$task[description].'</h2>
-            </div>');
-        
     }
     pg_free_result($res);
     close_pg_connection($db);
 }
+
 
 
 ?>
