@@ -411,12 +411,13 @@ function show_card_R($campaign){
 }
 function show_card_W($worker, $campaign){
     $query = 'SELECT *
-                FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task
+                FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
                 WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
                                                     FROM crowdsourcing.has_keyword
                                                     WHERE worker=$2) AND T.id NOT IN(SELECT task
                                                                                     FROM crowdsourcing.recives_task
-                                                                                    WHERE worker=$2)';
+                                                                                    WHERE worker=$2)
+                order by HK.score desc';
     $values = array(1=>$campaign, $worker);
     $db = open_pg_connection();
     $res = pg_prepare($db, "tasks", $query);

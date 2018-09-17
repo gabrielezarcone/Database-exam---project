@@ -214,12 +214,13 @@ WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
                                     WHERE worker=$2) 
 ----... checking if is a new one
 SELECT *
-FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task
+FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
 WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
                                     FROM crowdsourcing.has_keyword
                                     WHERE worker=$2) AND T.id NOT IN(SELECT task
                                                                     FROM crowdsourcing.recives_task
                                                                     WHERE worker=$2)
+order by HK.score desc;
 
 ----Grant
 

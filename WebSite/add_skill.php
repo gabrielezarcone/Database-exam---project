@@ -1,8 +1,6 @@
 <?php
     include_once("lib/function.php");
     session_start();
-
-    print_r($_POST);
 ?>
 
 <!DOCTYPE html5>
