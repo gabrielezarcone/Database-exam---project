@@ -409,6 +409,36 @@ function show_card_R($campaign){
     pg_free_result($res);
     close_pg_connection($db);
 }
+function show_card_W($campaign){
+    $query = 'SELECT *
+                FROM crowdsourcing.task
+                WHERE campaign=$1';
+    $values = array(1=>$campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "tasks", $query);
+    $res = pg_execute($db, "tasks", $values);
+    $numrows = pg_numrows($res);
+    if($campaign==""){
+        print('<h3 class="uk-text-center uk-text-muted"> Select a campaign</h3>');
+    }
+    else if($numrows==0){
+        print('<h3 class="uk-text-center uk-text-muted"> There are no task in this Campaign</h3>');
+    }
+    for($i=0; $i<$numrows; $i++){
+        $task = pg_fetch_array($res, $i);
+        $answers = get_answers_task($campaign, $task[id]);
+        $keywords = get_keyword_task($campaign, $task[id]);
+
+        
+        print('<div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand card-worker myCard">
+                <h1 class="card" style="color: #ffffff;">'.$task[title].'</h1>
+                <h2 class="card" style="color: white;">'.$task[description].'</h2>
+            </div>');
+        
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
 
 
 ?>

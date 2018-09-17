@@ -198,11 +198,18 @@ WHERE T.campaign = $1;
 SELECT DISTINCT C.name as campaign, C.requester, C.id
 FROM crowdsourcing.campaign AS C LEFT JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
 WHERE C.registration_end_date>CURRENT_DATE and C.registration_start_date<=CURRENT_DATE
-
 EXCEPT 
 select C.name as campaign, C.requester, C.id, JC.worker
 FROM crowdsourcing.campaign AS C LEFT JOIN crowdsourcing.joins_campaign AS JC ON C.id = JC.campaign 
 WHERE  JC.worker=$1 and C.registration_end_date>CURRENT_DATE and C.registration_start_date<=CURRENT_DATE;
+
+
+-- task and worker with the same keywords
+SELECT *
+FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task
+WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+                                    FROM crowdsourcing.has_keyword
+                                    WHERE worker=$2) 
 
 ----Grant
 
