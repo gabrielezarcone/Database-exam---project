@@ -286,3 +286,12 @@
 2018-09-14 01:00:07.501 CEST [20519] LOG:  worker process: logical replication launcher (PID 20526) exited with exit code 1
 2018-09-14 01:00:07.502 CEST [20521] LOG:  shutting down
 2018-09-14 01:00:07.509 CEST [20519] LOG:  database system is shut down
+2018-10-02 09:00:33.333 CEST [900] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-02 09:00:33.334 CEST [900] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-02 09:00:33.335 CEST [900] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-02 09:00:33.363 CEST [901] LOG:  database system was shut down at 2018-09-21 20:08:36 CEST
+2018-10-02 09:00:33.370 CEST [900] LOG:  database system is ready to accept connections
+2018-10-02 09:25:12.219 CEST [900] LOG:  received smart shutdown request
+2018-10-02 09:25:12.220 CEST [900] LOG:  worker process: logical replication launcher (PID 907) exited with exit code 1
+2018-10-02 09:25:12.221 CEST [902] LOG:  shutting down
+2018-10-02 09:25:12.230 CEST [900] LOG:  database system is shut down

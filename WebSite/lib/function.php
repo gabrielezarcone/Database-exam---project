@@ -493,6 +493,19 @@ function choose_answer($worker, $task, $answer){
     pg_free_result($res);
     close_pg_connection($db);
 }
+function check_threshold($task, $answer){
+    $query = 'SELECT threshold FROM task WHERE id=$1;';
+    $values = array(1=>$task);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "threshold", $query);
+    $res = pg_execute($db, "threshold", $values);
+    $threshold = pg_fetch_array($res, 0);
+    if(answer_count($task, $answer)>$threshold){
+        
+    }
+    pg_free_result($res);
+    close_pg_connection($db);
+}
 
 
 function answer_count($task, $answer){

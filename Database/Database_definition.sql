@@ -224,13 +224,34 @@ order by HK.score desc;
 
 
 select count(*)
-from choose
+from crowdsourcing.choose
 where task=$1 and answer=$2;
 
 select count(*)
-from choose
+from crowdsourcing.choose
 where task=$1;
 ----Grant
 
 grant all on sequence crowdsourcing.campaign_id_seq to admin;
 grant all on sequence crowdsourcing.task_id_seq to admin;
+
+
+----- TRIGGER
+
+CREATE or REPLACE FUNCTION check_threshold(my_task task%TYPE)
+RETURNS TRIGGER
+AS $$
+    DECLARE
+        tot INTEGER;
+        ans INTEGER;
+    BEGIN
+        SELECT count(*) INTO tot from crowdsourcing.choose WHERE task=my_task;
+        SELECT count(*) INTO ans from crowdsourcing.choose WHERE task=my_task AND answer=my_answer;
+        IF  THEN <istr1;...; istrn> END IF;
+    ;END
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER
+AFTER INSERT ON crowdsourcing.choose
+EXECUTE check_threshold();
+
