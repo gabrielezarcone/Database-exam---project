@@ -61,7 +61,7 @@ CREATE TABLE task(
     title VARCHAR(50) NOT NULL,
     n_workers INTEGER NOT NULL,
     threshold INTEGER NOT NULL,
-    valid_bit BOOLEAN DEFAULT 'FALSE' NOT NULL,
+    valid_bit BOOLEAN DEFAULT NULL ,
     campaign INTEGER NOT NULL,
     pay_type VARCHAR(50) NOT NULL,
     pay_description VARCHAR(280) NOT NULL,

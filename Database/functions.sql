@@ -2,7 +2,7 @@
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---- This function check if a task reached the requested majority ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-REATE TRIGGER answer_insert after insert on crowdsourcing.choose
+CREATE TRIGGER answer_insert after insert on crowdsourcing.choose
 for each row
 	execute procedure check_majority();
 	
@@ -11,7 +11,10 @@ CREATE OR REPLACE FUNCTION check_majority()
 RETURNS TRIGGER as $$
 declare
 	num_workers INTEGER;
-    threshold INTEGER;
+    worker_requested INTEGER;
+    task_threshold INTEGER;
+    requested_threshold INTEGER;
+    worker_id crowdsourcing.worker.user_name%TYPE;
 begin
 
 	select COUNT(*)
@@ -19,35 +22,43 @@ begin
 	where CH.task = NEW.task
 	into num_workers;
 
+    select n_workers
+	from crowdsourcing.task AS T
+    where T.id=NEW.task
+	into worker_requested;
+
+    select (num_workers*100)/num_ans
+	from right_answer(NEW.task) AS R
+    limit 1
+	into task_threshold;
+
     select threshold
 	from crowdsourcing.task AS T
-	into threshold;
-
-
-    if(num_workers >= threshold){
-        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.id;
-
-        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and  
-    }
+    where T.id=NEW.task
+	into requested_threshold;
 
 
 
+    if((num_workers >= worker_requested) and (task_threshold >= requested_threshold)) then
 
-	if(not(correct_answer = -1)) then
-				
-		for worker_id in select worker from executes where answer = correct_answer
-		loop
-		
-			update joins set score = (score + 1) where worker = worker_id and campaign = work_campaign_id;
-			temp = new.exe_time;
-			update joins set last_correct_submission = temp where worker = worker_id and campaign = work_campaign_id;
-		
-		end loop;
-	
-	end if;
-	
-	return new;
+        --- task update to valid ----
+        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.task;
 
+        --- every work answered correctly update to valid ----
+        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
+                                                                                                    from crowdsourcing.worker as W JOIN crowdsourcing.choose as C on W.user_name=C.worker
+                                                                                                    where C.answer IN (select right_answer from right_answer(NEW.task)))
+        loop 
+            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id;
+        end loop;
+
+    elseif(num_workers >= worker_requested) then
+        --- task update to not valid ----
+        update crowdsourcing.task set valid_bit=FALSE WHERE id=NEW.task;
+
+    end if;
+    RETURN NEW;
+    
 end;
 $$ language plpgsql;
 
@@ -56,36 +67,19 @@ $$ language plpgsql;
 ---- This function find wich answer get more hits for task and returns its value (or values if we have a tie) or 'NO_MAJORITY' if there's no majority yet ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
-RETURNS SETOF VARCHAR(100) AS $$
+RETURNS TABLE(right_answer VARCHAR(100), num_ans BIGINT) AS $$
     DECLARE
-        majority BOOLEAN;
-        ans crowdsourcing.choose.answer%TYPE;
     BEGIN
-        SELECT valid_bit
-        FROM crowdsourcing.task
-        WHERE id=task_id
-        INTO majority;
-
-        if(majority) then
-
-            for ans in  SELECT answer, count(all answer) as num
+   
+        RETURN QUERY    SELECT answer, count(all answer) as num
                         FROM crowdsourcing.choose
                         WHERE task = task_id 
                         GROUP BY answer
                         having count(all answer) >= ALL(SELECT count(all answer) as num
                                                         FROM crowdsourcing.choose
-                                                        WHERE task = 6 
+                                                        WHERE task = task_id 
                                                         GROUP BY answer)
-                        ORDER BY num DESC
-            loop 
-                RETURN NEXT ans;
-            end loop;
-            RETURN;
-
-        else
-            RETURN NEXT 'NO_MAJORITY';
-        end if;
-
+                        ORDER BY num DESC;
     END;
 $$ language plpgsql;
 
@@ -93,7 +87,8 @@ $$ language plpgsql;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---- This function assign the best task to a worker ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-CREATE OR REPLACE FUNCTION best_task (INTEGER, varchar(20)) RETURNS TABLE(id INTEGER, title VARCHAR(50), description VARCHAR(280)) AS $$
+CREATE OR REPLACE FUNCTION best_task (INTEGER, varchar(20)) 
+RETURNS TABLE(id INTEGER, title VARCHAR(50), description VARCHAR(280)) AS $$
     DECLARE
     BEGIN
         RETURN QUERY SELECT T.id, T.title, T.description

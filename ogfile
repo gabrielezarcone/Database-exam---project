@@ -332,3 +332,309 @@
 	
 	    END;
 	$$ language plpgsql;
+2018-10-22 21:41:59.683 CEST [3693] ERROR:  loop variable of loop over rows must be a record or row variable or list of scalar variables at character 537
+2018-10-22 21:41:59.683 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION check_majority()
+	RETURNS TRIGGER as $$
+	declare
+	    num_workers INTEGER;
+	    threshold INTEGER;
+	begin
+	
+	    select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	    into num_workers;
+	
+	    select threshold
+	    from crowdsourcing.task AS T
+	    into threshold;
+	
+	
+	    if(num_workers >= threshold) then
+	        --- task update to valid ----
+	        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.id;
+	
+	        --- every work answered correctly update to valid ----
+	        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and answer IN(select * from right_answer(NEW.task))
+	        loop 
+	            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id;
+	        end loop;
+	    end if;
+	
+	end;
+	$$ language plpgsql;
+2018-10-22 21:42:55.952 CEST [3693] ERROR:  invalid type name "crowdsourching.worker.id%TYPE" at character 137
+2018-10-22 21:42:55.952 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION check_majority()
+	RETURNS TRIGGER as $$
+	declare
+	    num_workers INTEGER;
+	    threshold INTEGER;
+	    worker_id crowdsourching.worker.id%TYPE;
+	begin
+	
+	    select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	    into num_workers;
+	
+	    select threshold
+	    from crowdsourcing.task AS T
+	    into threshold;
+	
+	
+	    if(num_workers >= threshold) then
+	        --- task update to valid ----
+	        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.id;
+	
+	        --- every work answered correctly update to valid ----
+	        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and answer IN(select * from right_answer(NEW.task))
+	        loop 
+	            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id;
+	        end loop;
+	    end if;
+	
+	end;
+	$$ language plpgsql;
+2018-10-22 21:43:34.676 CEST [3693] ERROR:  invalid type name "crowdsourcing.worker.id%TYPE" at character 137
+2018-10-22 21:43:34.676 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION check_majority()
+	RETURNS TRIGGER as $$
+	declare
+	    num_workers INTEGER;
+	    threshold INTEGER;
+	    worker_id crowdsourcing.worker.id%TYPE;
+	begin
+	
+	    select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	    into num_workers;
+	
+	    select threshold
+	    from crowdsourcing.task AS T
+	    into threshold;
+	
+	
+	    if(num_workers >= threshold) then
+	        --- task update to valid ----
+	        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.id;
+	
+	        --- every work answered correctly update to valid ----
+	        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and answer IN(select * from right_answer(NEW.task))
+	        loop 
+	            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id;
+	        end loop;
+	    end if;
+	
+	end;
+	$$ language plpgsql;
+2018-10-22 21:48:16.070 CEST [3693] ERROR:  duplicate key value violates unique constraint "choose_pkey"
+2018-10-22 21:48:16.070 CEST [3693] DETAIL:  Key (worker, task)=(us, 37) already exists.
+2018-10-22 21:48:16.070 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 21:52:31.764 CEST [3693] ERROR:  column reference "threshold" is ambiguous at character 8
+2018-10-22 21:52:31.764 CEST [3693] DETAIL:  It could refer to either a PL/pgSQL variable or a table column.
+2018-10-22 21:52:31.764 CEST [3693] QUERY:  select threshold
+	    from crowdsourcing.task AS T
+2018-10-22 21:52:31.764 CEST [3693] CONTEXT:  PL/pgSQL function check_majority() line 13 at SQL statement
+2018-10-22 21:52:31.764 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('pc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('tc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 21:52:43.252 CEST [3693] ERROR:  column reference "threshold" is ambiguous at character 8
+2018-10-22 21:52:43.252 CEST [3693] DETAIL:  It could refer to either a PL/pgSQL variable or a table column.
+2018-10-22 21:52:43.252 CEST [3693] QUERY:  select threshold
+	    from crowdsourcing.task AS T
+2018-10-22 21:52:43.252 CEST [3693] CONTEXT:  PL/pgSQL function check_majority() line 13 at SQL statement
+2018-10-22 21:52:43.252 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('pc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('tc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 21:53:57.664 CEST [3693] ERROR:  control reached end of trigger procedure without RETURN
+2018-10-22 21:53:57.664 CEST [3693] CONTEXT:  PL/pgSQL function check_majority()
+2018-10-22 21:53:57.664 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('pc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('tc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 21:54:31.254 CEST [3693] ERROR:  missing expression at or near ";" at character 877
+2018-10-22 21:54:31.254 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION check_majority()
+	RETURNS TRIGGER as $$
+	declare
+	    num_workers INTEGER;
+	    task_threshold INTEGER;
+	    worker_id crowdsourcing.worker.user_name%TYPE;
+	begin
+	
+	    select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	    into num_workers;
+	
+	    select threshold
+	    from crowdsourcing.task AS T
+	    into task_threshold;
+	
+	
+	    if(num_workers >= task_threshold) then
+	        --- task update to valid ----
+	        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.id;
+	
+	        --- every work answered correctly update to valid ----
+	        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and answer IN(select * from right_answer(NEW.task))
+	        loop 
+	            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id;
+	        end loop;
+	    end if;
+	    RETURN;
+	    
+	end;
+	$$ language plpgsql;
+2018-10-22 21:57:58.162 CEST [3693] ERROR:  syntax error at or near "into" at character 87
+2018-10-22 21:57:58.162 CEST [3693] STATEMENT:  select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	    into num_workers;
+	
+2018-10-22 21:58:04.268 CEST [3693] ERROR:  missing FROM-clause entry for table "new" at character 74
+2018-10-22 21:58:04.268 CEST [3693] STATEMENT:  select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	
+2018-10-22 22:01:35.410 CEST [3693] ERROR:  null value in column "valid_bit" violates not-null constraint
+2018-10-22 22:01:35.410 CEST [3693] DETAIL:  Failing row contains (32, Una nana bianca (o nana degenere) è una stella di piccole dimen..., Nana Bianca, 30, 10, null, 11, coupon, museum tour).
+2018-10-22 22:01:35.410 CEST [3693] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=NULL WHERE "id"=6 OR "id"=7 OR "id"=31 OR "id"=32 OR "id"=34 OR "id"=35 OR "id"=36 OR "id"=37 OR "id"=38 OR "id"=39 OR "id"=40 OR "id"=41 OR "id"=42 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-10-22 22:01:56.622 CEST [3693] ERROR:  null value in column "valid_bit" violates not-null constraint
+2018-10-22 22:01:56.622 CEST [3693] DETAIL:  Failing row contains (32, Una nana bianca (o nana degenere) è una stella di piccole dimen..., Nana Bianca, 30, 10, null, 11, coupon, museum tour).
+2018-10-22 22:01:56.622 CEST [3693] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=NULL WHERE "id"=6 OR "id"=7 OR "id"=31 OR "id"=32 OR "id"=34 OR "id"=35 OR "id"=36 OR "id"=37 OR "id"=38 OR "id"=39 OR "id"=40 OR "id"=41 OR "id"=42 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-10-22 22:01:59.474 CEST [3693] ERROR:  null value in column "valid_bit" violates not-null constraint
+2018-10-22 22:01:59.474 CEST [3693] DETAIL:  Failing row contains (32, Una nana bianca (o nana degenere) è una stella di piccole dimen..., Nana Bianca, 30, 10, null, 11, coupon, museum tour).
+2018-10-22 22:01:59.474 CEST [3693] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=NULL WHERE "id"=6 OR "id"=7 OR "id"=31 OR "id"=32 OR "id"=34 OR "id"=35 OR "id"=36 OR "id"=37 OR "id"=38 OR "id"=39 OR "id"=40 OR "id"=41 OR "id"=42 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-10-22 22:13:50.026 CEST [3693] ERROR:  record "new" has no field "id"
+2018-10-22 22:13:50.026 CEST [3693] CONTEXT:  SQL statement "update crowdsourcing.task set valid_bit=FALSE WHERE id=NEW.id"
+	PL/pgSQL function check_majority() line 38 at SQL statement
+2018-10-22 22:13:50.026 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 22:24:25.844 CEST [3693] ERROR:  cannot change return type of existing function
+2018-10-22 22:24:25.844 CEST [3693] HINT:  Use DROP FUNCTION right_answer(integer) first.
+2018-10-22 22:24:25.844 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS TABLE(answer VARCHAR(100), num_ans INTEGER) AS $$
+	    DECLARE
+	    BEGIN
+	   
+	        RETURN QUERY    SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = task_id 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+	        RETURN;
+	    END;
+	$$ language plpgsql;
+2018-10-22 22:24:38.535 CEST [3693] ERROR:  syntax error at or near "RETURN" at character 713
+2018-10-22 22:24:38.535 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS TABLE(answer VARCHAR(100), num_ans INTEGER) AS $$
+	    DECLARE
+	    BEGIN
+	   
+	        RETURN QUERY    SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = task_id 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+	        RETURN;
+	    END;
+	$$ language plpgsql;
+2018-10-22 22:25:15.787 CEST [3693] ERROR:  syntax error at or near "right_answer" at character 1
+2018-10-22 22:25:15.787 CEST [3693] STATEMENT:  right_answer(6)
+	;
+2018-10-22 22:25:30.229 CEST [3693] ERROR:  column reference "answer" is ambiguous at character 8
+2018-10-22 22:25:30.229 CEST [3693] DETAIL:  It could refer to either a PL/pgSQL variable or a table column.
+2018-10-22 22:25:30.229 CEST [3693] QUERY:  SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = task_id 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+2018-10-22 22:25:30.229 CEST [3693] CONTEXT:  PL/pgSQL function right_answer(integer) line 5 at RETURN QUERY
+2018-10-22 22:25:30.229 CEST [3693] STATEMENT:  select * from right_answer(6)
+	;
+2018-10-22 22:26:16.683 CEST [3693] ERROR:  cannot change return type of existing function
+2018-10-22 22:26:16.683 CEST [3693] DETAIL:  Row type defined by OUT parameters is different.
+2018-10-22 22:26:16.683 CEST [3693] HINT:  Use DROP FUNCTION right_answer(integer) first.
+2018-10-22 22:26:16.683 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS TABLE(right_answer VARCHAR(100), num_ans INTEGER) AS $$
+	    DECLARE
+	    BEGIN
+	   
+	        RETURN QUERY    SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = task_id 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC;
+	    END;
+	$$ language plpgsql;
+2018-10-22 22:26:35.965 CEST [3693] ERROR:  structure of query does not match function result type
+2018-10-22 22:26:35.965 CEST [3693] DETAIL:  Returned type bigint does not match expected type integer in column 2.
+2018-10-22 22:26:35.965 CEST [3693] CONTEXT:  PL/pgSQL function right_answer(integer) line 5 at RETURN QUERY
+2018-10-22 22:26:35.965 CEST [3693] STATEMENT:  select * from right_answer(6)
+	;
+2018-10-22 22:28:36.774 CEST [3693] ERROR:  cannot change return type of existing function
+2018-10-22 22:28:36.774 CEST [3693] DETAIL:  Row type defined by OUT parameters is different.
+2018-10-22 22:28:36.774 CEST [3693] HINT:  Use DROP FUNCTION right_answer(integer) first.
+2018-10-22 22:28:36.774 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS TABLE(right_answer VARCHAR(100), num_ans BIGINT) AS $$
+	    DECLARE
+	    BEGIN
+	   
+	        RETURN QUERY    SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = task_id 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC;
+	    END;
+	$$ language plpgsql;
+2018-10-22 22:49:47.834 CEST [3693] ERROR:  record "new" has no field "id"
+2018-10-22 22:49:47.834 CEST [3693] CONTEXT:  SQL statement "update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.id"
+	PL/pgSQL function check_majority() line 35 at SQL statement
+2018-10-22 22:49:47.834 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 22:50:39.517 CEST [3693] ERROR:  column "answer" does not exist at character 66
+2018-10-22 22:50:39.517 CEST [3693] QUERY:  SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and answer IN(select right_answer from right_answer(NEW.task))
+2018-10-22 22:50:39.517 CEST [3693] CONTEXT:  PL/pgSQL function check_majority() line 38 at FOR over SELECT rows
+2018-10-22 22:50:39.517 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
+	
+2018-10-22 22:58:25.645 CEST [3693] ERROR:  subquery has too many columns at character 394
+2018-10-22 22:58:25.645 CEST [3693] QUERY:  SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
+	                                                                                                    from crowdsourcing.worker as W JOIN crowdsourcing.choose as C on W.user_name=C.worker
+	                                                                                                    where C.answer IN (select *  from right_answer(NEW.task)))
+2018-10-22 22:58:25.645 CEST [3693] CONTEXT:  PL/pgSQL function check_majority() line 38 at FOR over SELECT rows
+2018-10-22 22:58:25.645 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
+	
