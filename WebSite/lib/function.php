@@ -218,6 +218,8 @@ function check_keyword($keyword){
     close_pg_connection($db);
     return $numrows;
 }
+
+
 function insert_keyword($task, $keyword, $keyword_type){
     if(check_keyword($keyword)===0){
         $query = "INSERT INTO crowdsourcing.keyword(keyword, type) VALUES($1,$2);";
@@ -243,6 +245,8 @@ function insert_keyword($task, $keyword, $keyword_type){
     }
     return $numrows;
 }
+
+
 function insert_keyword_work($worker, $keyword, $score, $type){
     if(check_keyword($keyword)===0){
         $query = "INSERT INTO crowdsourcing.keyword(keyword, type) VALUES($1,$2);";
@@ -287,6 +291,8 @@ function show_keyword(){
     pg_free_result($res);
     close_pg_connection($db);
 }
+
+
 function show_keyword_list($campaign){
     $query = "SELECT DISTINCT RK.keyword
                 FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword AS RK ON T.id = RK.task
@@ -304,6 +310,8 @@ function show_keyword_list($campaign){
     pg_free_result($res);
     close_pg_connection($db);
 }
+
+
 function show_keyword_list_W($worker){
     $query = "SELECT DISTINCT keyword, score
                 FROM crowdsourcing.has_keyword 
@@ -321,6 +329,7 @@ function show_keyword_list_W($worker){
     pg_free_result($res);
     close_pg_connection($db);
 }
+
 
 function campaign_name($campaign_id){
     $query = 'SELECT name
@@ -348,6 +357,7 @@ function get_task($title, $campaign){
     close_pg_connection($db);
     return $row[0];
 }
+
 
 function get_keyword_task($campaign, $task){
     $query = 'SELECT keyword
@@ -427,14 +437,7 @@ function show_card_R($campaign){
     close_pg_connection($db);
 }
 function show_card_W($worker, $campaign){
-    $query = 'SELECT *
-                FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
-                WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
-                                                    FROM crowdsourcing.has_keyword
-                                                    WHERE worker=$2) AND T.id NOT IN(SELECT task
-                                                                                    FROM crowdsourcing.recives_task
-                                                                                    WHERE worker=$2)
-                order by HK.score desc';
+    $query =   'SELECT * FROM best_task($1,$2)';
     $values = array(1=>$campaign, $worker);
     $db = open_pg_connection();
     $res = pg_prepare($db, "tasks", $query);

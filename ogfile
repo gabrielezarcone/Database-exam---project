@@ -3,3 +3,140 @@
 2018-10-03 15:55:27.811 CEST [2336] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2018-10-03 15:55:27.848 CEST [2337] LOG:  database system was shut down at 2018-10-03 00:45:48 CEST
 2018-10-03 15:55:27.864 CEST [2336] LOG:  database system is ready to accept connections
+2018-10-17 21:00:02.791 CEST [1220] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-17 21:00:02.792 CEST [1220] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-17 21:00:02.793 CEST [1220] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-17 21:00:02.827 CEST [1221] LOG:  database system was shut down at 2018-10-17 18:02:28 CEST
+2018-10-17 21:00:02.836 CEST [1220] LOG:  database system is ready to accept connections
+2018-10-17 23:26:14.471 CEST [1220] LOG:  received smart shutdown request
+2018-10-17 23:26:14.472 CEST [1220] LOG:  worker process: logical replication launcher (PID 1227) exited with exit code 1
+2018-10-17 23:26:14.473 CEST [1222] LOG:  shutting down
+2018-10-17 23:26:14.485 CEST [1220] LOG:  database system is shut down
+2018-10-20 10:29:45.039 CEST [2283] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-20 10:29:45.040 CEST [2283] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-20 10:29:45.041 CEST [2283] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-20 10:29:45.078 CEST [2284] LOG:  database system was shut down at 2018-10-17 23:26:14 CEST
+2018-10-20 10:29:45.088 CEST [2283] LOG:  database system is ready to accept connections
+2018-10-22 15:27:03.217 CEST [2189] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-22 15:27:03.217 CEST [2189] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-22 15:27:03.219 CEST [2189] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-22 15:27:03.245 CEST [2190] LOG:  database system was interrupted; last known up at 2018-10-20 10:46:19 CEST
+2018-10-22 15:27:04.085 CEST [2190] LOG:  database system was not properly shut down; automatic recovery in progress
+2018-10-22 15:27:04.093 CEST [2190] LOG:  redo starts at 0/1BAB650
+2018-10-22 15:27:04.093 CEST [2190] LOG:  invalid record length at 0/1BAB730: wanted 24, got 0
+2018-10-22 15:27:04.093 CEST [2190] LOG:  redo done at 0/1BAB6F8
+2018-10-22 15:27:04.108 CEST [2189] LOG:  database system is ready to accept connections
+2018-10-22 15:32:13.986 CEST [2205] ERROR:  operator does not exist: integer = character varying at character 191
+2018-10-22 15:32:13.986 CEST [2205] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-10-22 15:32:13.986 CEST [2205] QUERY:  SELECT *
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-10-22 15:32:13.986 CEST [2205] CONTEXT:  PL/pgSQL function best_task(character varying,integer) line 4 at RETURN QUERY
+2018-10-22 15:32:13.986 CEST [2205] STATEMENT:  select * from best_task('pc',11);
+2018-10-22 15:33:03.450 CEST [2205] ERROR:  function best_task(integer, unknown) does not exist at character 15
+2018-10-22 15:33:03.450 CEST [2205] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-10-22 15:33:03.450 CEST [2205] STATEMENT:  select * from best_task(11,'pc');
+2018-10-22 15:33:19.934 CEST [2205] ERROR:  structure of query does not match function result type
+2018-10-22 15:33:19.934 CEST [2205] DETAIL:  Returned type integer does not match expected type character varying in column 1.
+2018-10-22 15:33:19.934 CEST [2205] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-10-22 15:33:19.934 CEST [2205] STATEMENT:  select * from best_task(11,'pc');
+2018-10-22 15:35:00.074 CEST [2205] ERROR:  syntax error at or near ")" at character 75
+2018-10-22 15:35:00.074 CEST [2205] STATEMENT:  CREATE OR REPLACE FUNCTION best_task (INTEGER, varchar(20)) RETURNS TABLE() AS $$
+	    DECLARE
+	    BEGIN
+	        RETURN QUERY SELECT *
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1;
+	    END;
+	$$ LANGUAGE plpgsql;
+2018-10-22 15:38:02.763 CEST [2205] ERROR:  cannot change return type of existing function
+2018-10-22 15:38:02.763 CEST [2205] DETAIL:  Row type defined by OUT parameters is different.
+2018-10-22 15:38:02.763 CEST [2205] HINT:  Use DROP FUNCTION best_task(integer,character varying) first.
+2018-10-22 15:38:02.763 CEST [2205] STATEMENT:  CREATE OR REPLACE FUNCTION best_task (INTEGER, varchar(20)) RETURNS TABLE(id INTEGER, title VARCHAR(50), description VARCHAR(280)) AS $$
+	    DECLARE
+	    BEGIN
+	        RETURN QUERY SELECT T.task, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1;
+	    END;
+	$$ LANGUAGE plpgsql;
+2018-10-22 15:38:20.994 CEST [2205] ERROR:  function name "best_task" is not unique
+2018-10-22 15:38:20.994 CEST [2205] HINT:  Specify the argument list to select the function unambiguously.
+2018-10-22 15:38:20.994 CEST [2205] STATEMENT:  drop function best_task
+	;
+2018-10-22 15:38:50.889 CEST [2205] ERROR:  column t.task does not exist at character 8
+2018-10-22 15:38:50.889 CEST [2205] HINT:  Perhaps you meant to reference the column "rk.task".
+2018-10-22 15:38:50.889 CEST [2205] QUERY:  SELECT T.task, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-10-22 15:38:50.889 CEST [2205] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-10-22 15:38:50.889 CEST [2205] STATEMENT:  select * from best_task(11,'pc');
+2018-10-22 15:47:02.543 CEST [2438] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:02.543 CEST [2438] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:02.543 CEST [2438] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:02.554 CEST [2438] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:47:19.032 CEST [2442] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:19.032 CEST [2442] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:19.032 CEST [2442] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:19.032 CEST [2442] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:47:20.842 CEST [2445] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:20.842 CEST [2445] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:20.842 CEST [2445] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:20.843 CEST [2445] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:47:21.768 CEST [2448] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:21.768 CEST [2448] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:21.768 CEST [2448] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:21.768 CEST [2448] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:47:22.773 CEST [2451] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:22.773 CEST [2451] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:22.773 CEST [2451] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:22.773 CEST [2451] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:47:23.640 CEST [2454] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:23.640 CEST [2454] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:23.640 CEST [2454] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:23.640 CEST [2454] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:47:24.437 CEST [2457] ERROR:  function best_task(unknown, unknown) is not unique at character 15
+2018-10-22 15:47:24.437 CEST [2457] HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+2018-10-22 15:47:24.437 CEST [2457] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-10-22 15:47:24.438 CEST [2457] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:48:12.607 CEST [2523] ERROR:  function crowdsourcing.best_task(unknown, unknown) does not exist at character 15
+2018-10-22 15:48:12.607 CEST [2523] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-10-22 15:48:12.607 CEST [2523] STATEMENT:  SELECT * FROM crowdsourcing.best_task($1,$2)
+2018-10-22 15:48:12.608 CEST [2523] ERROR:  prepared statement "tasks" does not exist
+2018-10-22 15:50:00.332 CEST [2636] FATAL:  role "administator" does not exist
+2018-10-22 15:51:51.800 CEST [2645] FATAL:  database "localhost" does not exist
+2018-10-22 15:52:52.549 CEST [2656] ERROR:  syntax error at or near "/" at character 1
+2018-10-22 15:52:52.549 CEST [2656] STATEMENT:  /d
+	;
+2018-10-22 15:53:36.203 CEST [2656] ERROR:  function name "best_task" is not unique
+2018-10-22 15:53:36.203 CEST [2656] HINT:  Specify the argument list to select the function unambiguously.
+2018-10-22 15:53:36.203 CEST [2656] STATEMENT:  drop function best_task
+	;
+2018-10-22 15:53:43.954 CEST [2656] ERROR:  syntax error at or near "*" at character 25
+2018-10-22 15:53:43.954 CEST [2656] STATEMENT:  drop function best_task *;
+2018-10-22 15:54:16.889 CEST [2656] ERROR:  must be owner of function best_task
+2018-10-22 15:54:16.889 CEST [2656] STATEMENT:  drop function best_task(varchar,integer);
