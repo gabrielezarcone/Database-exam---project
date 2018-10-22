@@ -140,3 +140,195 @@
 2018-10-22 15:53:43.954 CEST [2656] STATEMENT:  drop function best_task *;
 2018-10-22 15:54:16.889 CEST [2656] ERROR:  must be owner of function best_task
 2018-10-22 15:54:16.889 CEST [2656] STATEMENT:  drop function best_task(varchar,integer);
+2018-10-22 20:58:28.772 CEST [3693] ERROR:  syntax error at or near "all" at character 22
+2018-10-22 20:58:28.772 CEST [3693] STATEMENT:  SELECT answer, count all answer AS num
+	            FROM crowdsourcing.choose
+	            WHERE task = task_id
+	            GROUP BY answer
+	            ORDER BY num;
+2018-10-22 20:58:37.865 CEST [3693] ERROR:  syntax error at or near "all" at character 22
+2018-10-22 20:58:37.865 CEST [3693] STATEMENT:  SELECT answer, count all answer 
+	            FROM crowdsourcing.choose
+	            WHERE task = task_id
+	            GROUP BY answer
+	            ORDER BY num;
+2018-10-22 20:59:39.189 CEST [3693] ERROR:  column "task_id" does not exist at character 95
+2018-10-22 20:59:39.189 CEST [3693] HINT:  Perhaps you meant to reference the column "choose.task".
+2018-10-22 20:59:39.189 CEST [3693] STATEMENT:  SELECT answer, count(*) AS num
+	            FROM crowdsourcing.choose
+	            WHERE task = task_id
+	            GROUP BY answer
+	            ORDER BY num;
+2018-10-22 21:01:04.962 CEST [3693] ERROR:  insert or update on table "choose" violates foreign key constraint "choose_task_fkey"
+2018-10-22 21:01:04.962 CEST [3693] DETAIL:  Key (task, answer)=(34, asdasd) is not present in table "answer".
+2018-10-22 21:01:04.962 CEST [3693] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('tc', 34, 'yes') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 34, 'asdasd') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('zarc_o', 34, 'qwe') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('xyz', 34, 'qwe') RETURNING "worker", "task", "answer";
+	
+2018-10-22 21:08:07.635 CEST [3693] ERROR:  aggregate function calls cannot be nested at character 133
+2018-10-22 21:08:07.635 CEST [3693] STATEMENT:  SELECT answer
+	            FROM crowdsourcing.choose
+	            WHERE task = 6
+	            GROUP BY answer
+	            ORDER BY max(count(all answer)) DESC
+	
+2018-10-22 21:13:03.053 CEST [3693] ERROR:  syntax error at or near "having" at character 177
+2018-10-22 21:13:03.053 CEST [3693] STATEMENT:  SELECT answer, count(all answer) as num
+	            FROM crowdsourcing.choose
+	            WHERE task = 6 
+	            GROUP BY answer
+	            ORDER BY num DESC
+	            having num >= ALL(SElect count(all answer) as num
+	            					FROM crowdsourcing.choose
+						            WHERE task = 6 
+						            GROUP BY answer)
+	
+2018-10-22 21:13:29.087 CEST [3693] ERROR:  column "num" does not exist at character 154
+2018-10-22 21:13:29.087 CEST [3693] STATEMENT:  SELECT answer, count(all answer) as num
+	            FROM crowdsourcing.choose
+	            WHERE task = 6 
+	            GROUP BY answer
+	            having num >= ALL(SElect count(all answer) as num
+	            					FROM crowdsourcing.choose
+						            WHERE task = 6 
+						            GROUP BY answer)
+				
+	            ORDER BY num DESC	        
+	
+2018-10-22 21:20:21.448 CEST [3693] ERROR:  syntax error at or near "langage" at character 1006
+2018-10-22 21:20:21.448 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS SETOF VARCHAR(100) AS $$
+	    DECLARE
+	        majority BOOLEAN;
+	    BEGIN
+	        SELECT valid_bit
+	        FROM crowdsourcing.task
+	        WHERE id=task_id
+	        INTO majority;
+	
+	        if(majority) then
+	        
+	            for ans in  SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = 6 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+	            loop 
+	                RETURN NEXT ans
+	            end loop;
+	            RETURN;
+	
+	        else
+	            RETURN 'NO_MAJORITY';
+	        end if;
+	
+	    END;
+	$$ langage plpgsql;
+2018-10-22 21:20:28.302 CEST [3693] ERROR:  loop variable of loop over rows must be a record or row variable or list of scalar variables at character 296
+2018-10-22 21:20:28.302 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS SETOF VARCHAR(100) AS $$
+	    DECLARE
+	        majority BOOLEAN;
+	    BEGIN
+	        SELECT valid_bit
+	        FROM crowdsourcing.task
+	        WHERE id=task_id
+	        INTO majority;
+	
+	        if(majority) then
+	        
+	            for ans in  SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = 6 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+	            loop 
+	                RETURN NEXT ans
+	            end loop;
+	            RETURN;
+	
+	        else
+	            RETURN 'NO_MAJORITY';
+	        end if;
+	
+	    END;
+	$$ language plpgsql;
+2018-10-22 21:21:37.006 CEST [3693] ERROR:  syntax error at or near "end" at character 937
+2018-10-22 21:21:37.006 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS SETOF VARCHAR(100) AS $$
+	    DECLARE
+	        majority BOOLEAN;
+	        ans crowdsourcing.choose.answer%TYPE;
+	    BEGIN
+	        SELECT valid_bit
+	        FROM crowdsourcing.task
+	        WHERE id=task_id
+	        INTO majority;
+	
+	        if(majority) then
+	
+	            for ans in  SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = 6 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+	            loop 
+	                RETURN NEXT ans
+	            end loop;
+	            RETURN;
+	
+	        else
+	            RETURN 'NO_MAJORITY';
+	        end if;
+	
+	    END;
+	$$ language plpgsql;
+2018-10-22 21:21:54.094 CEST [3693] ERROR:  RETURN cannot have a parameter in function returning set at character 1001
+2018-10-22 21:21:54.094 CEST [3693] HINT:  Use RETURN NEXT or RETURN QUERY.
+2018-10-22 21:21:54.094 CEST [3693] STATEMENT:  CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
+	RETURNS SETOF VARCHAR(100) AS $$
+	    DECLARE
+	        majority BOOLEAN;
+	        ans crowdsourcing.choose.answer%TYPE;
+	    BEGIN
+	        SELECT valid_bit
+	        FROM crowdsourcing.task
+	        WHERE id=task_id
+	        INTO majority;
+	
+	        if(majority) then
+	
+	            for ans in  SELECT answer, count(all answer) as num
+	                        FROM crowdsourcing.choose
+	                        WHERE task = task_id 
+	                        GROUP BY answer
+	                        having count(all answer) >= ALL(SELECT count(all answer) as num
+	                                                        FROM crowdsourcing.choose
+	                                                        WHERE task = 6 
+	                                                        GROUP BY answer)
+	                        ORDER BY num DESC
+	            loop 
+	                RETURN NEXT ans;
+	            end loop;
+	            RETURN;
+	
+	        else
+	            RETURN 'NO_MAJORITY';
+	        end if;
+	
+	    END;
+	$$ language plpgsql;
