@@ -638,3 +638,104 @@
 2018-10-22 22:58:25.645 CEST [3693] STATEMENT:  BEGIN;
 	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
 	
+2018-10-22 23:04:46.340 CEST [2189] LOG:  received smart shutdown request
+2018-10-22 23:04:46.341 CEST [2189] LOG:  worker process: logical replication launcher (PID 2196) exited with exit code 1
+2018-10-22 23:04:46.341 CEST [2191] LOG:  shutting down
+2018-10-22 23:04:46.346 CEST [2189] LOG:  database system is shut down
+2018-10-23 17:22:04.848 CEST [1587] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-23 17:22:04.848 CEST [1587] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-23 17:22:04.849 CEST [1587] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-23 17:22:04.883 CEST [1588] LOG:  database system was shut down at 2018-10-22 23:04:46 CEST
+2018-10-23 17:22:04.893 CEST [1587] LOG:  database system is ready to accept connections
+2018-10-23 17:35:22.425 CEST [1602] ERROR:  duplicate key value violates unique constraint "choose_pkey"
+2018-10-23 17:35:22.425 CEST [1602] DETAIL:  Key (worker, task)=(us, 37) already exists.
+2018-10-23 17:35:22.425 CEST [1602] STATEMENT:  INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('pc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('tc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
+2018-10-23 17:55:21.717 CEST [1602] ERROR:  duplicate key value violates unique constraint "choose_pkey"
+2018-10-23 17:55:21.717 CEST [1602] DETAIL:  Key (worker, task)=(us, 37) already exists.
+2018-10-23 17:55:21.717 CEST [1602] STATEMENT:  INSERT INTO "crowdsourcing"."recives_task"("task", "worker") VALUES(37, 'pc') RETURNING "task", "worker", "valid_bit_user";
+	INSERT INTO "crowdsourcing"."recives_task"("task", "worker") VALUES(37, 'tc') RETURNING "task", "worker", "valid_bit_user";
+	INSERT INTO "crowdsourcing"."recives_task"("task", "worker") VALUES(37, 'us') RETURNING "task", "worker", "valid_bit_user";
+	
+	
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('pc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('tc', 37, 'Spam') RETURNING "worker", "task", "answer";
+	INSERT INTO "crowdsourcing"."choose"("worker", "task", "answer") VALUES('us', 37, 'Not Spam') RETURNING "worker", "task", "answer";
+2018-10-23 18:07:11.377 CEST [1602] ERROR:  syntax error at or near "for" at character 1
+2018-10-23 18:07:11.377 CEST [1602] STATEMENT:  for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
+	                                                                                                    from crowdsourcing.choose as C
+	                                                                                                    where C.answer IN (select right_answer from right_answer(NEW.task)))
+	        loop 
+	            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id and task=NEW.task;
+	        end loop;
+	
+2018-10-23 18:12:07.278 CEST [1602] ERROR:  loop variable of loop over rows must be a record or row variable or list of scalar variables at character 915
+2018-10-23 18:12:07.278 CEST [1602] STATEMENT:  
+	CREATE OR REPLACE FUNCTION check_majority()
+	RETURNS TRIGGER as $$
+	declare
+	    num_workers INTEGER;
+	    worker_requested INTEGER;
+	    task_threshold INTEGER;
+	    requested_threshold INTEGER;
+	begin
+	
+	    select COUNT(*)
+	    from crowdsourcing.choose as CH 
+	    where CH.task = NEW.task
+	    into num_workers;
+	
+	    select n_workers
+	    from crowdsourcing.task AS T
+	    where T.id=NEW.task
+	    into worker_requested;
+	
+	    select (num_ans*100)/num_workers
+	    from right_answer(NEW.task) AS R
+	    limit 1
+	    into task_threshold;
+	
+	    select threshold
+	    from crowdsourcing.task AS T
+	    where T.id=NEW.task
+	    into requested_threshold;
+	
+	
+	
+	    if((num_workers >= worker_requested) and (task_threshold >= requested_threshold)) then
+	
+	        --- task update to valid ----
+	        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.task;
+	
+	        --- every work answered correctly update to valid ----
+	        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
+	                                                                                                    from crowdsourcing.choose as C
+	                                                                                                    where C.answer IN (select right_answer from right_answer(NEW.task)))
+	        loop 
+	            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=NEW.worker and task=NEW.task;
+	        end loop;
+	
+	    elseif(num_workers >= worker_requested) then
+	        --- task update to not valid ----
+	        update crowdsourcing.task set valid_bit=FALSE WHERE id=NEW.task;
+	
+	    end if;
+	    RETURN NEW;
+	    
+	end;
+	$$ language plpgsql;
+	
+2018-10-23 18:14:11.153 CEST [1602] ERROR:  syntax error at or near "check_majority" at character 1
+2018-10-23 18:14:11.153 CEST [1602] STATEMENT:  check_majority()
+2018-10-23 18:14:19.234 CEST [1602] ERROR:  function "check_majority" in FROM has unsupported return type trigger at character 15
+2018-10-23 18:14:19.234 CEST [1602] STATEMENT:  Select * from check_majority()
+2018-10-23 18:36:56.445 CEST [1587] LOG:  received smart shutdown request
+2018-10-23 18:36:56.446 CEST [1587] LOG:  worker process: logical replication launcher (PID 1594) exited with exit code 1
+2018-10-23 18:36:56.446 CEST [1589] LOG:  shutting down
+2018-10-23 18:36:56.456 CEST [1587] LOG:  database system is shut down
+2018-10-30 16:14:37.635 CET [1021] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-30 16:14:37.635 CET [1021] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-30 16:14:37.636 CET [1021] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-30 16:14:37.667 CET [1022] LOG:  database system was shut down at 2018-10-23 18:36:56 CEST
+2018-10-30 16:14:37.675 CET [1021] LOG:  database system is ready to accept connections

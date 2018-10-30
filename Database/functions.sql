@@ -27,7 +27,7 @@ begin
     where T.id=NEW.task
 	into worker_requested;
 
-    select (num_workers*100)/num_ans
+    select (num_ans*100)/num_workers
 	from right_answer(NEW.task) AS R
     limit 1
 	into task_threshold;
@@ -45,11 +45,11 @@ begin
         update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.task;
 
         --- every work answered correctly update to valid ----
-        for worker_id in SELECT * FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
-                                                                                                    from crowdsourcing.worker as W JOIN crowdsourcing.choose as C on W.user_name=C.worker
+        for worker_id in SELECT worker FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
+                                                                                                    from crowdsourcing.choose as C
                                                                                                     where C.answer IN (select right_answer from right_answer(NEW.task)))
         loop 
-            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id;
+            UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id and task=NEW.task;
         end loop;
 
     elseif(num_workers >= worker_requested) then
