@@ -105,18 +105,18 @@ CREATE TABLE recives_task(
 CREATE TABLE has_keyword(
     worker VARCHAR(20),
     keyword VARCHAR(50),
-    score INTEGER NOT NULL,
     PRIMARY KEY(worker,keyword),
     FOREIGN KEY(worker) REFERENCES worker(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY(keyword) REFERENCES keyword(keyword) ON UPDATE CASCADE ON DELETE NO ACTION,
-    CHECK(score >= 0)
+    FOREIGN KEY(keyword) REFERENCES keyword(keyword) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 CREATE TABLE joins_campaign(
     worker VARCHAR(20),
     campaign INTEGER,
+    score INTEGER NOT NULL,
     PRIMARY KEY(worker,campaign),
     FOREIGN KEY(worker) REFERENCES worker(user_name) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY(campaign) REFERENCES campaign(id) ON UPDATE CASCADE ON DELETE NO ACTION
+    FOREIGN KEY(campaign) REFERENCES campaign(id) ON UPDATE CASCADE ON DELETE NO ACTION,
+    CHECK(score >= 0)
 );
 
 --GRANT

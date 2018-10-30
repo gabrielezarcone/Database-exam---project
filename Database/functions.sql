@@ -64,7 +64,7 @@ $$ language plpgsql;
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
----- This function find wich answer get more hits for task and returns its value (or values if we have a tie) or 'NO_MAJORITY' if there's no majority yet ------------------------------------------------------------------------------------------------------------------------------------------------------------
+---- This function find wich answer get more hits for task and returns its value (or values if we have a tie) ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
 RETURNS TABLE(right_answer VARCHAR(100), num_ans BIGINT) AS $$
@@ -98,7 +98,6 @@ RETURNS TABLE(id INTEGER, title VARCHAR(50), description VARCHAR(280)) AS $$
                                             WHERE worker=$2) AND T.id NOT IN(SELECT task
                                                                             FROM crowdsourcing.recives_task
                                                                             WHERE worker=$2)
-        order by HK.score desc
         LIMIT 1;
     END;
 $$ LANGUAGE plpgsql;

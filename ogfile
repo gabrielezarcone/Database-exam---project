@@ -739,3 +739,8 @@
 2018-10-30 16:14:37.636 CET [1021] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
 2018-10-30 16:14:37.667 CET [1022] LOG:  database system was shut down at 2018-10-23 18:36:56 CEST
 2018-10-30 16:14:37.675 CET [1021] LOG:  database system is ready to accept connections
+2018-10-30 17:12:12.820 CET [1286] ERROR:  column "score" contains null values
+2018-10-30 17:12:12.820 CET [1286] STATEMENT:  ALTER TABLE "crowdsourcing"."joins_campaign"
+	  ADD COLUMN "score" integer NOT NULL,
+	  ADD CHECK (score>=0);
+	
