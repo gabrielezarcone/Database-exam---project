@@ -111,7 +111,7 @@ $$ LANGUAGE plpgsql;
 ---- CAMPAIGN REPORT ------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---- this function show task contained in a campaign ----
+--- this function shows task contained in a campaign ----
 
 CREATE OR REPLACE FUNCTION camp_tasks (INTEGER)
 RETURNS SETOF INTEGER as $$
@@ -124,3 +124,17 @@ RETURNS SETOF INTEGER as $$
         RETURN;
     END
 $$ LANGUAGE plpgsql;
+
+--- this function shows results for each task of a campaign ---
+
+CREATE OR REPLACE FUNCTION task_result (INTEGER)
+RETURNS TABLE(task INTEGER, answer VARCHAR(100))  as $$
+    DECLARE tsk crowdsourcing.task.id%TYPE;
+    BEGIN
+        FOR tsk IN SELECT id FROM crowdsourcing.task as T WHERE T.campaign=$1
+        LOOP
+            RETURN QUERY SELECT tsk, A.right_answer FROM right_answer(tsk) as A;
+        END LOOP;
+        RETURN;
+    END
+$$ LANGUAGE plpgsql
