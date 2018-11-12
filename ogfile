@@ -744,3 +744,7 @@
 	  ADD COLUMN "score" integer NOT NULL,
 	  ADD CHECK (score>=0);
 	
+2018-10-30 17:52:43.933 CET [1021] LOG:  received smart shutdown request
+2018-10-30 17:52:43.935 CET [1021] LOG:  worker process: logical replication launcher (PID 1028) exited with exit code 1
+2018-10-30 17:52:43.935 CET [1023] LOG:  shutting down
+2018-10-30 17:52:43.944 CET [1021] LOG:  database system is shut down
