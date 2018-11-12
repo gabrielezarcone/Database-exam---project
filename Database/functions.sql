@@ -113,7 +113,7 @@ $$ LANGUAGE plpgsql;
 
 --- this function shows task contained in a campaign ----
 
-CREATE OR REPLACE FUNCTION camp_tasks (INTEGER)
+CREATE OR REPLACE FUNCTION camp_tasks (INTEGER) --integer: campaign 
 RETURNS SETOF INTEGER as $$
     DECLARE i crowdsourcing.task.id%TYPE;
     BEGIN
@@ -127,7 +127,7 @@ $$ LANGUAGE plpgsql;
 
 --- this function shows results for each task of a campaign ---
 
-CREATE OR REPLACE FUNCTION task_result (INTEGER)
+CREATE OR REPLACE FUNCTION task_result (INTEGER) --integer: task
 RETURNS TABLE(task INTEGER, answer VARCHAR(100))  as $$
     DECLARE tsk crowdsourcing.task.id%TYPE;
     BEGIN
@@ -141,10 +141,32 @@ $$ LANGUAGE plpgsql
 
 --- this function return task of a campaign that are completed ---
 
-CREATE OR REPLACE FUNCTION completed_task(INTEGER) 
+CREATE OR REPLACE FUNCTION completed_task(INTEGER) --integer: campaign
 RETURNS SETOF INTEGER AS $$
     DECLARE 
     BEGIN
-        RETURN query SELECT id FROM crowdsourcing.task WHERE valid_bit=true  
+        RETURN query SELECT id FROM crowdsourcing.task WHERE valid_bit=true AND campaign=$1;  
+    END
+$$ LANGUAGE plpgsql
+
+--- this function returns the percentage of completed task ---
+
+CREATE OR REPLACE FUNCTION completed_percentage(INTEGER) --integer: campaign
+RETURNS INTEGER AS $$
+    DECLARE 
+        total_task INTEGER;
+        completed_task INTEGER; 
+    BEGIN
+        SELECT count(*)
+        FROM crowdsourcing.task AS T
+        WHERE T.campaign=$1
+        INTO total_task;
+
+        SELECT count(*)
+        FROM crowdsourcing.task AS T
+        WHERE T.campaign=$1 AND T.id IN (SELECT * FROM completed_task($1))
+        INTO completed_task;
+
+        RETURN (completed_task*100)/total_task ;
     END
 $$ LANGUAGE plpgsql
