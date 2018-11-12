@@ -138,3 +138,13 @@ RETURNS TABLE(task INTEGER, answer VARCHAR(100))  as $$
         RETURN;
     END
 $$ LANGUAGE plpgsql
+
+--- this function return task of a campaign that are completed ---
+
+CREATE OR REPLACE FUNCTION completed_task(INTEGER) 
+RETURNS SETOF INTEGER AS $$
+    DECLARE 
+    BEGIN
+        RETURN query SELECT id FROM crowdsourcing.task WHERE valid_bit=true  
+    END
+$$ LANGUAGE plpgsql
