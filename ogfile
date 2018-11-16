@@ -1019,3 +1019,13 @@
 	    END;
 	$$ LANGUAGE plpgsql
 	
+2018-11-16 16:27:14.249 CET [1783] ERROR:  cannot use RETURN QUERY in a non-SETOF function at character 135
+2018-11-16 16:27:14.249 CET [1783] STATEMENT:  CREATE OR REPLACE FUNCTION answered_task_num(crowdsourcing.worker.user_name%TYPE)
+	RETURNS INTEGER as $$
+	    DECLARE
+	    BEGIN
+	        RETURN query    SELECT COUNT(*)
+	                        FROM crowdsourcing.recives_task
+	                        WHERE worker=$1;
+	    END;
+	$$ LANGUAGE plpgsql;
