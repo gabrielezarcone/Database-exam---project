@@ -748,3 +748,118 @@
 2018-10-30 17:52:43.935 CET [1021] LOG:  worker process: logical replication launcher (PID 1028) exited with exit code 1
 2018-10-30 17:52:43.935 CET [1023] LOG:  shutting down
 2018-10-30 17:52:43.944 CET [1021] LOG:  database system is shut down
+2018-11-16 11:50:25.747 CET [1220] LOG:  listening on IPv6 address "::1", port 5432
+2018-11-16 11:50:25.747 CET [1220] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-11-16 11:50:25.748 CET [1220] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-11-16 11:50:25.780 CET [1221] LOG:  database system was shut down at 2018-11-12 23:15:06 CET
+2018-11-16 11:50:25.787 CET [1220] LOG:  database system is ready to accept connections
+2018-11-16 11:51:03.905 CET [1235] ERROR:  value too long for type character varying(20)
+2018-11-16 11:51:03.905 CET [1235] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."worker"("user_name", "name") VALUES('lastrange', 'non disponibile - vd tomba Lastrange') RETURNING "user_name", "password", "name", "surname";
+	
+2018-11-16 11:51:12.277 CET [1235] ERROR:  null value in column "password" violates not-null constraint
+2018-11-16 11:51:12.277 CET [1235] DETAIL:  Failing row contains (lastrange, null, vd tomba Lastrange, null).
+2018-11-16 11:51:12.277 CET [1235] STATEMENT:  BEGIN;
+	INSERT INTO "crowdsourcing"."worker"("user_name", "name") VALUES('lastrange', 'vd tomba Lastrange') RETURNING "user_name", "password", "name", "surname";
+	
+2018-11-16 11:53:36.469 CET [1235] ERROR:  column "lastrange" does not exist at character 55
+2018-11-16 11:53:36.469 CET [1235] STATEMENT:  select name
+	from crowdsourcing.worker
+	where user_name="lastrange";
+2018-11-16 11:54:11.894 CET [1235] ERROR:  column "lastrange" does not exist at character 64
+2018-11-16 11:54:11.894 CET [1235] STATEMENT:  select C.name
+	from crowdsourcing.worker as C
+	where C.user_name="lastrange";
+2018-11-16 11:54:26.388 CET [1235] ERROR:  column "lastrange" does not exist at character 65
+2018-11-16 11:54:26.388 CET [1235] STATEMENT:  select C.name
+	from crowdsourcing.worker as C
+	where C.user_name=="lastrange";
+2018-11-16 11:55:06.268 CET [1235] ERROR:  unterminated quoted string at or near "'lastrange
+	;
+	" at character 64
+2018-11-16 11:55:06.268 CET [1235] STATEMENT:  select C.name
+	from crowdsourcing.worker as C
+	where C.user_name='lastrange
+	;
+	
+2018-11-16 13:55:09.035 CET [1383] ERROR:  function score_update() does not exist
+2018-11-16 13:55:09.035 CET [1383] STATEMENT:  CREATE TRIGGER worker_score_update AFTER UPDATE of valid_bit ON crowdsourcing.task
+	FOR EACH ROW
+	    execute procedure score_update();
+2018-11-16 13:55:12.688 CET [1383] ERROR:  syntax error at or near "END" at character 367
+2018-11-16 13:55:12.688 CET [1383] STATEMENT:  CREATE OR REPLACE FUNCTION score_update()
+	RETURNS TRIGGER AS $$
+	    DECLARE
+	    BEGIN
+	        UPDATE crowdsourcing.joins_campaign SET score = score+1
+	        WHERE worker IN (   SELECT R.worker
+	                            FROM crowdsourcing.recives_task AS R 
+	                            WHERE R.task=NEW.task and R.valid_bit_user=true
+	                        )
+	    END;
+	$$ language plpgsql;
+2018-11-16 13:57:58.691 CET [1383] ERROR:  missing "THEN" at end of SQL expression at character 394
+2018-11-16 13:57:58.691 CET [1383] STATEMENT:  CREATE OR REPLACE FUNCTION score_update()
+	RETURNS TRIGGER AS $$
+	    DECLARE
+	    BEGIN
+	        if(NEW.valid_bit==true)
+	        UPDATE crowdsourcing.joins_campaign SET score = score+1
+	        WHERE worker IN (   SELECT R.worker
+	                            FROM crowdsourcing.recives_task AS R 
+	                            WHERE R.task=NEW.task and R.valid_bit_user=true
+	                        );
+	        end if;
+	    END;
+	$$ language plpgsql;
+2018-11-16 13:58:26.143 CET [1383] ERROR:  operator does not exist: boolean == boolean at character 22
+2018-11-16 13:58:26.143 CET [1383] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-11-16 13:58:26.143 CET [1383] QUERY:  SELECT (NEW.valid_bit==true)
+2018-11-16 13:58:26.143 CET [1383] CONTEXT:  PL/pgSQL function score_update() line 4 at IF
+2018-11-16 13:58:26.143 CET [1383] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=FALSE WHERE "id"=37 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-11-16 13:58:46.323 CET [1383] ERROR:  operator does not exist: boolean == boolean at character 22
+2018-11-16 13:58:46.323 CET [1383] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-11-16 13:58:46.323 CET [1383] QUERY:  SELECT (NEW.valid_bit==true)
+2018-11-16 13:58:46.323 CET [1383] CONTEXT:  PL/pgSQL function score_update() line 4 at IF
+2018-11-16 13:58:46.323 CET [1383] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=FALSE WHERE "id"=37 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-11-16 13:59:08.332 CET [1383] ERROR:  control reached end of trigger procedure without RETURN
+2018-11-16 13:59:08.332 CET [1383] CONTEXT:  PL/pgSQL function score_update()
+2018-11-16 13:59:08.332 CET [1383] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=FALSE WHERE "id"=37 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-11-16 14:00:09.741 CET [1383] WARNING:  there is no transaction in progress
+2018-11-16 14:00:13.024 CET [1383] ERROR:  syntax error at or near "RETURNS" at character 424
+2018-11-16 14:00:13.024 CET [1383] STATEMENT:  CREATE OR REPLACE FUNCTION score_update()
+	RETURNS TRIGGER AS $$
+	    DECLARE
+	    BEGIN
+	        if(NEW.valid_bit=true) then
+	        UPDATE crowdsourcing.joins_campaign SET score = score+1
+	        WHERE worker IN (   SELECT R.worker
+	                            FROM crowdsourcing.recives_task AS R 
+	                            WHERE R.task=NEW.task and R.valid_bit_user=true
+	                        );
+	        end if;
+	        RETURNS TRIGGER;
+	    END;
+	$$ language plpgsql;
+2018-11-16 14:00:27.908 CET [1383] ERROR:  column "trigger" does not exist at character 8
+2018-11-16 14:00:27.908 CET [1383] QUERY:  SELECT TRIGGER
+2018-11-16 14:00:27.908 CET [1383] CONTEXT:  PL/pgSQL function score_update() line 11 at RETURN
+2018-11-16 14:00:27.908 CET [1383] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=FALSE WHERE "id"=37 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	
+2018-11-16 14:02:37.169 CET [1383] ERROR:  record "new" has no field "task"
+2018-11-16 14:02:37.169 CET [1383] CONTEXT:  SQL statement "UPDATE crowdsourcing.joins_campaign SET score = score+1
+	        WHERE worker IN (   SELECT R.worker
+	                            FROM crowdsourcing.recives_task AS R 
+	                            WHERE R.task=NEW.task and R.valid_bit_user=true
+	                        )"
+	PL/pgSQL function score_update() line 5 at SQL statement
+2018-11-16 14:02:37.169 CET [1383] STATEMENT:  BEGIN;
+	UPDATE "crowdsourcing"."task" SET "valid_bit"=TRUE WHERE "id"=37 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
+	

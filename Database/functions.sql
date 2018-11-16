@@ -62,6 +62,28 @@ begin
 end;
 $$ language plpgsql;
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+---- This trigger updates the workers scores ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TRIGGER worker_score_update AFTER UPDATE of valid_bit ON crowdsourcing.task
+FOR EACH ROW
+    execute procedure score_update();
+
+
+CREATE OR REPLACE FUNCTION score_update()
+RETURNS TRIGGER AS $$
+    DECLARE 
+    BEGIN
+        if(NEW.valid_bit=true) then
+        UPDATE crowdsourcing.joins_campaign SET score = score+1
+        WHERE campaign=NEW.campaign and worker IN ( SELECT R.worker
+                                                    FROM crowdsourcing.recives_task AS R 
+                                                    WHERE R.task=NEW.id and R.valid_bit_user=true
+                                                  );
+        end if;
+        RETURN NEW;
+    END;
+$$ language plpgsql;
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---- This function find wich answer get more hits for task and returns its value (or values if we have a tie) ------------------------------------------------------------------------------------------------------------------------------------------------------------
