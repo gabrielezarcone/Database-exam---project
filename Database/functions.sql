@@ -212,3 +212,31 @@ RETURNS TABLE(worker crowdsourcing.joins_campaign.worker%TYPE, score crowdsourci
                         LIMIT 10;
     END;
 $$ LANGUAGE plpgsql;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+---- WORKER STATISTICS ------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---- this function returns standing the position of a worker in a defined campaign
+CREATE OR REPLACE FUNCTION standing_position(crowdsourcing.campaign.id%TYPE, crowdsourcing.worker.user_name%TYPE)
+RETURNS table(pos BIGINT) AS $$
+    DECLARE
+        score_ INTEGER;
+    BEGIN
+        SELECT score
+        FROM crowdsourcing.joins_campaign
+        WHERE worker=$2 and campaign=$1
+        INTO score_;
+
+
+        RETURN query    SELECT COUNT(*)+1 as position
+                        FROM crowdsourcing.joins_campaign as J
+                        WHERE J.campaign=$1 and J.worker IN(SELECT K.worker
+                                                            FROM crowdsourcing.joins_campaign as K
+                                                            WHERE K.score>score_);
+    END;
+$$ LANGUAGE plpgsql
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------

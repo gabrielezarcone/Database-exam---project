@@ -876,3 +876,146 @@
 2018-11-16 15:03:28.764 CET [1645] CONTEXT:  PL/pgSQL function top10(integer) line 4 at RETURN QUERY
 2018-11-16 15:03:28.764 CET [1645] STATEMENT:  SELEct * from top10(17)
 	
+2018-11-16 15:09:43.861 CET [1645] ERROR:  column "rownum" does not exist at character 8
+2018-11-16 15:09:43.861 CET [1645] STATEMENT:  SELECT ROWNUM, worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=17
+	                        ORDER BY score DESC
+	                        LIMIT 10;
+2018-11-16 15:09:48.159 CET [1645] ERROR:  function rownum() does not exist at character 8
+2018-11-16 15:09:48.159 CET [1645] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-11-16 15:09:48.159 CET [1645] STATEMENT:  SELECT ROWNUM(), worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=17
+	                        ORDER BY score DESC
+	                        LIMIT 10;
+2018-11-16 15:10:09.100 CET [1645] ERROR:  column "i" does not exist at character 8
+2018-11-16 15:10:09.100 CET [1645] STATEMENT:  SELECT i=ROWNUM, worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=17
+	                        ORDER BY score DESC
+	                        LIMIT 10;
+2018-11-16 15:10:21.416 CET [1645] ERROR:  column "rownum" does not exist at character 8
+2018-11-16 15:10:21.416 CET [1645] STATEMENT:  SELECT ROWNUM as i, worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=17
+	                        ORDER BY score DESC
+	                        LIMIT 10;
+2018-11-16 15:10:54.959 CET [1645] ERROR:  column "row_number" does not exist at character 8
+2018-11-16 15:10:54.959 CET [1645] STATEMENT:  SELECT ROW_NUMber as i, worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=17
+	                        ORDER BY score DESC
+	                        LIMIT 10;
+2018-11-16 15:10:58.479 CET [1645] ERROR:  window function row_number requires an OVER clause at character 8
+2018-11-16 15:10:58.479 CET [1645] STATEMENT:  SELECT ROW_NUMber() as i, worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=17
+	                        ORDER BY score DESC
+	                        LIMIT 10;
+2018-11-16 15:29:36.526 CET [1783] ERROR:  column "i" does not exist at character 8
+2018-11-16 15:29:36.526 CET [1783] STATEMENT:  select i=i+1;
+2018-11-16 15:31:29.303 CET [1783] ERROR:  column "i" does not exist at character 8
+2018-11-16 15:31:29.303 CET [1783] STATEMENT:  SELECT i, J.worker, J.score
+	                        FROM crowdsourcing.joins_campaign as J
+	                        WHERE J.campaign=17 and i=1
+	                        ORDER BY J.score DESC
+	                        LIMIT 10;
+2018-11-16 15:37:00.628 CET [1783] ERROR:  column "integer" does not exist at character 8
+2018-11-16 15:37:00.628 CET [1783] STATEMENT:  SELECT integer, J.worker, J.score
+	                        FROM crowdsourcing.joins_campaign as J
+	                        WHERE J.campaign=17 and i=1
+	                        ORDER BY J.score DESC
+	                        LIMIT 10;
+2018-11-16 16:09:02.461 CET [1783] ERROR:  cannot use RETURN QUERY in a non-SETOF function at character 295
+2018-11-16 16:09:02.461 CET [1783] STATEMENT:  CREATE OR REPLACE FUNCTION standing_position(crowdsourcing.campaign.id%TYPE, crowdsourcing.worker.user_name%TYPE)
+	RETURNS INTEGER AS $$
+	    DECLARE
+	        score_ INTEGER;
+	    BEGIN
+	        SELECT
+	        FROM crowdsourcing.joins_campaign
+	        WHERE worker=$2
+	        INTO score_;
+	
+	
+	        RETURN query    SELECT COUNT(*)+1 as position
+	                        FROM crowdsourcing.joins_campaign as J
+	                        WHERE J.campaign=$1 and J.worker IN(SELECT K.worker
+	                                                            FROM crowdsourcing.joins_campaign as K
+	                                                            WHERE K.score>score_);
+	    END;
+	$$ LANGUAGE plpgsql
+	
+2018-11-16 16:09:32.520 CET [1783] ERROR:  syntax error at or near "SELECT" at character 311
+2018-11-16 16:09:32.520 CET [1783] STATEMENT:  CREATE OR REPLACE FUNCTION standing_position(crowdsourcing.campaign.id%TYPE, crowdsourcing.worker.user_name%TYPE)
+	RETURNS INTEGER AS $$
+	    DECLARE
+	        score_ INTEGER;
+	    BEGIN
+	        SELECT
+	        FROM crowdsourcing.joins_campaign
+	        WHERE worker=$2
+	        INTO score_;
+	
+	
+	        RETURN          SELECT COUNT(*)+1 as position
+	                        FROM crowdsourcing.joins_campaign as J
+	                        WHERE J.campaign=$1 and J.worker IN(SELECT K.worker
+	                                                            FROM crowdsourcing.joins_campaign as K
+	                                                            WHERE K.score>score_);
+	    END;
+	$$ LANGUAGE plpgsql
+	
+	
+2018-11-16 16:10:11.743 CET [1783] ERROR:  syntax error at or near "INTEGER" at character 129
+2018-11-16 16:10:11.743 CET [1783] STATEMENT:  CREATE OR REPLACE FUNCTION standing_position(crowdsourcing.campaign.id%TYPE, crowdsourcing.worker.user_name%TYPE)
+	RETURNS table(INTEGER) AS $$
+	    DECLARE
+	        score_ INTEGER;
+	    BEGIN
+	        SELECT
+	        FROM crowdsourcing.joins_campaign
+	        WHERE worker=$2
+	        INTO score_;
+	
+	
+	        RETURN query    SELECT COUNT(*)+1 as position
+	                        FROM crowdsourcing.joins_campaign as J
+	                        WHERE J.campaign=$1 and J.worker IN(SELECT K.worker
+	                                                            FROM crowdsourcing.joins_campaign as K
+	                                                            WHERE K.score>score_);
+	    END;
+	$$ LANGUAGE plpgsql
+	
+2018-11-16 16:10:56.492 CET [1783] ERROR:  column "zarc_o" does not exist at character 36
+2018-11-16 16:10:56.492 CET [1783] STATEMENT:  select * from standing_position(17,zarc_O)
+2018-11-16 16:11:06.899 CET [1783] ERROR:  structure of query does not match function result type
+2018-11-16 16:11:06.899 CET [1783] DETAIL:  Returned type bigint does not match expected type integer in column 1.
+2018-11-16 16:11:06.899 CET [1783] CONTEXT:  PL/pgSQL function standing_position(integer,character varying) line 11 at RETURN QUERY
+2018-11-16 16:11:06.899 CET [1783] STATEMENT:  select * from standing_position(17,'zarc_O')
+2018-11-16 16:12:59.871 CET [1783] ERROR:  structure of query does not match function result type
+2018-11-16 16:12:59.871 CET [1783] DETAIL:  Returned type bigint does not match expected type integer in column 1.
+2018-11-16 16:12:59.871 CET [1783] CONTEXT:  PL/pgSQL function standing_position(integer,character varying) line 11 at RETURN QUERY
+2018-11-16 16:12:59.871 CET [1783] STATEMENT:  select * from standing_position(17,'zarc_O')
+2018-11-16 16:13:24.656 CET [1783] ERROR:  cannot change return type of existing function
+2018-11-16 16:13:24.656 CET [1783] HINT:  Use DROP FUNCTION standing_position(integer,character varying) first.
+2018-11-16 16:13:24.656 CET [1783] STATEMENT:  CREATE OR REPLACE FUNCTION standing_position(crowdsourcing.campaign.id%TYPE, crowdsourcing.worker.user_name%TYPE)
+	RETURNS table(pos BIGINT) AS $$
+	    DECLARE
+	        score_ INTEGER;
+	    BEGIN
+	        SELECT
+	        FROM crowdsourcing.joins_campaign
+	        WHERE worker=$2
+	        INTO score_;
+	
+	
+	        RETURN query    SELECT COUNT(*)+1 as position
+	                        FROM crowdsourcing.joins_campaign as J
+	                        WHERE J.campaign=$1 and J.worker IN(SELECT K.worker
+	                                                            FROM crowdsourcing.joins_campaign as K
+	                                                            WHERE K.score>score_);
+	    END;
+	$$ LANGUAGE plpgsql
+	
