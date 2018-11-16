@@ -863,3 +863,16 @@
 2018-11-16 14:02:37.169 CET [1383] STATEMENT:  BEGIN;
 	UPDATE "crowdsourcing"."task" SET "valid_bit"=TRUE WHERE "id"=37 RETURNING "id", "description", "title", "n_workers", "threshold", "valid_bit", "campaign", "pay_type", "pay_description";
 	
+2018-11-16 15:03:14.954 CET [1645] ERROR:  syntax error at or near "top10" at character 1
+2018-11-16 15:03:14.954 CET [1645] STATEMENT:  top10(17)
+	
+2018-11-16 15:03:28.764 CET [1645] ERROR:  column reference "worker" is ambiguous at character 8
+2018-11-16 15:03:28.764 CET [1645] DETAIL:  It could refer to either a PL/pgSQL variable or a table column.
+2018-11-16 15:03:28.764 CET [1645] QUERY:  SELECT worker, score
+	                        FROM crowdsourcing.joins_campaign
+	                        WHERE campaign=$1
+	                        ORDER BY score DESC
+	                        LIMIT 10
+2018-11-16 15:03:28.764 CET [1645] CONTEXT:  PL/pgSQL function top10(integer) line 4 at RETURN QUERY
+2018-11-16 15:03:28.764 CET [1645] STATEMENT:  SELEct * from top10(17)
+	
