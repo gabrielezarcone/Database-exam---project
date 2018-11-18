@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once("lib/function.php");
+    unset($_SESSION['result_pw']);
     $_SESSION[campaign] = $_GET[campaign];
 ?>
 

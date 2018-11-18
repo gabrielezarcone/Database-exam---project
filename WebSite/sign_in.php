@@ -5,15 +5,31 @@
     $requester = array('user' =>$_POST[user_R],
                        'password' => $_POST[password_R]);
 
-    if(isset($worker[user])){
-        session_start();
-        $_SESSION['user'] = $worker[user];
-        header("location: worker.php");
+
+
+    session_start();
+    unset($_SESSION[user]);
+    print_r($_SESSION);
+
+
+    if(isset($_POST[user_W])){
+        $_SESSION[worker]=$worker;
     }
-    if(isset($requester[user])){
-        session_start();
-        $_SESSION['user'] = $requester[user];
-        header("location: requester.php");
+    if (isset($_POST[user_R])) {
+        $_SESSION[requester]=$requester;
+    }
+
+    
+
+    if(isset($_SESSION[worker][user]) && $_SESSION[worker][password]==$_SESSION[result_pw] && $_SESSION[worker][password]!=""){
+        $_SESSION['user'] = $_SESSION[worker][user];
+        unset($_SESSION[worker]);
+        print('<meta http-equiv="refresh" content="0.01; url=worker.php">');
+    }
+    if(isset($_SESSION[requester][user]) && $_SESSION[requester][password]==$_SESSION[result_pw] && $_SESSION[requester][password]!=""){
+        $_SESSION[user] = $_SESSION[requester][user];
+        unset($_SESSION[requester]);
+        print('<meta http-equiv="refresh" content="0.01; url=requester.php">');
     }
 
     include_once("lib/function.php");
@@ -55,13 +71,15 @@
                             $res = pg_execute($db, "worker", $values);
                             $result = pg_fetch_array($res);
                             close_pg_connection($db);
-                            if(isset($result[user_name]) && $worker[password]==$result[password]){
+                            if(isset($result[user_name]) && $_SESSION[worker][password]==$result[password]){
                                 print('<div class="uk-alert-success" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
-                                            <p>Hi '.$worker[user].', welcome back</p>
+                                            <p>Hi '.$_SESSION[worker][user].', welcome back</p>
                                         </div>');
+                                $_SESSION[result_pw]=$result[password];
+                                print('<meta http-equiv="refresh" content="0.9">');
                             }
-                            else if(isset($worker[user])){
+                            else if(isset($_SESSION[worker][user])){
                                 print('<div class="uk-alert-danger" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>Sorry, wrong username or password</p>
@@ -98,14 +116,15 @@
                             $res = pg_execute($db, "requester", $values);
                             $result = pg_fetch_array($res);
                             close_pg_connection($db);
-                            if(isset($result[user_name]) && $requester[password]==$result[password]){
-                                //create session
+                            if(isset($result[user_name]) && $_SESSION[requester][password]==$result[password]){
                                 print('<div class="uk-alert-success" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
-                                            <p>Hi '.$requester[user].', welcome back</p>
+                                            <p>Hi '.$_SESSION[requester][user].', welcome back</p>
                                         </div>');
+                                $_SESSION[result_pw]=$result[password];
+                                print('<meta http-equiv="refresh" content="0.9">');
                             }
-                            else if(isset($requester[user])){
+                            else if(isset($_SESSION[requester][user])){
                                 print('<div class="uk-alert-danger" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>Sorry, wrong username or password</p>
@@ -127,7 +146,6 @@
                         </div>
                         <div class="uk-margin">
                             <button class="uk-button uk-button-default requester">LogIn</button>
-                            <input class="uk-button uk-button-default requester" type="submit">
                         </div>
                     </form>
                 </li>

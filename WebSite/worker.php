@@ -2,6 +2,9 @@
     include_once("lib/function.php");
     session_start();
 
+    unset($_SESSION['result_pw']);
+
+
     $_SESSION[campaign] = $_GET[campaign];
     if(isset($_POST[answer])){
         assign_task_to_worker($_SESSION[task], $_SESSION[user]);

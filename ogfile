@@ -1029,3 +1029,1261 @@
 	                        WHERE worker=$1;
 	    END;
 	$$ LANGUAGE plpgsql;
+2018-11-17 15:54:51.506 CET [2556] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:54:51.506 CET [2556] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:54:51.506 CET [2556] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:54:51.506 CET [2556] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:54:51.522 CET [2557] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:54:51.522 CET [2557] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:54:51.522 CET [2557] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:19.322 CET [2560] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:19.322 CET [2560] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:19.322 CET [2560] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:19.322 CET [2560] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:19.328 CET [2561] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:19.328 CET [2561] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:19.329 CET [2561] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:19.867 CET [2563] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:19.867 CET [2563] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:19.867 CET [2563] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:19.867 CET [2563] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:19.872 CET [2564] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:19.872 CET [2564] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:19.872 CET [2564] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:20.397 CET [2566] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:20.397 CET [2566] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:20.397 CET [2566] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:20.397 CET [2566] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:20.403 CET [2567] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:20.403 CET [2567] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:20.403 CET [2567] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:20.918 CET [2569] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:20.918 CET [2569] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:20.918 CET [2569] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:20.918 CET [2569] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:20.923 CET [2570] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:20.923 CET [2570] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:20.924 CET [2570] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:21.452 CET [2572] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:21.452 CET [2572] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:21.452 CET [2572] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:21.452 CET [2572] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:21.457 CET [2573] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:21.457 CET [2573] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:21.458 CET [2573] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:21.886 CET [2575] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:21.886 CET [2575] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:21.886 CET [2575] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:21.886 CET [2575] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:21.892 CET [2576] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:21.892 CET [2576] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:21.892 CET [2576] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:22.299 CET [2578] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:22.299 CET [2578] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:22.299 CET [2578] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:22.299 CET [2578] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:22.305 CET [2579] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:22.305 CET [2579] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:22.305 CET [2579] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:22.740 CET [2581] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:22.740 CET [2581] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:22.740 CET [2581] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:22.740 CET [2581] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:22.746 CET [2582] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:22.746 CET [2582] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:22.746 CET [2582] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:23.148 CET [2584] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:23.148 CET [2584] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:23.148 CET [2584] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:23.148 CET [2584] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:23.153 CET [2585] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:23.153 CET [2585] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:23.153 CET [2585] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:24.462 CET [2587] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:24.462 CET [2587] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:24.462 CET [2587] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:24.462 CET [2587] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:24.468 CET [2588] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:24.468 CET [2588] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:24.469 CET [2588] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:24.956 CET [2590] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:24.956 CET [2590] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:24.956 CET [2590] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:24.956 CET [2590] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:24.961 CET [2591] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:24.961 CET [2591] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:24.962 CET [2591] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:25.389 CET [2593] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:25.389 CET [2593] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:25.389 CET [2593] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:25.389 CET [2593] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:25.394 CET [2594] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:25.394 CET [2594] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:25.395 CET [2594] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:26.098 CET [2596] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:26.098 CET [2596] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:26.098 CET [2596] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:26.098 CET [2596] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:26.104 CET [2597] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:26.104 CET [2597] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:26.104 CET [2597] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:26.475 CET [2599] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:26.475 CET [2599] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:26.475 CET [2599] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:26.475 CET [2599] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:26.480 CET [2600] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:26.480 CET [2600] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:26.480 CET [2600] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:26.931 CET [2602] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:26.931 CET [2602] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:26.931 CET [2602] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:26.931 CET [2602] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:26.937 CET [2603] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:26.937 CET [2603] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:26.937 CET [2603] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 15:55:34.527 CET [2609] ERROR:  column hk.score does not exist at character 638
+2018-11-17 15:55:34.527 CET [2609] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 15:55:34.527 CET [2609] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 15:55:34.527 CET [2609] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 15:55:34.533 CET [2610] ERROR:  column "score" does not exist at character 26
+2018-11-17 15:55:34.533 CET [2610] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 15:55:34.533 CET [2610] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 16:02:33.940 CET [2695] ERROR:  column hk.score does not exist at character 638
+2018-11-17 16:02:33.940 CET [2695] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 16:02:33.940 CET [2695] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 16:02:33.940 CET [2695] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 16:02:33.946 CET [2696] ERROR:  column "score" does not exist at character 26
+2018-11-17 16:02:33.946 CET [2696] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 16:02:33.946 CET [2696] ERROR:  prepared statement "key_list" does not exist
+2018-11-17 16:30:20.405 CET [4080] ERROR:  column hk.score does not exist at character 638
+2018-11-17 16:30:20.405 CET [4080] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-17 16:30:20.405 CET [4080] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-17 16:30:20.405 CET [4080] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-17 16:30:20.413 CET [4081] ERROR:  column "score" does not exist at character 26
+2018-11-17 16:30:20.413 CET [4081] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-17 16:30:20.413 CET [4081] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:13:16.626 CET [8482] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:13:16.626 CET [8482] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:13:16.626 CET [8482] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:13:16.626 CET [8482] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:13:16.633 CET [8483] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:13:16.633 CET [8483] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:13:16.633 CET [8483] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:13:31.526 CET [8489] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:13:31.526 CET [8489] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:13:31.526 CET [8489] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:13:31.526 CET [8489] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:13:31.534 CET [8490] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:13:31.534 CET [8490] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:13:31.535 CET [8490] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:25:08.616 CET [8524] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:25:08.616 CET [8524] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:25:08.616 CET [8524] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:25:08.616 CET [8524] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:25:08.623 CET [8525] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:25:08.623 CET [8525] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:25:08.624 CET [8525] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:55:08.932 CET [8774] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:55:08.932 CET [8774] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:55:08.932 CET [8774] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:55:08.932 CET [8774] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:55:08.939 CET [8775] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:55:08.939 CET [8775] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:55:08.939 CET [8775] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:56:10.857 CET [8836] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:56:10.857 CET [8836] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:56:10.857 CET [8836] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:56:10.857 CET [8836] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:56:10.867 CET [8837] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:56:10.867 CET [8837] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:56:10.867 CET [8837] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:56:23.313 CET [8843] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:56:23.313 CET [8843] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:56:23.313 CET [8843] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:56:23.313 CET [8843] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:56:23.322 CET [8844] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:56:23.322 CET [8844] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:56:23.323 CET [8844] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:57:05.677 CET [8902] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:57:05.677 CET [8902] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:57:05.677 CET [8902] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:57:05.677 CET [8902] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:57:05.686 CET [8903] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:57:05.686 CET [8903] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:57:05.686 CET [8903] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 14:57:17.736 CET [8910] ERROR:  column hk.score does not exist at character 638
+2018-11-18 14:57:17.736 CET [8910] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 14:57:17.736 CET [8910] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 14:57:17.736 CET [8910] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 14:57:17.744 CET [8911] ERROR:  column "score" does not exist at character 26
+2018-11-18 14:57:17.744 CET [8911] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 14:57:17.745 CET [8911] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:20:18.592 CET [9540] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:20:18.592 CET [9540] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:20:18.592 CET [9540] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:20:18.592 CET [9540] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:20:18.599 CET [9541] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:20:18.599 CET [9541] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:20:18.600 CET [9541] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:22:11.855 CET [9608] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:22:11.855 CET [9608] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:22:11.855 CET [9608] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:22:11.855 CET [9608] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:22:11.862 CET [9609] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:22:11.862 CET [9609] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:22:11.863 CET [9609] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:22:36.315 CET [9615] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:22:36.315 CET [9615] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:22:36.315 CET [9615] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:22:36.315 CET [9615] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:22:36.320 CET [9616] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:22:36.320 CET [9616] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:22:36.320 CET [9616] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:26:34.931 CET [9692] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:26:34.931 CET [9692] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:26:34.931 CET [9692] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:26:34.931 CET [9692] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:26:34.937 CET [9693] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:26:34.937 CET [9693] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:26:34.937 CET [9693] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:27:31.045 CET [9754] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:27:31.045 CET [9754] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:27:31.045 CET [9754] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:27:31.045 CET [9754] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:27:31.051 CET [9755] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:27:31.051 CET [9755] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:27:31.052 CET [9755] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:28:06.080 CET [9815] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:28:06.080 CET [9815] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:28:06.080 CET [9815] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:28:06.080 CET [9815] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:28:06.085 CET [9816] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:28:06.085 CET [9816] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:28:06.086 CET [9816] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:29:21.081 CET [9873] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:29:21.081 CET [9873] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:29:21.081 CET [9873] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:29:21.081 CET [9873] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:29:21.086 CET [9874] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:29:21.086 CET [9874] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:29:21.087 CET [9874] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:29:41.207 CET [9882] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:29:41.207 CET [9882] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:29:41.207 CET [9882] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:29:41.207 CET [9882] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:29:41.214 CET [9883] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:29:41.214 CET [9883] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:29:41.214 CET [9883] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:29:54.946 CET [9889] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:29:54.946 CET [9889] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:29:54.946 CET [9889] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:29:54.946 CET [9889] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:29:54.951 CET [9890] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:29:54.951 CET [9890] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:29:54.952 CET [9890] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:30:36.962 CET [9955] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:30:36.962 CET [9955] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:30:36.962 CET [9955] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:30:36.962 CET [9955] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:30:36.968 CET [9956] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:30:36.968 CET [9956] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:30:36.968 CET [9956] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:31:59.758 CET [10020] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:31:59.758 CET [10020] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:31:59.758 CET [10020] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:31:59.758 CET [10020] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:31:59.764 CET [10021] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:31:59.764 CET [10021] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:31:59.764 CET [10021] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:32:09.442 CET [10027] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:32:09.442 CET [10027] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:32:09.442 CET [10027] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:32:09.442 CET [10027] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:32:09.450 CET [10028] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:32:09.450 CET [10028] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:32:09.451 CET [10028] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:32:27.171 CET [10034] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:32:27.171 CET [10034] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:32:27.171 CET [10034] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:32:27.171 CET [10034] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:32:27.179 CET [10035] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:32:27.179 CET [10035] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:32:27.179 CET [10035] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:33:50.909 CET [10103] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:33:50.909 CET [10103] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:33:50.909 CET [10103] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:33:50.909 CET [10103] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:33:50.925 CET [10104] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:33:50.925 CET [10104] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:33:50.926 CET [10104] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:34:00.253 CET [10111] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:34:00.253 CET [10111] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:34:00.253 CET [10111] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:34:00.253 CET [10111] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:34:00.259 CET [10112] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:34:00.259 CET [10112] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:34:00.259 CET [10112] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:35:11.798 CET [10178] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:35:11.798 CET [10178] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:35:11.798 CET [10178] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:35:11.798 CET [10178] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:35:11.804 CET [10179] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:35:11.804 CET [10179] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:35:11.805 CET [10179] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:35:23.385 CET [10185] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:35:23.385 CET [10185] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:35:23.385 CET [10185] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:35:23.385 CET [10185] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:35:23.391 CET [10186] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:35:23.391 CET [10186] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:35:23.391 CET [10186] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:36:21.217 CET [10243] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:36:21.217 CET [10243] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:36:21.217 CET [10243] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:36:21.217 CET [10243] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:36:21.223 CET [10244] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:36:21.223 CET [10244] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:36:21.223 CET [10244] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:38:07.527 CET [10312] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:38:07.527 CET [10312] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:38:07.527 CET [10312] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:38:07.527 CET [10312] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:38:07.533 CET [10313] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:38:07.533 CET [10313] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:38:07.534 CET [10313] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:38:51.480 CET [10373] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:38:51.480 CET [10373] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:38:51.480 CET [10373] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:38:51.480 CET [10373] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:38:51.485 CET [10374] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:38:51.485 CET [10374] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:38:51.485 CET [10374] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:55:23.185 CET [10970] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:55:23.185 CET [10970] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:55:23.185 CET [10970] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:55:23.185 CET [10970] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:55:23.194 CET [10971] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:55:23.194 CET [10971] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:55:23.195 CET [10971] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 15:59:32.739 CET [11263] ERROR:  column hk.score does not exist at character 638
+2018-11-18 15:59:32.739 CET [11263] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 15:59:32.739 CET [11263] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 15:59:32.739 CET [11263] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 15:59:32.745 CET [11264] ERROR:  column "score" does not exist at character 26
+2018-11-18 15:59:32.745 CET [11264] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 15:59:32.745 CET [11264] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:06:00.226 CET [11342] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:06:00.226 CET [11342] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:06:00.226 CET [11342] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:06:00.226 CET [11342] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:06:00.235 CET [11343] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:06:00.235 CET [11343] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:06:00.235 CET [11343] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:06:57.543 CET [11409] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:06:57.543 CET [11409] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:06:57.543 CET [11409] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:06:57.543 CET [11409] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:06:57.550 CET [11410] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:06:57.550 CET [11410] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:06:57.550 CET [11410] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:07:48.267 CET [11425] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:07:48.267 CET [11425] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:07:48.267 CET [11425] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:07:48.267 CET [11425] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:07:48.273 CET [11426] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:07:48.273 CET [11426] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:07:48.274 CET [11426] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:09:03.037 CET [11491] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:09:03.037 CET [11491] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:09:03.037 CET [11491] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:09:03.037 CET [11491] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:09:03.043 CET [11492] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:09:03.043 CET [11492] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:09:03.043 CET [11492] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:32:41.460 CET [12314] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:32:41.460 CET [12314] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:32:41.460 CET [12314] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:32:41.460 CET [12314] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:32:41.465 CET [12315] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:32:41.465 CET [12315] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:32:41.466 CET [12315] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:33:52.429 CET [12376] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:33:52.429 CET [12376] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:33:52.429 CET [12376] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:33:52.429 CET [12376] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:33:52.436 CET [12377] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:33:52.436 CET [12377] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:33:52.436 CET [12377] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:34:45.404 CET [12438] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:34:45.404 CET [12438] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:34:45.404 CET [12438] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:34:45.404 CET [12438] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:34:45.410 CET [12439] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:34:45.410 CET [12439] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:34:45.410 CET [12439] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:35:29.908 CET [12500] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:35:29.908 CET [12500] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:35:29.908 CET [12500] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:35:29.908 CET [12500] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:35:29.915 CET [12501] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:35:29.915 CET [12501] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:35:29.915 CET [12501] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:40:58.707 CET [12647] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:40:58.707 CET [12647] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:40:58.707 CET [12647] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:40:58.707 CET [12647] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:40:58.713 CET [12648] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:40:58.713 CET [12648] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:40:58.713 CET [12648] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:56:15.120 CET [13011] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:56:15.120 CET [13011] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:56:15.120 CET [13011] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:56:15.120 CET [13011] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:56:15.126 CET [13012] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:56:15.126 CET [13012] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:56:15.126 CET [13012] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 16:57:04.190 CET [13029] ERROR:  column hk.score does not exist at character 638
+2018-11-18 16:57:04.190 CET [13029] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 16:57:04.190 CET [13029] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 16:57:04.190 CET [13029] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 16:57:04.196 CET [13030] ERROR:  column "score" does not exist at character 26
+2018-11-18 16:57:04.196 CET [13030] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 16:57:04.196 CET [13030] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:00:56.699 CET [13060] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:00:56.699 CET [13060] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:00:56.699 CET [13060] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:00:56.699 CET [13060] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:00:56.704 CET [13061] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:00:56.704 CET [13061] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:00:56.705 CET [13061] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:03:16.864 CET [13074] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:03:16.864 CET [13074] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:03:16.864 CET [13074] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:03:16.864 CET [13074] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:03:16.873 CET [13075] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:03:16.873 CET [13075] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:03:16.875 CET [13075] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:08:46.767 CET [13260] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:08:46.767 CET [13260] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:08:46.767 CET [13260] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:08:46.767 CET [13260] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:08:46.774 CET [13261] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:08:46.774 CET [13261] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:08:46.774 CET [13261] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:23:12.510 CET [13644] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:23:12.510 CET [13644] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:23:12.510 CET [13644] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:23:12.510 CET [13644] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:23:12.523 CET [13645] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:23:12.523 CET [13645] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:23:12.523 CET [13645] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:25:36.213 CET [13659] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:25:36.213 CET [13659] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:25:36.213 CET [13659] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:25:36.213 CET [13659] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:25:36.220 CET [13660] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:25:36.220 CET [13660] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:25:36.220 CET [13660] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:26:20.153 CET [13719] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:26:20.153 CET [13719] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:26:20.153 CET [13719] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:26:20.153 CET [13719] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:26:20.165 CET [13720] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:26:20.165 CET [13720] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:26:20.165 CET [13720] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:33:04.879 CET [13869] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:33:04.879 CET [13869] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:33:04.879 CET [13869] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:33:04.879 CET [13869] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:33:04.886 CET [13870] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:33:04.886 CET [13870] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:33:04.887 CET [13870] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:34:16.551 CET [13935] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:34:16.551 CET [13935] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:34:16.551 CET [13935] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:34:16.551 CET [13935] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:34:16.563 CET [13936] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:34:16.563 CET [13936] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:34:16.563 CET [13936] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:35:32.431 CET [14010] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:35:32.431 CET [14010] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:35:32.431 CET [14010] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:35:32.431 CET [14010] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:35:32.440 CET [14011] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:35:32.440 CET [14011] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:35:32.440 CET [14011] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:36:10.348 CET [14034] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:36:10.348 CET [14034] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:36:10.348 CET [14034] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:36:10.348 CET [14034] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:36:10.366 CET [14035] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:36:10.366 CET [14035] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:36:10.367 CET [14035] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:41:00.995 CET [14105] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:41:00.995 CET [14105] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:41:00.995 CET [14105] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:41:00.995 CET [14105] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:41:01.005 CET [14106] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:41:01.005 CET [14106] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:41:01.005 CET [14106] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:41:25.664 CET [14116] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:41:25.664 CET [14116] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:41:25.664 CET [14116] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:41:25.664 CET [14116] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:41:25.672 CET [14117] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:41:25.672 CET [14117] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:41:25.672 CET [14117] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:43:34.013 CET [14137] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:43:34.013 CET [14137] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:43:34.013 CET [14137] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:43:34.013 CET [14137] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:43:34.022 CET [14138] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:43:34.022 CET [14138] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:43:34.022 CET [14138] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 17:47:54.395 CET [14314] ERROR:  column hk.score does not exist at character 638
+2018-11-18 17:47:54.395 CET [14314] QUERY:  SELECT T.id, T.title, T.description
+	        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
+	        WHERE T.campaign=$1 AND RK.keyword IN (SELECT keyword
+	                                            FROM crowdsourcing.has_keyword
+	                                            WHERE worker=$2) AND T.id NOT IN(SELECT task
+	                                                                            FROM crowdsourcing.recives_task
+	                                                                            WHERE worker=$2)
+	        order by HK.score desc
+	        LIMIT 1
+2018-11-18 17:47:54.395 CET [14314] CONTEXT:  PL/pgSQL function best_task(integer,character varying) line 4 at RETURN QUERY
+2018-11-18 17:47:54.395 CET [14314] STATEMENT:  SELECT * FROM best_task($1,$2)
+2018-11-18 17:47:54.403 CET [14315] ERROR:  column "score" does not exist at character 26
+2018-11-18 17:47:54.403 CET [14315] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-18 17:47:54.403 CET [14315] ERROR:  prepared statement "key_list" does not exist
