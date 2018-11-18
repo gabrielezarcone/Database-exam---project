@@ -9,7 +9,6 @@
 
     session_start();
     unset($_SESSION[user]);
-    print_r($_SESSION);
 
 
     if(isset($_POST[user_W])){
@@ -33,6 +32,13 @@
     }
 
     include_once("lib/function.php");
+
+    if($_GET[active]=="worker"){
+        $active_worker = "uk-active";
+    }
+    else if($_GET[active]=="requester"){
+        $active_req = "uk-active";
+    }
 ?>
 
 
@@ -54,15 +60,15 @@
         <div class="uk-width-1-3">
             <h1 class="uk-heading-primary">Sign in</h1>
             <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade" uk-grid>
-                <li class="uk-width-1-2"><a class="worker" href="#">Worker</a></li>
-                <li class="uk-width-1-2"><a class="requester" href="#">Requester</a></li>
+                <li class="uk-width-1-2 <?php print($active_worker); ?>"><a class="worker" href="#">Worker</a></li>
+                <li class="uk-width-1-2 <?php print($active_req); ?>"><a class="requester" href="#">Requester</a></li>
             </ul>
 
             <ul class="uk-switcher uk-margin">
 
                 <li id="worker">
 
-                    <form action="#" method="POST">
+                    <form action="?active=worker" method="POST">
                         <?php
                             $db = open_pg_connection();
                             $query = 'SELECT user_name, password from crowdsourcing.worker as w WHERE w.user_name=$1;';
@@ -107,7 +113,7 @@
 
                 <li id="requester">
 
-                    <form action="#" method="POST">
+                    <form action="?active=requester" method="POST">
                         <?php
                             $db = open_pg_connection();
                             $query = 'SELECT user_name, password from crowdsourcing.requester as r WHERE r.user_name=$1;';
