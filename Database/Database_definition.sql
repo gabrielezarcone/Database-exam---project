@@ -24,13 +24,17 @@ CREATE TABLE worker(
     user_name VARCHAR(20) PRIMARY KEY,
     name VARCHAR(20),
     surname VARCHAR(20),
-    password VARCHAR(20) NOT NULL
+    password VARCHAR(20) NOT NULL,
+    CHECK(user_name <> ""),
+    CHECK(password <> "")
 );
 CREATE TABLE requester(
     user_name VARCHAR(20) PRIMARY KEY,
     name VARCHAR(20),
     surname VARCHAR(20),
-    password VARCHAR(20) NOT NULL 
+    password VARCHAR(20) NOT NULL,
+    CHECK(user_name <> ""),
+    CHECK(password <> "")
 );
 CREATE TABLE campaign(
     id SERIAL PRIMARY KEY,

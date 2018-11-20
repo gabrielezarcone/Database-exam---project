@@ -2304,3 +2304,110 @@
 	                FROM crowdsourcing.has_keyword 
 	                WHERE worker = $1;
 2018-11-18 18:06:55.877 CET [15041] ERROR:  prepared statement "key_list" does not exist
+2018-11-18 18:10:06.395 CET [1220] LOG:  received smart shutdown request
+2018-11-18 18:10:06.397 CET [1220] LOG:  worker process: logical replication launcher (PID 1227) exited with exit code 1
+2018-11-18 18:10:06.398 CET [1222] LOG:  shutting down
+2018-11-18 18:10:06.415 CET [1220] LOG:  database system is shut down
+2018-11-20 12:59:09.415 CET [970] LOG:  listening on IPv6 address "::1", port 5432
+2018-11-20 12:59:09.415 CET [970] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-11-20 12:59:09.416 CET [970] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-11-20 12:59:09.450 CET [971] LOG:  database system was shut down at 2018-11-19 22:24:06 CET
+2018-11-20 12:59:09.461 CET [970] LOG:  database system is ready to accept connections
+2018-11-20 13:01:36.349 CET [1001] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:01:36.349 CET [1001] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:01:36.349 CET [1001] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:03:19.998 CET [1111] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:03:19.998 CET [1111] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:03:19.998 CET [1111] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:04:46.927 CET [1168] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:04:46.927 CET [1168] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:04:46.927 CET [1168] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:04:58.525 CET [1169] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:04:58.525 CET [1169] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:04:58.525 CET [1169] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:06:44.713 CET [1279] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:06:44.713 CET [1279] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:06:44.713 CET [1279] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:11:32.036 CET [1375] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:11:32.036 CET [1375] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:11:32.036 CET [1375] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:12:48.456 CET [1432] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:12:48.456 CET [1432] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:12:48.456 CET [1432] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:17:13.481 CET [1501] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:17:13.481 CET [1501] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:17:13.481 CET [1501] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:20:17.510 CET [1563] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:20:17.510 CET [1563] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:20:17.510 CET [1563] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:21:40.781 CET [1567] ERROR:  new row for relation "worker" violates check constraint "worker_password_check"
+2018-11-20 13:21:40.781 CET [1567] DETAIL:  Failing row contains (a, , , ).
+2018-11-20 13:21:40.781 CET [1567] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:24:19.616 CET [1635] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:24:19.616 CET [1635] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:24:19.616 CET [1635] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:26:56.322 CET [1696] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:26:56.322 CET [1696] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:26:56.322 CET [1696] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:27:06.421 CET [1697] ERROR:  new row for relation "worker" violates check constraint "worker_password_check"
+2018-11-20 13:27:06.421 CET [1697] DETAIL:  Failing row contains (a, , a, a).
+2018-11-20 13:27:06.421 CET [1697] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:29:21.873 CET [1760] ERROR:  new row for relation "worker" violates check constraint "worker_password_check"
+2018-11-20 13:29:21.873 CET [1760] DETAIL:  Failing row contains (a, , a, a).
+2018-11-20 13:29:21.873 CET [1760] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:33:54.980 CET [1770] ERROR:  duplicate key value violates unique constraint "requester_pkey"
+2018-11-20 13:33:54.980 CET [1770] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:33:54.980 CET [1770] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:35:22.030 CET [1828] ERROR:  duplicate key value violates unique constraint "requester_pkey"
+2018-11-20 13:35:22.030 CET [1828] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:35:22.030 CET [1828] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:35:31.983 CET [1829] ERROR:  new row for relation "requester" violates check constraint "requester_password_check"
+2018-11-20 13:35:31.983 CET [1829] DETAIL:  Failing row contains (a, , a, a).
+2018-11-20 13:35:31.983 CET [1829] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:37:57.055 CET [1892] ERROR:  new row for relation "requester" violates check constraint "requester_password_check"
+2018-11-20 13:37:57.055 CET [1892] DETAIL:  Failing row contains (zarc_o, , a, a).
+2018-11-20 13:37:57.055 CET [1892] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:38:41.582 CET [1951] ERROR:  new row for relation "requester" violates check constraint "requester_password_check"
+2018-11-20 13:38:41.582 CET [1951] DETAIL:  Failing row contains (, , , ).
+2018-11-20 13:38:41.582 CET [1951] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:40:08.293 CET [985] ERROR:  zero-length delimited identifier at or near """" at character 60
+2018-11-20 13:40:08.293 CET [985] STATEMENT:  alter table crowdsourcing.requester add CHECK(user_name <> "");
+2018-11-20 13:41:45.918 CET [2018] ERROR:  new row for relation "requester" violates check constraint "requester_user_name_check"
+2018-11-20 13:41:45.918 CET [2018] DETAIL:  Failing row contains (, a, a, a).
+2018-11-20 13:41:45.918 CET [2018] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:41:52.887 CET [2019] ERROR:  new row for relation "worker" violates check constraint "worker_user_name_check"
+2018-11-20 13:41:52.887 CET [2019] DETAIL:  Failing row contains (, a, , ).
+2018-11-20 13:41:52.887 CET [2019] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:44:35.596 CET [2081] ERROR:  new row for relation "worker" violates check constraint "worker_password_check"
+2018-11-20 13:44:35.596 CET [2081] DETAIL:  Failing row contains (a, , , ).
+2018-11-20 13:44:35.596 CET [2081] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:44:55.189 CET [2087] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:44:55.189 CET [2087] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-11-20 13:44:55.189 CET [2087] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:47:58.782 CET [2148] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-11-20 13:47:58.782 CET [2148] DETAIL:  Key (user_name)=(a) already exists.
+2018-11-20 13:47:58.782 CET [2148] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)

@@ -159,7 +159,7 @@ RETURNS TABLE(task INTEGER, answer VARCHAR(100))  as $$
         END LOOP;
         RETURN;
     END
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
 
 --- this function return task of a campaign that are completed ---
 
@@ -169,7 +169,7 @@ RETURNS SETOF INTEGER AS $$
     BEGIN
         RETURN query SELECT id FROM crowdsourcing.task WHERE valid_bit=true AND campaign=$1;  
     END
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
 
 --- this function returns the percentage of completed task ---
 
@@ -191,7 +191,7 @@ RETURNS INTEGER AS $$
 
         RETURN (completed_task*100)/total_task ;
     END
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -199,7 +199,7 @@ $$ LANGUAGE plpgsql
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
----- This function assign the best task to a worker ------------------------------------------------------------------------------------------------------------------------------------------------------------
+---- This function returns the top 10 worker for a campaign ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION top10(crowdsourcing.campaign.id%TYPE)
 RETURNS TABLE(worker crowdsourcing.joins_campaign.worker%TYPE, score crowdsourcing.joins_campaign.score%TYPE) as $$
@@ -235,7 +235,7 @@ RETURNS table(pos BIGINT) AS $$
                                                             FROM crowdsourcing.joins_campaign as K
                                                             WHERE K.score>score_);
     END;
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
 
 
 ---- this function returns number of task answered by a worker

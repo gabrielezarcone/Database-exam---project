@@ -10,7 +10,15 @@
                     'pass2' => $_POST[password2_R],
                     'name' => $_POST[name_R],
                     'surname' => $_POST[surname_R]);
-    include_once("lib/function.php")
+    
+    include_once("lib/function.php");
+
+    if($_GET[active]=="worker"){
+        $active_worker = "uk-active";
+    }
+    else if($_GET[active]=="requester"){
+        $active_req = "uk-active";
+    }
 ?>
 
 
@@ -30,25 +38,65 @@
         <div class="uk-width-1-3">
             <h1 class="uk-heading-primary">Sign up</h1>
             <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade" uk-grid>
-                <li class="uk-width-1-2"><a class="worker" href="#">Worker</a></li>
-                <li class="uk-width-1-2"><a class="requester" href="#">Requester</a></li>
+                <li class="uk-width-1-2 <?php print($active_worker); ?>"><a class="worker" href="#">Worker</a></li>
+                <li class="uk-width-1-2 <?php print($active_req); ?>"><a class="requester" href="#">Requester</a></li>
             </ul>
 
             <ul class="uk-switcher uk-margin">
                 <li id="worker">
-                    <form action="#" method="POST">
+                    <form action="?active=worker" method="POST">
                         <?php 
-                            if($_POST[password_W]===$_POST[password2_W] && isset($_POST[password_W])){
+                            if(isset($_POST[password_W])&&$_POST[name_W]==""){
+                                print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty name field</p>
+                                        </div>');
+                            }
+                            else if(isset($_POST[password_W])&&$_POST[surname_W]==""){
+                                print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty surname field</p>
+                                        </div>');
+                            }
+                            else if($_POST[password_W]===$_POST[password2_W] && isset($_POST[password_W])){
                                 $query = "INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
                                             VALUES($1,$2,$3,$4)";
                                 $values = array(1=>$worker[user], $worker[pass1], $worker[name], $worker[surname]);
                                 $db = open_pg_connection();
                                 $res = pg_prepare($db, "worker", $query);
                                 $res = pg_execute($db, "worker", $values);
-                                print('<div class="uk-alert-success" uk-alert>
+                                if($res==false){
+                                    if(strpos(pg_last_error($db), 'duplicate key value violates unique constraint "worker_pkey"') !== false){
+                                        print('<div class="uk-alert-danger" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
-                                            <p>Hi '.$worker[name].', welcome to Oak_sourcing</p>
+                                            <p>Sorry, worker '.$worker[user].' already exist</p>
                                         </div>');
+                                    }
+                                    else if(strpos(pg_last_error($db), 'check constraint "worker_password_check"') !== false){
+                                        print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty password field</p>
+                                        </div>');
+                                    }
+                                    else if(strpos(pg_last_error($db), 'check constraint "worker_user_name_check"') !== false){
+                                        print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty user name field</p>
+                                        </div>');
+                                    }
+                                    else{
+                                        print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Sorry, some error occours</p>
+                                        </div>');
+                                    }
+                                }
+                                else{
+                                    print('<div class="uk-alert-success" uk-alert>
+                                                <a class="uk-alert-close" uk-close></a>
+                                                <p>Hi '.$worker[name].', welcome to Oak_sourcing</p>
+                                            </div>');
+                                }
                                 close_pg_connection();
                             }
                             else if(isset($_POST[password_W])){
@@ -91,27 +139,68 @@
                 </li>
 
                 <li id="requester">
-                    <form action="#" method="POST">
+                    <form action="?active=requester" method="POST">
                         <?php 
-                            if($_POST[password_R]===$_POST[password2_R] && isset($_POST[password_R])){
+                            if(isset($_POST[password_R])&&$_POST[name_R]==""){
+                                print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty name field</p>
+                                        </div>');
+                            }
+                            else if(isset($_POST[password_R])&&$_POST[surname_R]==""){
+                                print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty surname field</p>
+                                        </div>');
+                            }
+                            else if($_POST[password_R]===$_POST[password2_R] && isset($_POST[password_R])){
                                 $query = "INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
                                             VALUES($1,$2,$3,$4)";
                                 $values = array(1=>$requester[user], $requester[pass1], $requester[name], $requester[surname]);
                                 $db = open_pg_connection();
                                 $res = pg_prepare($db, "requester", $query);
                                 $res = pg_execute($db, "requester", $values);
-                                print('<div class="uk-alert-success" uk-alert>
+                                if($res==false){
+                                    if(strpos(pg_last_error($db), 'duplicate key value violates unique constraint "requester_pkey"') !== false){
+                                        print('<div class="uk-alert-danger" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
-                                            <p>Hi '.$requester[name].', welcome to Oak_sourcing</p>
+                                            <p>Sorry, requester '.$requester[user].' already exist</p>
                                         </div>');
+                                    }
+                                    else if(strpos(pg_last_error($db), 'check constraint "requester_password_check"') !== false){
+                                        print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty password field</p>
+                                        </div>');
+                                    }
+                                    else if(strpos(pg_last_error($db), 'check constraint "requester_user_name_check"') !== false){
+                                        print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Empty user name field</p>
+                                        </div>');
+                                    }
+                                    else{
+                                        print('<div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Sorry, some error occours</p>
+                                        </div>');
+                                    }
+                                }
+                                else{
+                                    print('<div class="uk-alert-success" uk-alert>
+                                                <a class="uk-alert-close" uk-close></a>
+                                                <p>Hi '.$requester[name].', welcome to Oak_sourcing</p>
+                                            </div>');
+                                }
+                                close_pg_connection();
                             }
                             else if(isset($_POST[password_R])){
                                 print('<div class="uk-alert-danger" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>The second password doesn\'t match with the first one</p>
                                         </div>');
-                                close_pg_connection();
                             }
+                            
                         ?>
                         <div class="uk-margin">
                             <div class="uk-inline">
