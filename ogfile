@@ -2411,3 +2411,325 @@
 2018-11-20 13:47:58.782 CET [2148] DETAIL:  Key (user_name)=(a) already exists.
 2018-11-20 13:47:58.782 CET [2148] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
 	                                            VALUES($1,$2,$3,$4)
+2018-11-20 13:55:30.171 CET [2460] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:55:30.171 CET [2460] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:55:30.178 CET [2460] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 13:55:32.963 CET [2463] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:55:32.963 CET [2463] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:55:32.963 CET [2463] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 13:55:36.542 CET [2467] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:55:36.542 CET [2467] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:55:36.543 CET [2467] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 13:58:36.873 CET [2543] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:58:36.873 CET [2543] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:58:36.873 CET [2543] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 13:58:40.608 CET [2546] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:58:40.608 CET [2546] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:58:40.609 CET [2546] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 13:59:08.134 CET [2603] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:59:08.134 CET [2603] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:59:08.134 CET [2603] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 13:59:51.976 CET [2663] ERROR:  column "score" does not exist at character 26
+2018-11-20 13:59:51.976 CET [2663] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 13:59:51.976 CET [2663] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:00:09.055 CET [2713] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:00:09.055 CET [2713] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:00:09.055 CET [2713] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:00:35.109 CET [2770] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:00:35.109 CET [2770] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:00:35.110 CET [2770] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:00:51.122 CET [2820] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:00:51.122 CET [2820] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:00:51.123 CET [2820] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:00:59.067 CET [2823] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:00:59.067 CET [2823] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:00:59.067 CET [2823] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:02:11.324 CET [2883] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:02:11.324 CET [2883] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:02:11.325 CET [2883] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:02:23.504 CET [2933] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:02:23.504 CET [2933] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:02:23.505 CET [2933] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:02:27.157 CET [2936] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:02:27.157 CET [2936] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:02:27.157 CET [2936] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:02:28.475 CET [2940] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:02:28.475 CET [2940] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:02:28.475 CET [2940] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:03:32.722 CET [2998] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:03:32.722 CET [2998] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:03:32.722 CET [2998] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:05:19.205 CET [3058] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:05:19.205 CET [3058] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:05:19.206 CET [3058] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:06:23.602 CET [3118] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:06:23.602 CET [3118] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:06:23.602 CET [3118] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:06:42.291 CET [3168] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:06:42.291 CET [3168] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:06:42.292 CET [3168] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:06:55.564 CET [3224] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:06:55.564 CET [3224] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:06:55.564 CET [3224] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:07:08.299 CET [3274] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:07:08.299 CET [3274] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:07:08.299 CET [3274] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:07:08.555 CET [3277] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:07:08.555 CET [3277] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:07:08.555 CET [3277] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:07:09.618 CET [3280] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:07:09.618 CET [3280] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:07:09.619 CET [3280] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:07:25.309 CET [3337] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:07:25.309 CET [3337] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:07:25.309 CET [3337] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:07:33.892 CET [3387] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:07:33.892 CET [3387] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:07:33.893 CET [3387] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:08:03.409 CET [3443] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:08:03.409 CET [3443] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:08:03.409 CET [3443] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:08:37.603 CET [3503] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:08:37.603 CET [3503] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:08:37.604 CET [3503] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:08:53.964 CET [3553] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:08:53.964 CET [3553] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:08:53.964 CET [3553] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:09:17.060 CET [3610] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:09:17.060 CET [3610] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:09:17.061 CET [3610] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:09:24.818 CET [3659] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:09:24.818 CET [3659] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:09:24.818 CET [3659] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:09:26.528 CET [3662] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:09:26.528 CET [3662] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:09:26.529 CET [3662] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:09:27.656 CET [3665] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:09:27.656 CET [3665] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:09:27.656 CET [3665] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:09:34.260 CET [3715] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:09:34.260 CET [3715] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:09:34.260 CET [3715] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:09:36.361 CET [3718] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:09:36.361 CET [3718] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:09:36.362 CET [3718] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:09.601 CET [3722] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:09.601 CET [3722] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:09.602 CET [3722] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:10.535 CET [3725] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:10.535 CET [3725] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:10.535 CET [3725] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:10.742 CET [3728] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:10.742 CET [3728] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:10.742 CET [3728] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:11.128 CET [3731] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:11.128 CET [3731] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:11.129 CET [3731] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:11.291 CET [3735] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:11.291 CET [3735] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:11.291 CET [3735] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:11.464 CET [3738] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:11.464 CET [3738] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:11.464 CET [3738] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:11.616 CET [3741] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:11.616 CET [3741] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:11.616 CET [3741] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:11.761 CET [3744] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:11.761 CET [3744] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:11.761 CET [3744] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:11.926 CET [3747] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:11.926 CET [3747] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:11.926 CET [3747] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:12.056 CET [3750] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:12.056 CET [3750] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:12.057 CET [3750] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:12.915 CET [3753] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:12.915 CET [3753] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:12.916 CET [3753] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:13.084 CET [3756] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:13.084 CET [3756] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:13.084 CET [3756] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:13.223 CET [3759] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:13.223 CET [3759] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:13.223 CET [3759] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:13.391 CET [3762] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:13.391 CET [3762] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:13.391 CET [3762] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:13.558 CET [3765] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:13.558 CET [3765] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:13.558 CET [3765] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:13.761 CET [3768] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:13.761 CET [3768] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:13.762 CET [3768] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:14.188 CET [3771] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:14.188 CET [3771] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:14.188 CET [3771] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:14.341 CET [3774] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:14.341 CET [3774] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:14.342 CET [3774] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:14.522 CET [3777] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:14.522 CET [3777] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:14.523 CET [3777] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:14.651 CET [3780] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:14.651 CET [3780] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:14.651 CET [3780] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:17.715 CET [3783] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:17.715 CET [3783] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:17.715 CET [3783] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:22.463 CET [3792] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:22.463 CET [3792] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:22.464 CET [3792] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 14:10:25.543 CET [3799] ERROR:  column "score" does not exist at character 26
+2018-11-20 14:10:25.543 CET [3799] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 14:10:25.543 CET [3799] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 17:16:37.689 CET [4166] ERROR:  column "score" does not exist at character 26
+2018-11-20 17:16:37.689 CET [4166] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 17:16:37.689 CET [4166] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 17:49:00.889 CET [5174] ERROR:  operator does not exist: character varying == unknown at character 49
+2018-11-20 17:49:00.889 CET [5174] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-11-20 17:49:00.889 CET [5174] STATEMENT:  SELECT FROM crowdsourcing.worker WHERE user_name==$1
+2018-11-20 17:49:00.890 CET [5174] ERROR:  prepared statement "worker" does not exist
+2018-11-20 17:49:34.548 CET [5232] ERROR:  operator does not exist: character varying == unknown at character 49
+2018-11-20 17:49:34.548 CET [5232] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-11-20 17:49:34.548 CET [5232] STATEMENT:  SELECT FROM crowdsourcing.worker WHERE user_name==$1
+2018-11-20 17:49:34.548 CET [5232] ERROR:  prepared statement "worker" does not exist
+2018-11-20 17:49:35.981 CET [5236] ERROR:  operator does not exist: character varying == unknown at character 49
+2018-11-20 17:49:35.981 CET [5236] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-11-20 17:49:35.981 CET [5236] STATEMENT:  SELECT FROM crowdsourcing.worker WHERE user_name==$1
+2018-11-20 17:49:35.983 CET [5236] ERROR:  prepared statement "worker" does not exist
+2018-11-20 17:54:30.374 CET [5255] ERROR:  operator does not exist: character varying == unknown at character 49
+2018-11-20 17:54:30.374 CET [5255] HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+2018-11-20 17:54:30.374 CET [5255] STATEMENT:  SELECT FROM crowdsourcing.worker WHERE user_name=='zarc_o';
+2018-11-20 18:19:30.164 CET [5617] ERROR:  column "score" does not exist at character 26
+2018-11-20 18:19:30.164 CET [5617] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 18:19:30.164 CET [5617] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 18:19:36.688 CET [5620] ERROR:  bind message supplies 4 parameters, but prepared statement "update_w" requires 3
+2018-11-20 18:19:36.688 CET [5620] STATEMENT:  UPDATE crowdsourcing.worker SET password=$1, name=$2, surname=$3 WHERE user_name=$1
+2018-11-20 18:20:18.977 CET [5685] ERROR:  column "score" does not exist at character 26
+2018-11-20 18:20:18.977 CET [5685] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 18:20:18.977 CET [5685] ERROR:  prepared statement "key_list" does not exist
+2018-11-20 18:24:18.728 CET [5759] ERROR:  column "score" does not exist at character 26
+2018-11-20 18:24:18.728 CET [5759] STATEMENT:  SELECT DISTINCT keyword, score
+	                FROM crowdsourcing.has_keyword 
+	                WHERE worker = $1;
+2018-11-20 18:24:18.729 CET [5759] ERROR:  prepared statement "key_list" does not exist

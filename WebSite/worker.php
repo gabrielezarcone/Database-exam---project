@@ -41,7 +41,7 @@
         </div>
         <div class="uk-width-1-4 card-container">
             <div class="uk-card uk-card-default uk-card-body ">
-                <h2 style="color: var(--worker-color)">Worker info</h2>
+                <h2 style="color: var(--worker-color)">Worker info   <a href="worker_settings.php" class="uk-icon-button uk-margin-small-right" uk-icon="cog" style="background-color: var(--worker-color); color:black"></a></h2>
                 <ul class="uk-list">
                     <li><h4>User_Name: </h4><?php print($_SESSION[user]) ?></li>
                     <li><h4>Number of joined campaings: </h4> <?php print($num_camp); ?> </li>
