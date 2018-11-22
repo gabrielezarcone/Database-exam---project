@@ -91,7 +91,7 @@
                         else{
                             print('<div class="uk-alert-success" uk-alert>
                                         <a class="uk-alert-close" uk-close></a>
-                                        <p>Hi '.$worker[name].', welcome to Oak_sourcing</p>
+                                        <p>Perfect '.$worker[name].'! welcome to Oak_sourcing</p>
                                     </div>');
                         }
                         close_pg_connection($db);

@@ -446,6 +446,9 @@ function show_card_W($worker, $campaign){
     if($campaign==""){
         print('<h3 class="uk-text-center uk-text-muted"> Select a campaign</h3>');
     }
+    else if(campaign_expired($campaign)){
+        print('<h3 class="uk-text-center uk-text-muted uk-text-danger" style="font-color:red"> Sorry, the campaign has expired :\'(</h3>');
+    }
     else if($numrows==0){
         print('<h3 class="uk-text-center uk-text-muted"> You answered to every task of this campaign</h3>');
     }
@@ -477,6 +480,22 @@ function show_card_W($worker, $campaign){
     pg_free_result($res);
     close_pg_connection($db);
     $_SESSION[task]=$task[id];
+}
+function campaign_expired($campaign){
+    $query = 'SELECT * FROM crowdsourcing.campaign WHERE id=$1';
+    $values = array(1=>$campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "expired", $query);
+    $res = pg_execute($db, "expired", $values);
+    $camp = pg_fetch_array($res, 0);
+    if(strtotime($camp[end_date]) < time()){
+        return true;
+        pg_free_result($res);
+        close_pg_connection($db);
+    }
+    return false;
+    pg_free_result($res);
+    close_pg_connection($db);
 }
 function assign_task_to_worker($task, $worker){
     $query = 'INSERT INTO crowdsourcing.recives_task(task, worker) VALUES($1, $2);';
