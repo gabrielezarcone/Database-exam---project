@@ -117,9 +117,9 @@
                     <div class="uk-inline">
                         <span class="uk-form-icon" uk-icon="icon: bolt"></span>
                         <input class="uk-input" type="text"  name="user_name_W" value="<?php print($_SESSION[user])?>" readonly>
-                            <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:1">
-                                <div class="uk-card uk-card-body uk-card-default uk-alert-danger" uk-alert>User Names are not editable</div>
-                            </div>
+                        <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:1">
+                            <div class="uk-card uk-card-body uk-card-default uk-alert-danger" uk-alert>User Names are not editable</div>
+                        </div>
                     </div>
                 </div>
 

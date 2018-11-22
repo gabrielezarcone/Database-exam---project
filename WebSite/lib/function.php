@@ -36,7 +36,7 @@ function next_page($url, $check_arr){
 
 
 function show_campaigns_W($user){
-    $query = "SELECT name, id
+    $query = "SELECT name, id, end_date
                 FROM crowdsourcing.joins_campaign AS JC JOIN crowdsourcing.campaign AS C ON JC.campaign=C.id
                 WHERE JC.worker = $1;";
     $values = array(1=>$user);
@@ -49,7 +49,22 @@ function show_campaigns_W($user){
     }
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        print('<a href="worker.php?campaign='.$campaign[id].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
+        if(campaign_expired($campaign[id])){
+            print(' <a href="worker.php?campaign='.$campaign[id].'">
+                    <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div>
+                    <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:0">
+                        <div class="uk-card uk-card-body uk-card-default uk-alert-danger" uk-alert>Expired on '.$campaign[end_date].'</div>
+                    </div>
+                    </a>');
+        }
+        else{
+            print(' <a href="worker.php?campaign='.$campaign[id].'">
+                    <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div>
+                    <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:0">
+                        <div class="uk-card uk-card-body uk-card-default uk-alert-warning" uk-alert>Expires on '.$campaign[end_date].'</div>
+                    </div>
+                    </a>');
+        }
     }
     pg_free_result($res);
     close_pg_connection($db);
@@ -489,13 +504,13 @@ function campaign_expired($campaign){
     $res = pg_execute($db, "expired", $values);
     $camp = pg_fetch_array($res, 0);
     if(strtotime($camp[end_date]) < time()){
-        return true;
         pg_free_result($res);
-        close_pg_connection($db);
+        force_pg_connection($db);
+        return true;
     }
-    return false;
     pg_free_result($res);
-    close_pg_connection($db);
+    force_pg_connection($db);
+    return false;
 }
 function assign_task_to_worker($task, $worker){
     $query = 'INSERT INTO crowdsourcing.recives_task(task, worker) VALUES($1, $2);';
