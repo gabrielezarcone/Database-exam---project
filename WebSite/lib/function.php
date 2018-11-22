@@ -72,7 +72,7 @@ function show_campaigns_W($user){
     return $numrows;
 }
 function show_campaigns_R($user){
-    $query = "SELECT name, id
+    $query = "SELECT name, id, end_date
                 FROM crowdsourcing.campaign AS C 
                 WHERE C.requester = $1;";
     $values = array(1=>$user);
@@ -85,7 +85,22 @@ function show_campaigns_R($user){
     }
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
-        print('<a href="requester.php?campaign='.$campaign[1].'"><div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div></a>');
+        if(campaign_expired($campaign[id])){
+            print(' <a href="requester.php?campaign='.$campaign[id].'">
+                    <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div>
+                    <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:0">
+                        <div class="uk-card uk-card-body uk-card-default uk-alert-danger" uk-alert>Expired on '.$campaign[end_date].'</div>
+                    </div>
+                    </a>');
+        }
+        else{
+            print(' <a href="requester.php?campaign='.$campaign[id].'">
+                    <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div>
+                    <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:0">
+                        <div class="uk-card uk-card-body uk-card-default uk-alert-warning" uk-alert>Expires on '.$campaign[end_date].'</div>
+                    </div>
+                    </a>');
+        }
     }
     pg_free_result($res);
     close_pg_connection($db);
