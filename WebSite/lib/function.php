@@ -426,9 +426,7 @@ function get_answers_task($campaign, $task){
     return $answers;
 }
 function show_card_R($campaign){
-    $query = 'SELECT *
-                FROM crowdsourcing.task
-                WHERE campaign=$1';
+    $query = 'SELECT * FROM camp_tasks($1)';
     $values = array(1=>$campaign);
     $db = open_pg_connection();
     $res = pg_prepare($db, "tasks", $query);

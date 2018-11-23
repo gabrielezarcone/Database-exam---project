@@ -136,14 +136,10 @@ $$ LANGUAGE plpgsql;
 --- this function shows task contained in a campaign ----
 
 CREATE OR REPLACE FUNCTION camp_tasks (INTEGER) --integer: campaign 
-RETURNS SETOF INTEGER as $$
+RETURNS TABLE(id INTEGER, description crowdsourcing.task.description%TYPE, title crowdsourcing.task.title%TYPE, n_workers crowdsourcing.task.n_workers%TYPE, threshold crowdsourcing.task.threshold%TYPE, valid_bit crowdsourcing.task.valid_bit%TYPE, campaign crowdsourcing.task.campaign%TYPE, pay_type crowdsourcing.task.pay_type%TYPE, pay_description crowdsourcing.task.pay_description%TYPE) as $$
     DECLARE i crowdsourcing.task.id%TYPE;
     BEGIN
-        FOR i IN SELECT id FROM crowdsourcing.task AS T WHERE T.campaign=$1
-        LOOP
-            RETURN NEXT i;
-        END LOOP; 
-        RETURN;
+        RETURN QUERY SELECT * FROM crowdsourcing.task AS T WHERE T.campaign=$1;
     END
 $$ LANGUAGE plpgsql;
 
