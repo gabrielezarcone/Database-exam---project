@@ -27,7 +27,7 @@
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 cards-container">
-            <?php show_card_R($_GET[campaign]); ?>
+            <?php $show=show_card_R($_GET[campaign]); ?>
             
         </div>
         <div class="uk-width-1-4 card-container">
@@ -36,7 +36,15 @@
                 <ul class="uk-list">
                     <li><h4>User_Name: </h4><?php print($_SESSION[user]) ?></li>
                     <li><h4>Number of created campaings: </h4> <?php print($num_camp); ?> </li>
-                    <li><h4>Success rate: </h4>@@@@</li>
+                </ul>
+            </div>
+            <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+                <h2 style="color: var(--requester-color)">Campaign Stats</h2>
+                <ul class="uk-list">
+                    <?php $stat=campaign_stat($_SESSION[campaign])?>
+                    <li><h4>Task Number: </h4> <?php print($stat[num_task]); ?> </li>
+                    <li><h4>Completed Task: </h4> <?php print($show[completed_num]); ?> </li>
+                    <li><h4>Completed Task (%): </h4> <?php print($stat[percent]); ?> </li>
                 </ul>
             </div>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top">

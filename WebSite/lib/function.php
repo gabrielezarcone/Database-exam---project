@@ -425,6 +425,27 @@ function get_answers_task($campaign, $task){
     close_pg_connection($db);
     return $answers;
 }
+function campaign_stat($campaign){
+    $query = 'SELECT * FROM crowdsourcing.task WHERE campaign=$1';
+    $values = array(1=>$campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "tasks", $query);
+    $res = pg_execute($db, "tasks", $values);
+    $num_task=pg_numrows($res);
+    
+    $query = 'SELECT * FROM completed_percentage($1)';
+    $values = array(1=>$campaign);
+    $res2 = pg_prepare($db, "percent", $query);
+    $res2 = pg_execute($db, "percent", $values);
+    $percent = pg_fetch_array($res2, 0);
+
+
+    pg_free_result($res);
+    pg_free_result($res2);
+    close_pg_connection($db);
+
+    return array('num_task'=>$num_task, 'percent'=>$percent[0]);
+}
 function show_card_R($campaign){
     $query = 'SELECT * FROM camp_tasks($1)';
     $values = array(1=>$campaign);
@@ -464,20 +485,21 @@ function show_card_R($campaign){
         $answers = get_answers_task($campaign, $task[id]);
         $keywords = get_keyword_task($campaign, $task[id]);
 
-       
-        if(in_array($task[id], $completed_tasks)){
-            $completed = '✅';
-        }
-        else{
-            $completed = '';
-        }
-        if(array_key_exists($task[id] , $right_ans)){
-            $right = '  <div class="uk-alert-warning" uk-alert>
-                            <p> The rigth answer is: <b>'.$right_ans[$task[id]].'</b></p>
-                        </div>';
-        }
-        else{
-            $right = "";
+        if($completed_tasks!=null && $right_ans!=null){
+            if(in_array($task[id], $completed_tasks)){
+                $completed = '✅';
+            }
+            else{
+                $completed = '';
+            }
+            if(array_key_exists($task[id] , $right_ans)){
+                $right = '  <div class="uk-alert-warning" uk-alert>
+                                <p> The rigth answer is: <b>'.$right_ans[$task[id]].'</b></p>
+                            </div>';
+            }
+            else{
+                $right = "";
+            }
         }
         
 
@@ -504,6 +526,7 @@ function show_card_R($campaign){
     pg_free_result($res);
     pg_free_result($res2);
     close_pg_connection($db);
+    return array('completed_num'=>$numrows_completed);
 }
 function show_card_W($worker, $campaign){
     $query =   'SELECT * FROM best_task($1,$2)';
