@@ -1,12 +1,15 @@
 <!DOCTYPE html5>
+
+<?php
+    session_start();
+?>
+
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once("lib/header.php")?>
-    <?php include_once("lib/navbarHome.php");
-    session_start();
-    print_r($_SESSION);?>
+    <?php include_once("lib/navbarHome.php")?>
     <title>Oak_Sourcing</title>
 </head>
 <body>

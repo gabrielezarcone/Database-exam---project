@@ -5,6 +5,7 @@
             <ul class="uk-navbar-nav">
                 <li class="uk-active"><a href="index.php">Home</a></li>
                 <li><a href="requester.php">My Profile</a></li>
+                <li><a href="top10.php">Top10</a></li>
                 <li><a href="create_camp.php">Create campaign</a></li>    
                 <li><a href="create_task.php">Create task</a></li>    
             </ul>

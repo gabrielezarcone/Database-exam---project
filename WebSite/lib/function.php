@@ -659,4 +659,56 @@ function answer_percent($task, $answer){
     }
 }
 
+function show_top10($campaign){
+    $query = 'SELECT * from top10($1)';
+    $values = array(1=>$campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "top10", $query);
+    $res = pg_execute($db, "top10", $values);
+    $numrows = pg_numrows($res);
+
+    /*<table class="uk-table">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Worker</th>
+                <th>Rigth answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+            </tr>
+            <tr>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+            </tr>
+        </tbody>
+    </table>*/
+    print(' <table class="uk-table">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Worker</th>
+                    <th>Rigth answer</th>
+                </tr>
+            </thead>');
+    print(' <tbody>');
+    for ($i=0; $i < $numrows; $i++) { 
+        $worker = pg_fetch_array($res, $i);
+        print(' <tr>
+                    <td>'.($i+1).'</td>
+                    <td>'.$worker[worker].'</td>
+                    <td>'.$worker[score].'</td>
+                </tr>');
+    }
+    print('     </tbody>
+            </table>');
+    pg_free_result($res);
+    close_pg_connection($db);
+}
+
 ?>
