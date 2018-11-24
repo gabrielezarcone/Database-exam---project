@@ -438,15 +438,36 @@ function show_card_R($campaign){
     else if($numrows==0){
         print('<h3 class="uk-text-center uk-text-muted"> There are no task in this Campaign</h3>');
     }
+
+    $query_ans = 'SELECT * FROM task_result($1)';
+    $values_ans = array(1=>$campaign);
+    $res2 = pg_prepare($db, "right_ans", $query_ans);
+    $res2 = pg_execute($db, "right_ans", $values_ans);
+    $numrows_results = pg_numrows($res2);
+    for($i=0; $i<$numrows_results; $i++){
+        $row = pg_fetch_array($res2, $i, PGSQL_NUM);
+        $right_ans[$row[0]]= $row[1]; 
+    }
+
     for($i=0; $i<$numrows; $i++){
         $task = pg_fetch_array($res, $i);
         $answers = get_answers_task($campaign, $task[id]);
         $keywords = get_keyword_task($campaign, $task[id]);
+
+        if(array_key_exists($task[id] , $right_ans)){
+            $right = '  <div class="uk-alert-warning" uk-alert>
+                            <p> The rigth answer is: <b>'.$right_ans[$task[id]].'</b></p>
+                        </div>';
+        }
+        else{
+            $right = "";
+        }
         
         print('
             <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
                 <h1 class="card" style="color: white;">'.$task[title].'</h1>
-                <h2 class="card" style="color: white;">'.$task[description].'</h2>
+                <h2 class="card" style="color: white;">'.$task[description].'</h2>'.
+                $right.'
                 <div class="uk-card-footer">');
                     foreach ($keywords as $key => $keyword) {
                         print('<span class="uk-label uk-label-warning" style="margin-left:5px">#'.$keyword.' </span>');
@@ -462,6 +483,7 @@ function show_card_R($campaign){
         
     }
     pg_free_result($res);
+    pg_free_result($res2);
     close_pg_connection($db);
 }
 function show_card_W($worker, $campaign){

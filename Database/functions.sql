@@ -145,7 +145,7 @@ $$ LANGUAGE plpgsql;
 
 --- this function shows results for each task of a campaign ---
 
-CREATE OR REPLACE FUNCTION task_result (INTEGER) --integer: task
+CREATE OR REPLACE FUNCTION task_result (INTEGER) --integer: campaign
 RETURNS TABLE(task INTEGER, answer VARCHAR(100))  as $$
     DECLARE tsk crowdsourcing.task.id%TYPE;
     BEGIN
