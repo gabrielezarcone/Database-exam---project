@@ -438,7 +438,17 @@ function show_card_R($campaign){
     else if($numrows==0){
         print('<h3 class="uk-text-center uk-text-muted"> There are no task in this Campaign</h3>');
     }
-
+    
+    $query_ans = 'SELECT * FROM completed_task($1)';
+    $values_ans = array(1=>$campaign);
+    $res2 = pg_prepare($db, "completed_task", $query_ans);
+    $res2 = pg_execute($db, "completed_task", $values_ans);
+    $numrows_completed = pg_numrows($res2);
+    for($i=0; $i<$numrows_completed; $i++){
+        $row = pg_fetch_array($res2, $i, PGSQL_NUM);
+        $completed_tasks[$i]= $row[0]; 
+    }
+    
     $query_ans = 'SELECT * FROM task_result($1)';
     $values_ans = array(1=>$campaign);
     $res2 = pg_prepare($db, "right_ans", $query_ans);
@@ -454,6 +464,13 @@ function show_card_R($campaign){
         $answers = get_answers_task($campaign, $task[id]);
         $keywords = get_keyword_task($campaign, $task[id]);
 
+       
+        if(in_array($task[id], $completed_tasks)){
+            $completed = '✅';
+        }
+        else{
+            $completed = '';
+        }
         if(array_key_exists($task[id] , $right_ans)){
             $right = '  <div class="uk-alert-warning" uk-alert>
                             <p> The rigth answer is: <b>'.$right_ans[$task[id]].'</b></p>
@@ -463,9 +480,11 @@ function show_card_R($campaign){
             $right = "";
         }
         
+
+        
         print('
             <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-requester myCard">
-                <h1 class="card" style="color: white;">'.$task[title].'</h1>
+                <h1 class="card" style="color: white;">'.$task[title].' '.$completed.'</h1>
                 <h2 class="card" style="color: white;">'.$task[description].'</h2>'.
                 $right.'
                 <div class="uk-card-footer">');
