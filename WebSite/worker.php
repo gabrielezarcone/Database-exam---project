@@ -2,6 +2,11 @@
     include_once("lib/function.php");
     session_start();
 
+    if(isset($_GET[logout])){
+        session_destroy();
+        print('<meta http-equiv="refresh" content="0; url=index.php">');
+    }
+
     unset($_SESSION['result_pw']);
 
 

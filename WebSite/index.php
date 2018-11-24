@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once("lib/header.php")?>
-    <?php include_once("lib/navbarHome.php")?>
+    <?php include_once("lib/navbarHome.php");
+    session_start();
+    print_r($_SESSION);?>
     <title>Oak_Sourcing</title>
 </head>
 <body>

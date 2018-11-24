@@ -17,6 +17,12 @@
                         <?php print($_SESSION[user]); ?>
                     </a>
                 </li>
+                <li>
+                    <a href="requester.php?logout=true">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: push"></span>
+                        LogOut
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

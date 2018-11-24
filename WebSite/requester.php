@@ -1,6 +1,10 @@
 <?php
     session_start();
     include_once("lib/function.php");
+    if(isset($_GET[logout])){
+        session_destroy();
+        print('<meta http-equiv="refresh" content="0; url=index.php">');
+    }
     unset($_SESSION['result_pw']);
     $_SESSION[campaign] = $_GET[campaign];
 ?>
@@ -44,7 +48,7 @@
                     <?php $stat=campaign_stat($_SESSION[campaign])?>
                     <li><h4>Task Number: </h4> <?php print($stat[num_task]); ?> </li>
                     <li><h4>Completed Task: </h4> <?php print($show[completed_num]); ?> </li>
-                    <li><h4>Completed Task (%): </h4> <?php print($stat[percent]); ?> </li>
+                    <li><h4>Completed Task (%): </h4> <?php print($stat[percent]); ?>% </li>
                 </ul>
             </div>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top">
