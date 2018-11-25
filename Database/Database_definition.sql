@@ -33,6 +33,7 @@ CREATE TABLE requester(
     name VARCHAR(20),
     surname VARCHAR(20),
     password VARCHAR(20) NOT NULL,
+    accepted BOOLEAN DEFAULT FALSE NOT NULL,
     CHECK(user_name <> ""),
     CHECK(password <> "")
 );

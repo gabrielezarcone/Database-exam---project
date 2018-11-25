@@ -116,13 +116,19 @@
                     <form action="?active=requester" method="POST">
                         <?php
                             $db = open_pg_connection();
-                            $query = 'SELECT user_name, password from crowdsourcing.requester as r WHERE r.user_name=$1;';
+                            $query = 'SELECT user_name, password, accepted from crowdsourcing.requester as r WHERE r.user_name=$1;';
                             $res = pg_prepare($db, "requester", $query);
                             $values = array($requester[user]);
                             $res = pg_execute($db, "requester", $values);
                             $result = pg_fetch_array($res);
                             close_pg_connection($db);
-                            if(isset($result[user_name]) && $_SESSION[requester][password]==$result[password]){
+                            if(isset($result[user_name]) && $_SESSION[requester][password]==$result[password] && $result[accepted]==f){
+                                print('<div class="uk-alert-warning" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Sorry '.$_SESSION[requester][user].', still not approved</p>
+                                        </div>');
+                            }
+                            else if(isset($result[user_name]) && $_SESSION[requester][password]==$result[password]){
                                 print('<div class="uk-alert-success" uk-alert>
                                             <a class="uk-alert-close" uk-close></a>
                                             <p>Hi '.$_SESSION[requester][user].', welcome back</p>

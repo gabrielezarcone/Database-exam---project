@@ -17,7 +17,7 @@
 <div uk-grid style="margin-top:2%;">
         <div class="uk-width-1-3"></div>
         <div class="uk-width-1-3">
-            <h1 class="uk-heading-primary">Add skill</h1>
+            <h1 class="uk-heading-primary">Join Campaign</h1>
             <form action="#" method="POST">
                 <?php
                     if(isset($_POST[campaign])){
