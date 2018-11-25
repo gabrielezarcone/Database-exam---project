@@ -693,7 +693,7 @@ function show_top10($campaign){
                 <tr>
                     <th>Position</th>
                     <th>Worker</th>
-                    <th>Rigth answer</th>
+                    <th>Right answer</th>
                 </tr>
             </thead>');
     print(' <tbody>');
@@ -710,5 +710,52 @@ function show_top10($campaign){
     pg_free_result($res);
     close_pg_connection($db);
 }
+function worker_stat($campaign, $worker){
+    $query = 'SELECT * from standing_position($1, $2)';
+    $values = array(1=>$campaign, $worker);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "standing_position", $query);
+    $res = pg_execute($db, "standing_position", $values);
+    $position = pg_fetch_array($res, 0);
+    
+    $query = 'SELECT * from answered_task_num($1)';
+    $values = array(1=>$worker);
+    $db = open_pg_connection();
+    $res2 = pg_prepare($db, "answered_task_num", $query);
+    $res2 = pg_execute($db, "answered_task_num", $values);
+    $answered = pg_fetch_array($res2, 0);
+    
+    $query = 'SELECT * from correct_task_num($1)';
+    $values = array(1=>$worker);
+    $db = open_pg_connection();
+    $res3 = pg_prepare($db, "correct_task_num", $query);
+    $res3 = pg_execute($db, "correct_task_num", $values);
+    $correct = pg_fetch_array($res3, 0);
+    
+    $query = 'SELECT * from answered_task_num($1, $2)';
+    $values = array(1=>$worker, $campaign);
+    $db = open_pg_connection();
+    $res4 = pg_prepare($db, "answered_task_num_camp", $query);
+    $res4 = pg_execute($db, "answered_task_num_camp", $values);
+    $answered_camp = pg_fetch_array($res4, 0);
+    
+    $query = 'SELECT * from correct_task_num($1, $2)';
+    $values = array(1=>$worker, $campaign);
+    $db = open_pg_connection();
+    $res5 = pg_prepare($db, "correct_task_num_camp", $query);
+    $res5 = pg_execute($db, "correct_task_num_camp", $values);
+    $correct_camp = pg_fetch_array($res5, 0);
 
+
+    pg_free_result($res);
+    pg_free_result($res2);
+    pg_free_result($res3);
+    close_pg_connection($db);
+
+    return array('position'=>$position[pos],
+                 'answered'=>$answered[answered], 
+                 'correct'=>$correct[correct],
+                 'answered_camp'=>$answered_camp[answered],
+                 'correct_camp'=>$correct_camp[correct]);
+}
 ?>

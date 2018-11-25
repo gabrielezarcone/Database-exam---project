@@ -24,7 +24,7 @@
     <div uk-grid style="margin-top:2%;">
         <div class="uk-width-1-3"></div>
         <div class="uk-width-1-3">
-            <h1 class="uk-heading-primary">Create Task</h1>
+            <h1 class="uk-heading-primary">Top 10</h1>
             <form action="top10.php" method="POST">
                 
                 <div class="uk-margin">

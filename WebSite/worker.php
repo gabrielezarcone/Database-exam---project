@@ -44,13 +44,36 @@
         <?php show_card_W($_SESSION[user], $_SESSION[campaign]) ?>
         
         </div>
+
+        <?php $stat=worker_stat($_SESSION[campaign], $_SESSION[user]);?>
         <div class="uk-width-1-4 card-container">
             <div class="uk-card uk-card-default uk-card-body ">
                 <h2 style="color: var(--worker-color)">Worker info   <a href="worker_settings.php" class="uk-icon-button uk-margin-small-right" uk-icon="cog" style="background-color: var(--worker-color); color:black"></a></h2>
                 <ul class="uk-list">
                     <li><h4>User_Name: </h4><?php print($_SESSION[user]) ?></li>
                     <li><h4>Number of joined campaings: </h4> <?php print($num_camp); ?> </li>
-                    <li><h4>Success rate: </h4>@@@@</li>
+                    <li><h4>Task answered: </h4><?php print($stat[answered]);?></li>
+                    <li><h4>Task answered correctly: </h4><?php print($stat[correct]); ?></li>
+                    <li><h4>Success rate: </h4><?php    if($stat[answered]!=0){
+                                                            print(($stat[correct]*100)/$stat[answered].'%');
+                                                        }
+                                                        else{
+                                                            print('0%');
+                                                        }; ?></li>
+                </ul>
+            </div>
+            <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+                <h2 style="color: var(--worker-color)">In this campaing</h2>
+                <ul class="uk-list">
+                    <li><h4>Standing position: </h4><?php print($stat[position]); ?></li>
+                    <li><h4>Task answered: </h4><?php print($stat[answered_camp]);?></li>
+                    <li><h4>Task answered correctly: </h4><?php print($stat[correct_camp]); ?></li>
+                    <li><h4>Success rate: </h4><?php    if($stat[answered_camp]!=0){
+                                                            print(($stat[correct_camp]*100)/$stat[answered_camp].'%');
+                                                        }
+                                                        else{
+                                                            print('0%');
+                                                        }; ?></li>
                 </ul>
             </div>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top">

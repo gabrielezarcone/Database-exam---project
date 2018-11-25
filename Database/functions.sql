@@ -234,27 +234,49 @@ RETURNS table(pos BIGINT) AS $$
 $$ LANGUAGE plpgsql;
 
 
----- this function returns number of task answered by a worker
-CREATE OR REPLACE FUNCTION answered_task_num(crowdsourcing.worker.user_name%TYPE)
+---- this function returns number of task answered by a worker  in a campaign
+CREATE OR REPLACE FUNCTION answered_task_num(crowdsourcing.worker.user_name%TYPE, crowdsourcing.campaign.id%TYPE)
 RETURNS table(answered BIGINT) as $$
     DECLARE
     BEGIN
         RETURN query    SELECT COUNT(*)
-                        FROM crowdsourcing.recives_task
-                        WHERE worker=$1;
+                        FROM crowdsourcing.recives_task as R join crowdsourcing.task as T ON T.id=R.task 
+                        WHERE worker=$1 and T.campaign=$2;
     END;
 $$ LANGUAGE plpgsql;
 
----- this function returns number of task answered by a worker
-CREATE OR REPLACE FUNCTION correct_task_num(crowdsourcing.worker.user_name%TYPE)
+---- this function returns number of task answered correctly by a worker in a campaign
+CREATE OR REPLACE FUNCTION correct_task_num(crowdsourcing.worker.user_name%TYPE, crowdsourcing.campaign.id%TYPE)
 RETURNS table(correct BIGINT) as $$
     DECLARE
     BEGIN
         RETURN query    SELECT COUNT(*)
-                        FROM crowdsourcing.recives_task
-                        WHERE worker=$1 and valid_bit_user=true;
+                        FROM crowdsourcing.recives_task as R join crowdsourcing.task as T ON T.id=R.task
+                        WHERE worker=$1 and T.campaign=$2 and valid_bit_user=true;
     END;
 $$ LANGUAGE plpgsql;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---- this function returns number of task answered by a worker 
+CREATE OR REPLACE FUNCTION answered_task_num(crowdsourcing.worker.user_name%TYPE)
+RETURNS table(answered BIGINT) as $$
+    DECLARE
+    BEGIN
+        RETURN query    SELECT COUNT(*)
+                        FROM crowdsourcing.recives_task  
+                        WHERE worker=$1;
+    END;
+$$ LANGUAGE plpgsql;
+
+---- this function returns number of task answered correctly by a worker
+CREATE OR REPLACE FUNCTION correct_task_num(crowdsourcing.worker.user_name%TYPE)
+RETURNS table(correct BIGINT) as $$
+    DECLARE
+    BEGIN
+        RETURN query    SELECT COUNT(*)
+                        FROM crowdsourcing.recives_task 
+                        WHERE worker=$1 and valid_bit_user=true;
+    END;
+$$ LANGUAGE plpgsql;
