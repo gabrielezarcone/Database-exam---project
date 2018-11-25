@@ -758,4 +758,52 @@ function worker_stat($campaign, $worker){
                  'answered_camp'=>$answered_camp[answered],
                  'correct_camp'=>$correct_camp[correct]);
 }
+
+function accepted_requester(){
+    $db = open_pg_connection();
+
+    if(isset($_POST[user_name])){
+        $query = 'UPDATE crowdsourcing.requester SET accepted=true WHERE user_name=$1;';
+        $values = array(1=>$_POST[user_name]);
+        $res1 = pg_prepare($db, "update_accepted", $query);
+        $res1 = pg_execute($db, "update_accepted", $values);
+        pg_free_result($res1);
+    }
+
+
+
+    $query = 'SELECT * from crowdsourcing.requester WHERE accepted=FALSE';
+    $values = array();
+    $res = pg_prepare($db, "accepted", $query);
+    $res = pg_execute($db, "accepted", $values);
+    $numrows = pg_numrows($res);
+
+    print('<table class="uk-table">');
+    print(' <thead>
+                <tr>
+                    <th>Requester username</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>');
+    for ($i=0; $i<$numrows ; $i++) { 
+        $row = pg_fetch_array($res, $i);
+        print(' 
+                <form action="#" method="POST">
+                    <tr>
+                    <td><input class="uk-input" type="text" name="user_name" value="'.$row[user_name].'" readonly></td>
+                    <td><input class="uk-input" type="text" name="name" value="'.$row[name].'" readonly></td>
+                    <td><input class="uk-input" type="text" name="surname" value="'.$row[surname].'" readonly></td>
+                    <td><button class="uk-button uk-button-default requester">Accept</button></td>
+                    </tr>
+                </form>');
+    }
+    print('     </tbody>
+            </table>');
+
+    pg_free_result($res);
+    close_pg_connection($db);
+}
 ?>
