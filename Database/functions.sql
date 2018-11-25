@@ -120,6 +120,7 @@ RETURNS TABLE(id INTEGER, title VARCHAR(50), description VARCHAR(280)) AS $$
                                             WHERE worker=$2) AND T.id NOT IN(SELECT task
                                                                             FROM crowdsourcing.recives_task
                                                                             WHERE worker=$2)
+        ORDER BY HK.score desc
         LIMIT 1;
     END;
 $$ LANGUAGE plpgsql;
