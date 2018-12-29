@@ -42,7 +42,11 @@
                 <div class="uk-margin">
                     <p>Score</p>
                     <div class="uk-margin">
-                        <input class="uk-range" type="range" name="score" value="5" min="0" max="10" step="1">
+                        <input class="uk-range" type="range" name="score" id="score" value="5" min="0" max="10" step="1" onmousemove="show_number_range('score','num')" onclick="show_number_range('score','num')">
+                        <p id="num"></p>
+                        <script>
+                            show_number_range('score','num');
+                        </script>
                     </div>
                 </div>
                 

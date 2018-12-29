@@ -23,3 +23,8 @@ function add_answers_form(id){
     addElement(id, 'div', 'answer'+i, html);
     i++;
 }
+
+function show_number_range(id, numId){
+    var x = document.getElementById(id).value;
+    document.getElementById(numId).innerHTML = x;
+}
