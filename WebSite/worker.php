@@ -62,6 +62,7 @@
                                                         }; ?></li>
                 </ul>
             </div>
+            <?php if(isset($_SESSION[campaign])){ ?>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top">
                 <h2 style="color: var(--worker-color)">In this campaing</h2>
                 <ul class="uk-list">
@@ -76,6 +77,7 @@
                                                         }; ?></li>
                 </ul>
             </div>
+            <?php }?>
             <div class="uk-card uk-card-default uk-card-body uk-margin-top">
                 <h2 style="color: var(--worker-color)">Skills</h2>
                 <ul class="uk-list">
