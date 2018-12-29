@@ -52,34 +52,33 @@
         </div>
         <div class="uk-width-1-4 card-container">
 
-            <?php 
-                if($_SESSION[user]!='admin'){
-                    print('
-                            <div class="uk-card uk-card-default uk-card-body ">
-                                <h2 style="color: var(--requester-color)">Worker info</h2>
-                                <ul class="uk-list">
-                                    <li><h4>User_Name: </h4><?php print($_SESSION[user]) ?></li>
-                                    <li><h4>Number of created campaings: </h4> <?php print($num_camp); ?> </li>
-                                </ul>
-                            </div>
-                            <div class="uk-card uk-card-default uk-card-body uk-margin-top">
-                                <h2 style="color: var(--requester-color)">Campaign Stats</h2>
-                                <ul class="uk-list">
-                                    <?php $stat=campaign_stat($_SESSION[campaign])?>
-                                    <li><h4>Task Number: </h4> <?php print($stat[num_task]); ?> </li>
-                                    <li><h4>Completed Task: </h4> <?php print($show[completed_num]); ?> </li>
-                                    <li><h4>Completed Task (%): </h4> <?php print($stat[percent]); ?>% </li>
-                                </ul>
-                            </div>
-                            <div class="uk-card uk-card-default uk-card-body uk-margin-top">
-                                <h2 style="color: var(--requester-color)"> This Campaign Keywords</h2>
-                                <ul class="uk-list">
-                                    <?php show_keyword_list($_SESSION[campaign]) ?>
-                                </ul>
-                            </div>
-                    ');
-                }
-            ?>
+            <?php if($_SESSION[user]!='admin'){ ?>
+            
+                <div class="uk-card uk-card-default uk-card-body ">
+                    <h2 style="color: var(--requester-color)">Requester info</h2>
+                    <ul class="uk-list">
+                        <li><h4>User_Name: </h4><?php print($_SESSION[user]) ?></li>
+                        <li><h4>Number of created campaings: </h4> <?php print($num_camp); ?> </li>
+                    </ul>
+                </div>
+                <?php if(isset($_SESSION[campaign])){ ?>
+                    <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+                        <h2 style="color: var(--requester-color)">Campaign Stats</h2>
+                        <ul class="uk-list">
+                            <?php $stat=campaign_stat($_SESSION[campaign])?>
+                            <li><h4>Task Number: </h4> <?php print($stat[num_task]); ?> </li>
+                            <li><h4>Completed Task: </h4> <?php print($show[completed_num]); ?> </li>
+                            <li><h4>Completed Task (%): </h4> <?php print($stat[percent]); ?>% </li>
+                        </ul>
+                    </div>
+                    <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+                        <h2 style="color: var(--requester-color)"> This Campaign Keywords</h2>
+                        <ul class="uk-list">
+                            <?php show_keyword_list($_SESSION[campaign]) ?>
+                        </ul>
+                    </div>
+                <?php }?>
+            <?php }?>
         </div>
     </div>
     
