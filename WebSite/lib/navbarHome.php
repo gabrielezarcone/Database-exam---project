@@ -8,6 +8,9 @@
     <div class="uk-h1 displayFont uk-position-large uk-position-center"> 
         the crouwdsourcing engine for any task
         <p class="uk-h1 displayFont-small uk-text-center">any!</p>
+        <div align="center" class="uk-animation-slide-top">
+            <img src="src/arrow.png" height="5%" width="5%" style="opacity: 0.5;">
+        </div>
     </div>
 </div>
     <div class="uk-position-top">
