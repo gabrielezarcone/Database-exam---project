@@ -1,8 +1,13 @@
-<!DOCTYPE html5>
-
-<?php
+<?php 
     session_start();
+    if(isset($_SESSION[user_type]) && $_SESSION[user_type]=='worker'){
+        print('<meta http-equiv="refresh" content="0; url=worker.php">');
+    }
+    if(isset($_SESSION[user_type]) && $_SESSION[user_type]=='requester'){
+        print('<meta http-equiv="refresh" content="0; url=requester.php">');
+    }
 ?>
+<!DOCTYPE html5>
 
 <html lang="it">
 <head>

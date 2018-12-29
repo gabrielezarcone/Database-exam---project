@@ -22,11 +22,13 @@
 
     if(isset($_SESSION[worker][user]) && $_SESSION[worker][password]==$_SESSION[result_pw] && $_SESSION[worker][password]!=""){
         $_SESSION['user'] = $_SESSION[worker][user];
+        $_SESSION[user_type] = 'worker';
         unset($_SESSION[worker]);
         print('<meta http-equiv="refresh" content="0.01; url=worker.php">');
     }
     if(isset($_SESSION[requester][user]) && $_SESSION[requester][password]==$_SESSION[result_pw] && $_SESSION[requester][password]!=""){
         $_SESSION[user] = $_SESSION[requester][user];
+        $_SESSION[user_type] = 'requester';
         unset($_SESSION[requester]);
         print('<meta http-equiv="refresh" content="0.01; url=requester.php">');
     }
