@@ -91,17 +91,32 @@ $$ language plpgsql;
 CREATE OR REPLACE FUNCTION right_answer(task_id INTEGER)
 RETURNS TABLE(right_answer VARCHAR(100), num_ans BIGINT) AS $$
     DECLARE
+        valid BOOLEAN;
+        nchar VARCHAR(100); -- used for return a NULL varchar
+        nnum BIGINT;-- used for return a NULL bigint
     BEGIN
-   
-        RETURN QUERY    SELECT answer, count(all answer) as num
-                        FROM crowdsourcing.choose
-                        WHERE task = task_id 
-                        GROUP BY answer
-                        having count(all answer) >= ALL(SELECT count(all answer) as num
-                                                        FROM crowdsourcing.choose
-                                                        WHERE task = task_id 
-                                                        GROUP BY answer)
-                        ORDER BY num DESC;
+
+        nchar:=NULL;
+        nnum:=NULL;
+
+        select valid_bit
+        from crowdsourcing.task AS T
+        where T.id = task_id
+        into valid;
+
+        if(valid=true or valid=false) THEN
+            RETURN QUERY    SELECT answer, count(all answer) as num
+                            FROM crowdsourcing.choose
+                            WHERE task = task_id 
+                            GROUP BY answer
+                            having count(all answer) >= ALL(SELECT count(all answer) as num
+                                                            FROM crowdsourcing.choose
+                                                            WHERE task = task_id 
+                                                            GROUP BY answer)
+                            ORDER BY num DESC;
+        else
+            RETURN QUERY SELECT nchar, nnum;
+        end if;
     END;
 $$ language plpgsql;
 
