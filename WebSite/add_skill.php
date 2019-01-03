@@ -21,7 +21,7 @@
             <form action="#" method="POST">
                 <?php
                     if(isset($_POST[keyword])&&isset($_POST[score])){
-                        insert_keyword_work($_SESSION[user], $_POST[keyword],$_POST[score], "knowledge");
+                        insert_keyword_work($_SESSION[user], $_POST[keyword],$_POST[score], $_POST[type]);
                         print('<div class="uk-alert-success" uk-alert>
                                                 <a class="uk-alert-close" uk-close></a>
                                                 <p>Skill '.$_POST[keyword].' created</p>
@@ -37,6 +37,12 @@
                     <datalist id="skills_list">
                         <?php show_keyword_opt();?>
                     </datalist>
+                </div>
+
+                <div class="uk-margin">
+                    <p>Type</p>
+                    <input class="uk-radio" type="radio" name="type" value="knowledge" checked> Knwoledge <br>
+                    <input class="uk-radio" type="radio" name="type" value="attitude"> Attitude <br>
                 </div>
 
                 <div class="uk-margin">

@@ -24,7 +24,7 @@
                         join_campaign($_SESSION[user], $_POST[campaign]);
                         print('<div class="uk-alert-success" uk-alert>
                                                 <a class="uk-alert-close" uk-close></a>
-                                                <p>Skill '.$_POST[keyword].' created</p>
+                                                <p>Campaign joined</p>
                                             </div>');
                     }
                 ?>

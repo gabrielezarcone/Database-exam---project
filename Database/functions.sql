@@ -16,6 +16,8 @@ declare
     requested_threshold INTEGER;
     worker_id crowdsourcing.worker.user_name%TYPE;
 begin
+    -- this put at the moment the valid bit not null to be able to use righy_answer function (it will return NULL otherwise)
+    update crowdsourcing.task set valid_bit=FALSE WHERE id=NEW.task;
 
 	select COUNT(*)
 	from crowdsourcing.choose as CH 
@@ -55,6 +57,10 @@ begin
     elseif(num_workers >= worker_requested) then
         --- task update to not valid ----
         update crowdsourcing.task set valid_bit=FALSE WHERE id=NEW.task;
+
+    else
+        -- if num_workers < worker_requested the task valid bit should remain null --
+        update crowdsourcing.task set valid_bit=NULL WHERE id=NEW.task;
 
     end if;
     RETURN NEW;
@@ -104,7 +110,7 @@ RETURNS TABLE(right_answer VARCHAR(100), num_ans BIGINT) AS $$
         where T.id = task_id
         into valid;
 
-        if(valid=true or valid=false) THEN
+        if(valid=true) THEN
             RETURN QUERY    SELECT answer, count(all answer) as num
                             FROM crowdsourcing.choose
                             WHERE task = task_id 
@@ -179,7 +185,7 @@ CREATE OR REPLACE FUNCTION completed_task(INTEGER) --integer: campaign
 RETURNS SETOF INTEGER AS $$
     DECLARE 
     BEGIN
-        RETURN query SELECT id FROM crowdsourcing.task WHERE valid_bit=true AND campaign=$1;  
+        RETURN query SELECT id FROM crowdsourcing.task WHERE valid_bit IS NOT NULL AND campaign=$1;  
     END
 $$ LANGUAGE plpgsql;
 

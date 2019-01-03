@@ -97,7 +97,7 @@
                                                 <p>Hi '.$worker[name].', welcome to Oak_sourcing</p>
                                             </div>');
                                 }
-                                close_pg_connection();
+                                close_pg_connection($db);
                             }
                             else if(isset($_POST[password_W])){
                                 print('<div class="uk-alert-danger" uk-alert>
@@ -192,7 +192,7 @@
                                                 <p>Hi '.$requester[name].', welcome to Oak_sourcing</p>
                                             </div>');
                                 }
-                                close_pg_connection();
+                                close_pg_connection($db);
                             }
                             else if(isset($_POST[password_R])){
                                 print('<div class="uk-alert-danger" uk-alert>

@@ -177,7 +177,7 @@ function show_pay_opt(){
     close_pg_connection($db);
 }
 function show_keyword_opt(){
-    $query = "SELECT keyword
+    $query = "SELECT *
                 FROM crowdsourcing.keyword;";
     $values = array();
     $db = open_pg_connection();
@@ -220,7 +220,7 @@ function create_campaign($name, $reg_start, $reg_end, $start, $end, $user){
 function create_task($title, $description, $campaign, $n_workers, $threshold, $pay_type, $pay_description){
     if(isset($title)){
         $query = 'INSERT INTO crowdsourcing.task(description, title, n_workers, threshold, valid_bit, campaign, pay_type, pay_description) VALUES($1, $2, $3, $4, $5, $6, $7, $8);';
-        $values = array(1=>$description, $title, $n_workers, $threshold, 'false', $campaign, $pay_type, $pay_description);
+        $values = array(1=>$description, $title, $n_workers, $threshold, NULL, $campaign, $pay_type, $pay_description);
         $db = open_pg_connection();
         $res = pg_prepare($db, "task", $query);
         $res = pg_execute($db, "task", $values);
@@ -433,15 +433,16 @@ function campaign_stat($campaign){
     $res = pg_execute($db, "tasks", $values);
     $num_task=pg_numrows($res);
     
-    $query = 'SELECT * FROM completed_percentage($1)';
-    $values = array(1=>$campaign);
-    $res2 = pg_prepare($db, "percent", $query);
-    $res2 = pg_execute($db, "percent", $values);
-    $percent = pg_fetch_array($res2, 0);
-
+    if($num_task!=0){
+        $query = 'SELECT * FROM completed_percentage($1)';
+        $values = array(1=>$campaign);
+        $res2 = pg_prepare($db, "percent", $query);
+        $res2 = pg_execute($db, "percent", $values);
+        $percent = pg_fetch_array($res2, 0);
+        pg_free_result($res2);
+    }
 
     pg_free_result($res);
-    pg_free_result($res2);
     close_pg_connection($db);
 
     return array('num_task'=>$num_task, 'percent'=>$percent[0]);
@@ -486,18 +487,20 @@ function show_card_R($campaign){
         $keywords = get_keyword_task($campaign, $task[id]);
 
         if($completed_tasks!=null && $right_ans!=null){
-            if(in_array($task[id], $completed_tasks)){
+            if($task[valid_bit]==t){
                 $completed = '✅';
-            }
-            else{
-                $completed = '';
-            }
-            if(array_key_exists($task[id] , $right_ans)){
                 $right = '  <div class="uk-alert-warning" uk-alert>
                                 <p> The rigth answer is: <b>'.$right_ans[$task[id]].'</b></p>
                             </div>';
             }
+            else if($task[valid_bit]==f){
+                $completed = '❌';
+                $right = '  <div class="uk-alert-danger" uk-alert>
+                                <p> Not valid task</b></p>
+                            </div>';
+            }
             else{
+                $completed = '';
                 $right = "";
             }
         }
