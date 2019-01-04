@@ -3,8 +3,8 @@
     <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.php">Home</a></li>
-                <li><a href="worker.php">My Profile</a></li>
+                <li><a href="index.php">To work</a></li>
+                <li><a href="worker_stat.php">My Profile</a></li>
                 <li><a href="join_camp.php">Join Campaigns</a></li>
                 <li><a href="add_skill.php">Add Skill</a></li>
             </ul>

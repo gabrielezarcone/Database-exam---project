@@ -2,21 +2,10 @@
     include_once("lib/function.php");
     session_start();
 
-    if(isset($_GET[logout])){
-        session_destroy();
-        print('<meta http-equiv="refresh" content="0; url=index.php">');
-    }
-
     unset($_SESSION['result_pw']);
 
 
     $_SESSION[campaign] = $_GET[campaign];
-    if(isset($_POST[answer])){
-        assign_task_to_worker($_SESSION[task], $_SESSION[user]);
-        choose_answer($_SESSION[user], $_SESSION[task], $_POST[answer]);
-        unset($_SESSION[task]);
-        unset($_POST[answer]);
-    }
 ?>
 
 <!DOCTYPE html5>
@@ -34,14 +23,14 @@
         <div class="uk-width-1-4 scrollable-side ">
             <h2 style="color: var(--worker-color); text-align: center;">Campaigns</h2>
             <div class="uk-flex uk-flex-column">
-                <?php $num_camp = show_campaigns_W($_SESSION[user],"worker.php"); ?>
+                <?php $num_camp = show_campaigns_W($_SESSION[user],"worker_stat.php"); ?>
             </div>
         </div>
 
         <div class="uk-width-1-4"></div>
 
         <div class="uk-width-1-2 card-container">
-        <?php show_card_W($_SESSION[user], $_SESSION[campaign]) ?>
+        <?php show_card_W_stat($_SESSION[user], $_SESSION[campaign]) ?>
         
         </div>
 

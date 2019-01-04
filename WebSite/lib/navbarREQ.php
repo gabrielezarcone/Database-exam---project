@@ -3,7 +3,6 @@
     <nav class="uk-navbar-container" uk-navbar>        
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <li class="uk-active"><a href="index.php">Home</a></li>
                 <li><a href="requester.php">My Profile</a></li>
                 <li><a href="top10.php">Top10</a></li>
                 <li><a href="create_camp.php">Create campaign</a></li>    

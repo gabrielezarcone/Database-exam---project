@@ -35,7 +35,7 @@ function next_page($url, $check_arr){
 */
 
 
-function show_campaigns_W($user){
+function show_campaigns_W($user, $page){
     $query = "SELECT name, id, end_date
                 FROM crowdsourcing.joins_campaign AS JC JOIN crowdsourcing.campaign AS C ON JC.campaign=C.id
                 WHERE JC.worker = $1;";
@@ -50,7 +50,7 @@ function show_campaigns_W($user){
     for($i=0; $i<$numrows; $i++){
         $campaign = pg_fetch_array($res, $i);
         if(campaign_expired($campaign[id])){
-            print(' <a href="worker.php?campaign='.$campaign[id].'">
+            print(' <a href="'.$page.'?campaign='.$campaign[id].'">
                     <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div>
                     <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:0">
                         <div class="uk-card uk-card-body uk-card-default uk-alert-danger" uk-alert>Expired on '.$campaign[end_date].'</div>
@@ -58,7 +58,7 @@ function show_campaigns_W($user){
                     </a>');
         }
         else{
-            print(' <a href="worker.php?campaign='.$campaign[id].'">
+            print(' <a href="'.$page.'?campaign='.$campaign[id].'">
                     <div class="uk-card uk-card-default uk-card-body uk-margin-top uk-flex-wrap-stretch">'.$campaign[0].'</div>
                     <div uk-drop="animation: uk-animation-slide-top-small; duration: 200; delay-hide:0">
                         <div class="uk-card uk-card-body uk-card-default uk-alert-warning" uk-alert>Expires on '.$campaign[end_date].'</div>
@@ -575,6 +575,105 @@ function show_card_W($worker, $campaign){
     pg_free_result($res);
     close_pg_connection($db);
     $_SESSION[task]=$task[id];
+}
+function show_card_W_stat($worker, $campaign){
+    $query = '  SELECT * 
+                FROM camp_tasks($2) AS CT 
+                    join crowdsourcing.choose AS C on CT.id=C.task
+                    join crowdsourcing.recives_task AS RT on CT.id=RT.task and C.worker=RT.worker
+                WHERE C.worker=$1';
+    $values = array(1=>$worker, $campaign);
+    $db = open_pg_connection();
+    $res = pg_prepare($db, "tasks", $query);
+    $res = pg_execute($db, "tasks", $values);
+    $numrows = pg_numrows($res);
+    if($campaign==""){
+        print('<h3 class="uk-text-center uk-text-muted"> Select a campaign</h3>');
+    }
+    else if($numrows==0){
+        print('<h3 class="uk-text-center uk-text-muted"> There are no task in this Campaign</h3>');
+    }
+    
+    $query_ans = 'SELECT * FROM completed_task($1)';
+    $values_ans = array(1=>$campaign);
+    $res2 = pg_prepare($db, "completed_task", $query_ans);
+    $res2 = pg_execute($db, "completed_task", $values_ans);
+    $numrows_completed = pg_numrows($res2);
+    for($i=0; $i<$numrows_completed; $i++){
+        $row = pg_fetch_array($res2, $i, PGSQL_NUM);
+        $completed_tasks[$i]= $row[0]; 
+    }
+    
+    $query_ans = 'SELECT * FROM task_result($1)';
+    $values_ans = array(1=>$campaign);
+    $res2 = pg_prepare($db, "right_ans", $query_ans);
+    $res2 = pg_execute($db, "right_ans", $values_ans);
+    $numrows_results = pg_numrows($res2);
+    for($i=0; $i<$numrows_results; $i++){
+        $row = pg_fetch_array($res2, $i, PGSQL_NUM);
+        $right_ans[$row[0]]= $row[1]; 
+    }
+
+    for($i=0; $i<$numrows; $i++){
+        $task = pg_fetch_array($res, $i);
+        $answers = get_answers_task($campaign, $task[id]);
+        $keywords = get_keyword_task($campaign, $task[id]);
+
+        if($completed_tasks!=null && $right_ans!=null){
+            if($task[valid_bit_user]==t && $task[valid_bit]==t){
+                $completed = '✅';
+                $right = '  <div class="uk-alert-warning" uk-alert>
+                                <p> You answered correctly: <b>'.$right_ans[$task[id]].'</b></p>
+                            </div>';
+            }
+            else if($task[valid_bit_user]==f && $task[valid_bit]==t){
+                $completed = '❌';
+                $right = '  <div class="uk-alert-warning" uk-alert>
+                                <p> You answered wrong. The right answer: <b>'.$right_ans[$task[id]].'</b></p>
+                            </div>';
+            }
+            else if($task[valid_bit_user]==f && $task[valid_bit]==f){
+                $completed = '🤷🏻‍';
+                $right = '  <div class="uk-alert-danger" uk-alert>
+                                <p> Not valid task</b></p>
+                            </div>';
+            }
+            else{
+                $completed = '';
+                $right = "";
+            }
+        }
+        
+
+        
+        print('
+            <div class="uk-card uk-card-default uk-card-body uk-animation-scale-down uk-width-expand uk-margin card-worker myCard">
+                <h1 class="card" style="color: white;">'.$task[title].' '.$completed.'</h1>
+                <h2 class="card" style="color: white;">'.$task[description].'</h2>'.
+                $right.'
+                <div class="uk-card-footer">');
+                    foreach ($keywords as $key => $keyword) {
+                        print('<span class="uk-label uk-label-warning" style="margin-left:5px">#'.$keyword.' </span>');
+                    }
+                    print('<ul class="uk-list uk-list-bullet">');
+                    foreach ($answers as $key => $answer) {
+                        if($answer==$task[answer]){
+                            print('<li>🚩 '.$answer.': '.answer_percent($task[id], $answer).'%</li>');
+                        }
+                        else{
+                            print('<li>'.$answer.': '.answer_percent($task[id], $answer).'%</li>');
+                        }
+                    }
+                    print('</ul>   
+                </div>
+            </div>
+        ');
+        
+    }
+    pg_free_result($res);
+    pg_free_result($res2);
+    close_pg_connection($db);
+    return array('completed_num'=>$numrows_completed);
 }
 function campaign_expired($campaign){
     $query = 'SELECT * FROM crowdsourcing.campaign WHERE id=$1';

@@ -17,7 +17,7 @@ declare
     worker_id crowdsourcing.worker.user_name%TYPE;
 begin
     -- this put at the moment the valid bit not null to be able to use righy_answer function (it will return NULL otherwise)
-    update crowdsourcing.task set valid_bit=FALSE WHERE id=NEW.task;
+    update crowdsourcing.task set valid_bit=true WHERE id=NEW.task;
 
 	select COUNT(*)
 	from crowdsourcing.choose as CH 
