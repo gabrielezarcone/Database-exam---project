@@ -512,6 +512,8 @@ function show_card_R($campaign){
                 <h1 class="card" style="color: white;">'.$task[title].' '.$completed.'</h1>
                 <h2 class="card" style="color: white;">'.$task[description].'</h2>'.
                 $right.'
+                <span class="uk-label" style="margin-left:5px">Threshold:'.$task[threshold].'% </span>
+                <span class="uk-label" style="margin-left:5px">Requires '.$task[n_workers].' workers</span>
                 <div class="uk-card-footer">');
                     foreach ($keywords as $key => $keyword) {
                         print('<span class="uk-label uk-label-warning" style="margin-left:5px">#'.$keyword.' </span>');
@@ -651,6 +653,8 @@ function show_card_W_stat($worker, $campaign){
                 <h1 class="card" style="color: white;">'.$task[title].' '.$completed.'</h1>
                 <h2 class="card" style="color: white;">'.$task[description].'</h2>'.
                 $right.'
+                <span class="uk-label" style="margin-left:5px">Threshold:'.$task[threshold].'% </span>
+                <span class="uk-label" style="margin-left:5px">Requires '.$task[n_workers].' workers</span>
                 <div class="uk-card-footer">');
                     foreach ($keywords as $key => $keyword) {
                         print('<span class="uk-label uk-label-warning" style="margin-left:5px">#'.$keyword.' </span>');

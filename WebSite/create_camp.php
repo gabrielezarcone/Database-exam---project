@@ -31,10 +31,48 @@
                 <?php
                     if(isset($campaign[name])&&isset($campaign[reg_start])&&isset($campaign[reg_end])&&isset($campaign[start])&&isset($campaign[end])){
                         create_campaign($campaign[name], $campaign[reg_start], $campaign[reg_end], $campaign[start], $campaign[end], $_SESSION[user]);
-                        print('<div class="uk-alert-success" uk-alert>
-                                                <a class="uk-alert-close" uk-close></a>
-                                                <p>Campaign '.$campaign[name].' created</p>
-                                            </div>');
+                        if($campaign[reg_start]<date('Y-m-d')){
+                            print('<div class="uk-alert-danger" uk-alert>
+                                                    <a class="uk-alert-close" uk-close></a>
+                                                    <p>Campaign REGISTRATION START DATE cannot be before today</p>
+                                                </div>');
+                        }
+                        else if($campaign[reg_end]<=$campaign[reg_start]){
+                            print('<div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>Registration cannot finish before it starts!</p>
+                            </div>');
+                        }
+                        else if($campaign[reg_end]<=date('Y-m-d')){
+                            print('<div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>Campaign REGISTRATION END DATE cannot be before today</p>
+                            </div>');
+                        }
+                        else if($campaign[start]<date('Y-m-d')){
+                            print('<div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>Campaign START DATE cannot be before today</p>
+                            </div>');
+                        }
+                        else if($campaign[end]<=$campaign[start]){
+                            print('<div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>The campaign cannot finish before it starts!</p>
+                            </div>');
+                        }
+                        else if($campaign[end]<=date('Y-m-d')){
+                            print('<div class="uk-alert-danger" uk-alert>
+                            <a class="uk-alert-close" uk-close></a>
+                            <p>Campaign END DATE cannot be before today</p>
+                            </div>');
+                        }
+                        else{
+                            print('<div class="uk-alert-success" uk-alert>
+                                                    <a class="uk-alert-close" uk-close></a>
+                                                    <p>Campaign '.$campaign[name].' created</p>
+                                                </div>');
+                        }
                     }
                 ?>
                 <div class="uk-margin">

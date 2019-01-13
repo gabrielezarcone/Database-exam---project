@@ -43,9 +43,6 @@ begin
 
     if((num_workers >= worker_requested) and (task_threshold >= requested_threshold)) then
 
-        --- task update to valid ----
-        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.task;
-
         --- every work answered correctly update to valid ----
         for worker_id in SELECT worker FROM crowdsourcing.recives_task WHERE task=NEW.task and worker IN(select C.worker 
                                                                                                     from crowdsourcing.choose as C
@@ -53,6 +50,8 @@ begin
         loop 
             UPDATE crowdsourcing.recives_task SET valid_bit_user=TRUE WHERE worker=worker_id and task=NEW.task;
         end loop;
+        --- task update to valid ----
+        update crowdsourcing.task set valid_bit=TRUE WHERE id=NEW.task;
 
     elseif(num_workers >= worker_requested) then
         --- task update to not valid ----
@@ -80,7 +79,7 @@ CREATE OR REPLACE FUNCTION score_update()
 RETURNS TRIGGER AS $$
     DECLARE 
     BEGIN
-        if(NEW.valid_bit=true) then
+        if(NEW.valid_bit=TRUE) then
         UPDATE crowdsourcing.joins_campaign SET score = score+1
         WHERE campaign=NEW.campaign and worker IN ( SELECT R.worker
                                                     FROM crowdsourcing.recives_task AS R 
@@ -135,12 +134,19 @@ RETURNS TABLE(id INTEGER, title VARCHAR(50), description VARCHAR(280)) AS $$
     DECLARE
     BEGIN
         RETURN QUERY SELECT T.id, T.title, T.description
-        FROM crowdsourcing.task AS T JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task join crowdsourcing.has_keyword as HK on RK.keyword=HK.keyword
-        WHERE T.campaign=$1 AND T.valid_bit IS NULL AND RK.keyword IN (  SELECT keyword
-                                                                    FROM crowdsourcing.has_keyword
-                                                                    WHERE worker=$2) AND T.id NOT IN(SELECT task
-                                                                                                    FROM crowdsourcing.recives_task
-                                                                                                    WHERE worker=$2)
+        FROM crowdsourcing.task AS T 
+                JOIN crowdsourcing.campaign as C ON T.campaign=C.id
+                JOIN crowdsourcing.requires_keyword as RK ON T.id=RK.task 
+                JOIN crowdsourcing.has_keyword as HK ON RK.keyword=HK.keyword
+        WHERE T.campaign=$1 
+                AND C.start_date<=CURRENT_DATE AND C.end_date>=CURRENT_DATE
+                AND T.valid_bit IS NULL 
+                AND RK.keyword IN ( SELECT keyword
+                                    FROM crowdsourcing.has_keyword
+                                    WHERE worker=$2) 
+                AND T.id NOT IN(SELECT task
+                                FROM crowdsourcing.recives_task
+                                WHERE worker=$2)
         ORDER BY HK.score desc
         LIMIT 1;
     END;
