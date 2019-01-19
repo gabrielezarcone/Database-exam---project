@@ -9,5 +9,21 @@
                 </li>
             </ul>
         </div>
+        <div class="uk-navbar-right" style="margin-right: 1%;">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="worker.php">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
+                        <?php print($_SESSION[user]); ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="requester.php?logout=true">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: push"></span>
+                        LogOut
+                    </a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </div>
