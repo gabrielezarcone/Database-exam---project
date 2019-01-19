@@ -23,3 +23,275 @@
 2018-09-08 12:27:16.855 CEST [1818] STATEMENT:  select worker
 	from joins_campaign
 	where campaign = 1;
+2018-09-10 15:27:26.884 CEST [10668] LOG:  listening on IPv6 address "::1", port 5432
+2018-09-10 15:27:26.884 CEST [10668] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-09-10 15:27:26.886 CEST [10668] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-09-10 15:27:26.917 CEST [10669] LOG:  database system was shut down at 2018-09-09 01:33:03 CEST
+2018-09-10 15:27:26.928 CEST [10668] LOG:  database system is ready to accept connections
+2018-09-11 02:19:28.570 CEST [10668] LOG:  received smart shutdown request
+2018-09-11 02:19:28.573 CEST [10668] LOG:  worker process: logical replication launcher (PID 10675) exited with exit code 1
+2018-09-11 02:19:28.573 CEST [10670] LOG:  shutting down
+2018-09-11 02:19:28.591 CEST [10668] LOG:  database system is shut down
+2018-09-13 20:45:00.038 CEST [20519] LOG:  listening on IPv6 address "::1", port 5432
+2018-09-13 20:45:00.039 CEST [20519] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-09-13 20:45:00.041 CEST [20519] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-09-13 20:45:00.081 CEST [20520] LOG:  database system was shut down at 2018-09-11 02:19:28 CEST
+2018-09-13 20:45:00.091 CEST [20519] LOG:  database system is ready to accept connections
+2018-09-13 20:56:04.794 CEST [20544] ERROR:  syntax error at or near "/?" at character 1
+2018-09-13 20:56:04.794 CEST [20544] STATEMENT:  /?
+	;
+2018-09-13 21:07:42.772 CEST [20584] ERROR:  null value in column "requester" violates not-null constraint
+2018-09-13 21:07:42.772 CEST [20584] DETAIL:  Failing row contains (1, 2019-06-02, 2019-07-02, 2019-07-03, 2019-08-03, null).
+2018-09-13 21:07:42.772 CEST [20584] CONTEXT:  SQL statement "UPDATE ONLY "crowdsourcing"."campaign" SET "requester" = NULL WHERE $1::pg_catalog.text OPERATOR(pg_catalog.=) "requester"::pg_catalog.text"
+2018-09-13 21:07:42.772 CEST [20584] STATEMENT:  BEGIN;
+	DELETE FROM "crowdsourcing"."requester" WHERE "user_name"='requester1';
+	
+2018-09-13 21:07:51.317 CEST [20584] ERROR:  null value in column "requester" violates not-null constraint
+2018-09-13 21:07:51.317 CEST [20584] DETAIL:  Failing row contains (1, 2019-06-02, 2019-07-02, 2019-07-03, 2019-08-03, null).
+2018-09-13 21:07:51.317 CEST [20584] CONTEXT:  SQL statement "UPDATE ONLY "crowdsourcing"."campaign" SET "requester" = NULL WHERE $1::pg_catalog.text OPERATOR(pg_catalog.=) "requester"::pg_catalog.text"
+2018-09-13 21:07:51.317 CEST [20584] STATEMENT:  BEGIN;
+	DELETE FROM "crowdsourcing"."requester" WHERE "user_name"='requester1';
+	
+2018-09-13 22:58:02.273 CEST [22858] ERROR:  syntax error at or near "," at character 108
+2018-09-13 22:58:02.273 CEST [22858] STATEMENT:  INSERT INTO worker(user_name, password, name, surname) 
+	                                            VALUES(,,,)
+2018-09-13 22:58:18.053 CEST [22860] ERROR:  syntax error at or near "," at character 108
+2018-09-13 22:58:18.053 CEST [22860] STATEMENT:  INSERT INTO worker(user_name, password, name, surname) 
+	                                            VALUES(,,,)
+2018-09-13 22:58:33.470 CEST [22863] ERROR:  syntax error at or near "," at character 108
+2018-09-13 22:58:33.470 CEST [22863] STATEMENT:  INSERT INTO worker(user_name, password, name, surname) 
+	                                            VALUES(,,,)
+2018-09-13 22:59:05.323 CEST [22917] ERROR:  syntax error at or near "," at character 109
+2018-09-13 22:59:05.323 CEST [22917] STATEMENT:  INSERT INTO worker(user_name, password, name, surname) 
+	                                            VALUES(?,?,?,?)
+2018-09-13 22:59:12.675 CEST [22919] ERROR:  syntax error at or near "," at character 109
+2018-09-13 22:59:12.675 CEST [22919] STATEMENT:  INSERT INTO worker(user_name, password, name, surname) 
+	                                            VALUES(?,?,?,?)
+2018-09-13 22:59:36.801 CEST [22970] ERROR:  relation "worker" does not exist at character 13
+2018-09-13 22:59:36.801 CEST [22970] STATEMENT:  INSERT INTO worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:00:26.993 CEST [23023] ERROR:  permission denied for schema crowdsourcing at character 13
+2018-09-13 23:00:26.993 CEST [23023] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:01:31.320 CEST [23079] ERROR:  permission denied for schema crowdsourcing at character 13
+2018-09-13 23:01:31.320 CEST [23079] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:01:45.829 CEST [23082] ERROR:  permission denied for schema crowdsourcing at character 13
+2018-09-13 23:01:45.829 CEST [23082] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:11:18.225 CEST [23214] ERROR:  could not determine data type of parameter $3
+2018-09-13 23:11:18.225 CEST [23214] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$4,$5)
+2018-09-13 23:11:18.225 CEST [23214] ERROR:  prepared statement "worker" does not exist
+2018-09-13 23:11:44.738 CEST [23265] ERROR:  syntax error at or near "," at character 122
+2018-09-13 23:11:44.738 CEST [23265] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES(,,,)
+2018-09-13 23:11:44.739 CEST [23265] ERROR:  prepared statement "worker" does not exist
+2018-09-13 23:21:39.709 CEST [23408] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:21:39.709 CEST [23408] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:29:01.926 CEST [23537] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:29:01.926 CEST [23537] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:29:15.111 CEST [23540] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:29:15.111 CEST [23540] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:29:46.218 CEST [23592] ERROR:  there is no parameter $0 at character 122
+2018-09-13 23:29:46.218 CEST [23592] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($0,$1,$2,$3)
+2018-09-13 23:29:46.219 CEST [23592] ERROR:  prepared statement "worker" does not exist
+2018-09-13 23:30:20.198 CEST [23645] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:30:20.198 CEST [23645] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:30:51.050 CEST [23649] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:30:51.050 CEST [23649] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:35:24.542 CEST [23736] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:35:24.542 CEST [23736] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:35:52.626 CEST [23741] ERROR:  bind message supplies 5 parameters, but prepared statement "worker" requires 4
+2018-09-13 23:35:52.626 CEST [23741] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:44.449 CEST [23886] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-09-13 23:40:44.449 CEST [23886] DETAIL:  Key (user_name)=(us) already exists.
+2018-09-13 23:40:44.449 CEST [23886] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:44.450 CEST [23886] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:44.450 CEST [23886] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:44.450 CEST [23886] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:56.620 CEST [23889] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:56.620 CEST [23889] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:56.620 CEST [23889] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:56.621 CEST [23889] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:56.621 CEST [23889] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:56.621 CEST [23889] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:58.887 CEST [23890] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:58.887 CEST [23890] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:58.887 CEST [23890] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:58.888 CEST [23890] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:58.888 CEST [23890] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:58.888 CEST [23890] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:59.788 CEST [23891] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:59.788 CEST [23891] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:59.788 CEST [23891] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:59.788 CEST [23891] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:59.788 CEST [23891] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:59.788 CEST [23891] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:59.990 CEST [23892] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:59.990 CEST [23892] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:59.990 CEST [23892] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:40:59.990 CEST [23892] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:40:59.990 CEST [23892] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:40:59.990 CEST [23892] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:00.220 CEST [23893] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:00.220 CEST [23893] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:00.220 CEST [23893] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:00.220 CEST [23893] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:00.220 CEST [23893] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:00.220 CEST [23893] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:00.448 CEST [23894] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:00.448 CEST [23894] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:00.448 CEST [23894] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:00.449 CEST [23894] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:00.449 CEST [23894] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:00.449 CEST [23894] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:01.048 CEST [23895] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:01.048 CEST [23895] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:01.048 CEST [23895] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:01.049 CEST [23895] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:01.049 CEST [23895] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:01.049 CEST [23895] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:01.777 CEST [23896] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:01.777 CEST [23896] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:01.777 CEST [23896] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:01.779 CEST [23896] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:01.779 CEST [23896] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:01.779 CEST [23896] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:02.488 CEST [23898] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:02.488 CEST [23898] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:02.488 CEST [23898] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:02.489 CEST [23898] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:02.489 CEST [23898] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:02.489 CEST [23898] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:03.047 CEST [23899] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:03.047 CEST [23899] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:03.047 CEST [23899] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:03.048 CEST [23899] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:03.048 CEST [23899] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:03.048 CEST [23899] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:03.215 CEST [23900] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:03.215 CEST [23900] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:03.215 CEST [23900] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:03.216 CEST [23900] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:03.216 CEST [23900] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:03.216 CEST [23900] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:08.385 CEST [23901] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:08.385 CEST [23901] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:08.385 CEST [23901] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:41:08.386 CEST [23901] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:41:08.386 CEST [23901] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:41:08.386 CEST [23901] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:43:08.507 CEST [23923] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:43:08.507 CEST [23923] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:43:08.507 CEST [23923] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:43:08.508 CEST [23923] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:43:08.508 CEST [23923] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:43:08.508 CEST [23923] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:43:22.315 CEST [23926] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:43:22.315 CEST [23926] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:43:22.315 CEST [23926] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:43:22.316 CEST [23926] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:43:22.316 CEST [23926] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:43:22.316 CEST [23926] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:01.153 CEST [24009] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:01.153 CEST [24009] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:01.153 CEST [24009] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:01.154 CEST [24009] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:01.154 CEST [24009] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:01.154 CEST [24009] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:02.860 CEST [24011] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:02.860 CEST [24011] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:02.860 CEST [24011] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:02.860 CEST [24011] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:02.860 CEST [24011] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:02.860 CEST [24011] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:05.225 CEST [24012] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:05.225 CEST [24012] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:05.225 CEST [24012] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:05.226 CEST [24012] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:05.226 CEST [24012] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:05.226 CEST [24012] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:33.744 CEST [24062] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:33.744 CEST [24062] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:33.744 CEST [24062] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:47:33.745 CEST [24062] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-13 23:47:33.745 CEST [24062] DETAIL:  Failing row contains (null, null, null, null).
+2018-09-13 23:47:33.745 CEST [24062] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-13 23:52:50.560 CEST [24201] ERROR:  duplicate key value violates unique constraint "worker_pkey"
+2018-09-13 23:52:50.560 CEST [24201] DETAIL:  Key (user_name)=(zarc_o) already exists.
+2018-09-13 23:52:50.560 CEST [24201] STATEMENT:  INSERT INTO crowdsourcing.worker(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-14 00:05:22.662 CEST [24542] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-14 00:05:22.662 CEST [24542] DETAIL:  Failing row contains (null, password, Gabriele, Zarcone).
+2018-09-14 00:05:22.662 CEST [24542] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-14 00:06:19.503 CEST [24597] ERROR:  null value in column "user_name" violates not-null constraint
+2018-09-14 00:06:19.503 CEST [24597] DETAIL:  Failing row contains (null, password, Gabriele, Zarcone).
+2018-09-14 00:06:19.503 CEST [24597] STATEMENT:  INSERT INTO crowdsourcing.requester(user_name, password, name, surname) 
+	                                            VALUES($1,$2,$3,$4)
+2018-09-14 00:43:28.214 CEST [25117] ERROR:  column w.user does not exist at character 50
+2018-09-14 00:43:28.214 CEST [25117] STATEMENT:  SELECT user from crowdsourcing.worker as w WHERE w.user like "$1";
+2018-09-14 00:43:28.215 CEST [25117] ERROR:  prepared statement "worker" does not exist
+2018-09-14 00:44:00.344 CEST [25170] ERROR:  column "$1" does not exist at character 67
+2018-09-14 00:44:00.344 CEST [25170] STATEMENT:  SELECT user from crowdsourcing.worker as w WHERE w.user_name like "$1";
+2018-09-14 00:44:00.345 CEST [25170] ERROR:  prepared statement "worker" does not exist
+2018-09-14 01:00:07.500 CEST [20519] LOG:  received smart shutdown request
+2018-09-14 01:00:07.501 CEST [20519] LOG:  worker process: logical replication launcher (PID 20526) exited with exit code 1
+2018-09-14 01:00:07.502 CEST [20521] LOG:  shutting down
+2018-09-14 01:00:07.509 CEST [20519] LOG:  database system is shut down
+2018-10-02 09:00:33.333 CEST [900] LOG:  listening on IPv6 address "::1", port 5432
+2018-10-02 09:00:33.334 CEST [900] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-10-02 09:00:33.335 CEST [900] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-10-02 09:00:33.363 CEST [901] LOG:  database system was shut down at 2018-09-21 20:08:36 CEST
+2018-10-02 09:00:33.370 CEST [900] LOG:  database system is ready to accept connections
+2018-10-02 09:25:12.219 CEST [900] LOG:  received smart shutdown request
+2018-10-02 09:25:12.220 CEST [900] LOG:  worker process: logical replication launcher (PID 907) exited with exit code 1
+2018-10-02 09:25:12.221 CEST [902] LOG:  shutting down
+2018-10-02 09:25:12.230 CEST [900] LOG:  database system is shut down
